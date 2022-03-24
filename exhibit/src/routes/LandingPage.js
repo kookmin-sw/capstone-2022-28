@@ -1,9 +1,9 @@
-import NavBar from "../components/Navbar";
+import NavigationBar from "../components/Navbar/NavigationBar";
 
 function LandingPage() {
   return (
     <div>
-      <NavBar />
+      <NavigationBar />
       <div
         style={{
           display: "flex",
@@ -12,7 +12,7 @@ function LandingPage() {
           height: "100vh",
         }}
       >
-        <h1>Homepage</h1>
+        <h1>LandingPage</h1>
       </div>
     </div>
   );

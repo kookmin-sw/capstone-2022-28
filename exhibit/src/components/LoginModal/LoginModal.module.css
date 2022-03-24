@@ -1,0 +1,13 @@
+.loginBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.modal_header {
+  font-weight: 500;
+}
+
+.modal_body {
+  display: flex;
+  justify-content: center;
+}

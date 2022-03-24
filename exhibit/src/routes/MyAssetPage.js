@@ -1,9 +1,9 @@
-import NavBar from "../components/Navbar";
+import NavigationBar from "../components/Navbar/NavigationBar";
 
 function MyAssetPage() {
   return (
     <div>
-      <NavBar />
+      <NavigationBar />
       <div
         style={{
           display: "flex",
@@ -12,7 +12,7 @@ function MyAssetPage() {
           height: "100vh",
         }}
       >
-        <h1>내 컬렉션</h1>
+        <h1>내 작품: 소유작, 좋아하는 작품</h1>
       </div>
     </div>
   );
