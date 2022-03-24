@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./routes/LandingPage";
-import LoginPage from "./routes/LoginPage";
 import ArtPage from "./routes/ArtPage";
 import MyAssetPage from "./routes/MyAssetPage";
 import MyAccount from "./routes/MyAccount";
@@ -12,7 +11,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/individual" element={<ArtPage />} />
         <Route path="/my-collection" element={<MyAssetPage />} />
         <Route path="/my-art" element={<MyArtPage />} />
