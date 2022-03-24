@@ -1,9 +1,9 @@
-import NavBar from "../components/Navbar";
+import NavigationBar from "../components/Navbar/NavigationBar";
 
 function ContestPage() {
   return (
     <div>
-      <NavBar />
+      <NavigationBar />
       <div
         style={{
           display: "flex",
