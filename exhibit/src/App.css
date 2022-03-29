@@ -1,0 +1,20 @@
+.App {
+    background-color: black;
+}
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 14px;
+}
+
+body{
+    height: 100%;
+    background-color: black;
+}
