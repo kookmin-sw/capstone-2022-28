@@ -4,10 +4,11 @@
 
 ![KakaoTalk_Photo_2022-03-18-17-00-33](https://user-images.githubusercontent.com/28584299/158960513-e54ae75d-bb1f-49e0-a188-9617415dbf8a.jpeg)
 
-## 🎨 방구석전시회 소개
+## 1. 프로젝트 소개
 
-> 방구석전시회는 공간의 제약없이 사용자가 자신의 창작물들을 통해 자신만의 전시회를 기획하고, 감상할 수 있는 플랫폼입니다.
-> 
+> 🎨방구석전시회는 공간의 제약없이 사용자가 자신의 창작물들을 통해 자신만의 전시회를 기획하고, 감상할 수 있는 플랫폼입니다.
+
+## 2. Abstract
 > It is a platform where you can view works online without space constraints. Also, you can trade your works through NFT.
 
 <br>
@@ -25,13 +26,19 @@
 5. 성별과 나이의 제약없이 모든 사용자가 아티스트가 될 수 있다. 
 
 ```
+<br>
 
-## 💁 팀원 소개
+## 3. 소개 영상
+> 프로젝트를 소개하는 영상을 추가하세요
+
+<br>
+
+## 4. 💁 팀원 소개
 
 **🥅 민대인**
 
 ```
-student ID : 20171621
+student ID : xxxx1621
 e-mail : bamin0422@kookmin.ac.kr
 Role : token, projector
 ```
@@ -41,7 +48,7 @@ Role : token, projector
 **⚽ 노성환**
 
 ```
-student ID : 20171615
+student ID : xxxx1615
 e-mail : nsh1998@kookmin.ac.kr
 Role : front-end, back-end
 ```
@@ -51,7 +58,7 @@ Role : front-end, back-end
 **⚾ 최지희**
 
 ```
-student ID : 20181701
+student ID : xxxx1701
 e-mail : judyi19997@kookmin.ac.kr
 Role : token, back-end
 ```
@@ -61,7 +68,7 @@ Role : token, back-end
 **🏀 이도원**
 
 ```
-student ID : 20191636
+student ID : xxxx1636
 e-mail : dowon3036@kookmin.ac.kr
 Role : front-end, back-end
 ```
@@ -71,7 +78,16 @@ Role : front-end, back-end
 **🎱 김하연** 
 
 ```
-student ID : 20191580
+student ID : xxxx1580
 e-mail : hayoun28@kookmin.ac.kr
 Role : front-end, projector
 ```
+<br>
+
+## 5. 사용법
+> 소스코드제출시 설치법이나 사용법을 작성하세요.
+
+<br>
+
+## 6. 기타
+> 추가적인 내용은 자유롭게 작성하세요.
