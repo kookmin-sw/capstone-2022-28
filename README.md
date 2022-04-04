@@ -29,7 +29,7 @@
 <br>
 
 ## 2. 소개 영상
-> [![방구석 전시회 소개 영상](http://img.youtube.com/vi/altemD0MEvk/0.jpg)](https://www.youtu.be/altemD0MEvk?t=0s) 
+> [![방구석 전시회 소개 영상](http://img.youtube.com/vi/altemD0MEvk/0.jpg)](https://www.youtube.com/watch?v=altemD0MEvk) 
 
 
 
