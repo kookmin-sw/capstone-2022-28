@@ -5,7 +5,7 @@ import MyAssetPage from "./routes/MyAssetPage";
 import MyAccount from "./routes/MyAccount";
 import ContestPage from "./routes/ContestPage";
 import MyArtPage from "./routes/MyArtPage";
-import UploadPage from "./routes/UploadPage";
+import UploadPage from "./routes/UploadPage/UploadPage";
 import Caver from "caver-js";
 
 const COUNT_CONTRACT_ADDRESS = "0x3aEDa4A4e7EA89fC72C0CAf6e95C11f19493f8d7";

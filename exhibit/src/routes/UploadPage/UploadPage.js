@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import NavigationBar from "../components/Navbar/NavigationBar";
+import NavigationBar from "../../components/Navbar/NavigationBar";
 import Dropzone from "react-dropzone";
 import { Typography, Button, Form, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import styles from "./UploadPage.module.css";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -45,38 +46,21 @@ function UploadPage() {
   return (
     <div>
       <NavigationBar />
-      <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: "2rem",
-            marginTop: "7rem",
-          }}
-        >
+      <div className={styles.root}>
+        <div className={styles.title}>
           <Title level={2}>Upload Video</Title>
         </div>
 
         <Form onSubmit={onSubmitHandler}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className={styles.contents}>
             {/* Drop Zone */}
-
             <Dropzone
               onDrop={onDropHandler}
               multiple={false}
               maxSize={9000000000}
             >
               {({ getRootProps, getInputProps }) => (
-                <div
-                  style={{
-                    width: "300px",
-                    height: "240px",
-                    border: "1px solid lightgray",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  {...getRootProps()}
-                >
+                <div className={styles.dropZone} {...getRootProps()}>
                   <input {...getInputProps()} />
                   <PlusOutlined style={{ fontSize: "3rem" }} />
                 </div>
@@ -86,14 +70,22 @@ function UploadPage() {
           <br />
 
           <label>Title</label>
-          <Input onChange={videoTitleHandler} value={VideoTitle} />
+          <Input
+            onChange={videoTitleHandler}
+            value={VideoTitle}
+            style={{ marginBottom: "2rem" }}
+          />
           <br />
 
           <label>Discription</label>
-          <TextArea onChange={descriptionHandler} value={Description} />
+          <TextArea
+            onChange={descriptionHandler}
+            value={Description}
+            style={{ marginBottom: "2rem" }}
+          />
           <br />
 
-          <select onChange={categoryHandler}>
+          <select onChange={categoryHandler} style={{ marginBottom: "2rem" }}>
             {CategoryOptions.map((item, index) => (
               <option key={index} value={item.value}>
                 {item.label}
@@ -102,9 +94,11 @@ function UploadPage() {
           </select>
           <br />
 
-          <Button type="primary" size="large" onClick={onSubmitHandler}>
-            Submit
-          </Button>
+          <div className={styles.submitBtn}>
+            <Button type="primary" size="large" onClick={onSubmitHandler}>
+              Submit
+            </Button>
+          </div>
         </Form>
       </div>
     </div>
