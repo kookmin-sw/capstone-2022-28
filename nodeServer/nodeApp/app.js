@@ -6,6 +6,7 @@ var logger = require('morgan');
 const session = require('express-session');
 const multer = require('multer');
 const dotenv = require('dotenv');
+const {sequelize} = require('./models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,6 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+sequelize.sync({force:false})
+  .then(()=>{
+    console.log("데이터베이스 연결 성공")
+  })
+  .catch((err)=>{
+    console.log(err)
+  }); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
