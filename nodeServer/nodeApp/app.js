@@ -6,13 +6,18 @@ var logger = require('morgan');
 const session = require('express-session');
 const multer = require('multer');
 const dotenv = require('dotenv');
+const passport = require('passport')
+
+const passportConfig = require('./passport/index')
 const {sequelize} = require('./models');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
-dotenv.config();
+dotenv.config(); 
 var app = express();
+passportConfig();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,9 +28,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  resave:false,
+  saveUninitialized:false,
+  secret:process.env.COOKIE_SECRET,
+  cookie:{
+    httpOnly:true,
+    secure:false,
+  },
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/oauth',authRouter);
 
 sequelize.sync({force:false})
   .then(()=>{
