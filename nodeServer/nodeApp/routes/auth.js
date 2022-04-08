@@ -1,7 +1,11 @@
+
 var express = require('express');
 const passport = require('passport');
 var router = express.Router();
 const User = require('../models/user')
+const {isLoggedIn, isNotLoggedIn} = require('./middleware');
+// import LandingPage from "../routes/LandingPage";
+// import LandingPage from ("../../../exhibit/src/routes/LandingPage.js")
 
 //카카오로만 로그인할꺼면 굳이 필요X
 // router.post('/join', async function(req, res, next) {
@@ -23,14 +27,14 @@ const User = require('../models/user')
 //    }
 // });
 
-router.get('/logout',(req,res)=>{
+router.get('/logout',isLoggedIn,(req,res)=>{
     req.logOut();
     req.session.destroy();
     res.redirect('/') //나중에 정해줄 수 있음.
 })
 
 
-//프론트단에서 처리 
+
 router.get('/kakao',passport.authenticate('kakao'));
 
 router.get('/kakao/callback',passport.authenticate('kakao',{
@@ -38,9 +42,9 @@ router.get('/kakao/callback',passport.authenticate('kakao',{
 }),(req,res)=>{
     const code = req.query.code
     console.log("코드 : "+code)
-    res.redirect('/') //성공시 redirect할 곳
+    res.redirect("http://localhost:3000/") //성공시 redirect할 곳
 })
 
-router.get('/token',)
+// router.get('/token',)
 
 module.exports = router;

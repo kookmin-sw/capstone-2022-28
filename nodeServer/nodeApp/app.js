@@ -44,7 +44,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/oauth',authRouter);
 
-sequelize.sync({force:false})
+//force : true => 서버 껐다 키면 내부의 데이터/컬럼들 전부 새로시작
+sequelize.sync({force:false}) 
   .then(()=>{
     console.log("데이터베이스 연결 성공")
   })

@@ -6,7 +6,7 @@ const User = require('../models/user');
 module.exports = () =>{
     passport.use(new kakaoStrategy({
         clientID:'b978902c0e045f8489bcff34e3d15077',
-        callbackURL:'http://localhost:3000/oauth/kakao/callback',
+        callbackURL:'http://localhost:8000/oauth/kakao/callback',
     }, async(accessToken,refreshToken,profile,done) =>{
         console.log("access Token입니다!!!!! : "+accessToken);
         console.log("refresh Token입니다!!!!! : "+refreshToken);
