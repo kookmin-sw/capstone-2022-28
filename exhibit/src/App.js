@@ -35,6 +35,9 @@ function App() {
         <Route path="/my-art" element={<MyArtPage />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/art-wall" element={<ContestPage />} />
+        <Route path="/oauth/kakao/callback">
+    
+          </Route>
       </Routes>
     </Router>
   );
