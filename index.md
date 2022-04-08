@@ -1,37 +1,75 @@
-## Welcome to GitHub Pages
+# 💻   2022 캡스톤 28팀 - 방구석 전시회
 
-You can use the [editor on GitHub](https://github.com/kookmin-sw/cap-template/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+![KakaoTalk_Photo_2022-03-18-17-00-33](https://user-images.githubusercontent.com/28584299/158960513-e54ae75d-bb1f-49e0-a188-9617415dbf8a.jpeg)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 🎨 방구석전시회 소개
 
-### Markdown
+> 방구석전시회는 공간의 제약없이 사용자가 자신의 창작물들을 통해 자신만의 전시회를 기획하고, 감상할 수 있는 플랫폼입니다.
+> 
+> It is a platform where you can view works online without space constraints. Also, you can trade your works through NFT.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<br>
 
-```markdown
-Syntax highlighted code block
+방구석의 **지향점**은 다음과 같습니다.
 
-# Header 1
-## Header 2
-### Header 3
+<br>
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+1. 새로운 전시 패러다임을 제시한다.
+2. NFT토큰을 사용하여 사용자는 원하는 작품을 손쉽게 구입하고 작가들에겐 새로운 수입의 창구가 된다.
+3. 공간의 제약없이 어느곳이든 프로젝터를 사용해 더욱 생생한 관람이 가능해진다.
+4. 잠재력이 뛰어난 신인 작가들의 등용문이 될 수 있다.
+5. 성별과 나이의 제약없이 모든 사용자가 아티스트가 될 수 있다. 
 
-### Jekyll Themes
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## 💁 팀원 소개
 
-### Support or Contact
+**🥅 민대인**
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```
+student ID : 20171621
+e-mail : bamin0422@kookmin.ac.kr
+Role : token, projector
+```
+
+<br>
+
+**⚽ 노성환**
+
+```
+student ID : 20171615
+e-mail : nsh1998@kookmin.ac.kr
+Role : front-end, back-end
+```
+
+<br>
+
+**⚾ 최지희**
+
+```
+student ID : 20181701
+e-mail : judyi19997@kookmin.ac.kr
+Role : token, back-end
+```
+
+<br>
+
+**🏀 이도원**
+
+```
+student ID : 20191636
+e-mail : dowon3036@kookmin.ac.kr
+Role : front-end, back-end
+```
+
+<br>
+
+**🎱 김하연** 
+
+```
+student ID : 20191580
+e-mail : hayoun28@kookmin.ac.kr
+Role : front-end, projector
+```
