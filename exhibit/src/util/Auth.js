@@ -12,6 +12,7 @@ const Auth = () => {
   // calllback으로 받은 인가코드
   const code = new URL(window.location.href).searchParams.get("code");
 
+  
   const history = useHistory();
 
   const getToken = async () => {

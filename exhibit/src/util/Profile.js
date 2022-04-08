@@ -12,6 +12,7 @@ const Profile = () => {
         url: "/v2/user/me",
       });
 
+      
       // 사용자 정보 변수에 저장
       setUserId(data.id);
       setNickName(data.properties.nickname);

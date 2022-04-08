@@ -2,7 +2,9 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import login_btn from "../Image/kakao_login.png";
 import img from "../Image/img.png";
-import styles from "./LoginModal.module.css";
+import styles from "./LoginModal.module.css"; 
+
+
 // import Profile from "../Profile";
 
 function LoginModal(props) {
