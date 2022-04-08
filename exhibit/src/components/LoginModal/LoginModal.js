@@ -5,6 +5,14 @@ import img from "../Image/img.png";
 import styles from "./LoginModal.module.css";
 
 function LoginModal(props) {
+  const REST_API_KEY = "b978902c0e045f8489bcff34e3d15077";
+  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const KAKAO_AUTH_URL = `http://localhost:8000/oauth/kakao`;
+  
+  const loginHandler = () => {
+    window.open(KAKAO_AUTH_URL, '_self')
+  }
+
   return (
     <Modal
       {...props}
@@ -19,7 +27,7 @@ function LoginModal(props) {
         <img src={img} />
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
-        <img src={login_btn} onClick={props.onHide} />
+        <img src={login_btn} onClick={loginHandler} />
       </Modal.Footer>
     </Modal>
   );
