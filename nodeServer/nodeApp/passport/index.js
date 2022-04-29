@@ -1,3 +1,5 @@
+// 안쓰는 코드
+
 const passport = require('passport');
 const kakao = require('./kakaoStrategy');
 const User = require('../models/user');

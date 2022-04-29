@@ -1,77 +1,95 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7091582&assignment_repo_type=AssignmentRepo)
-# Welcome to GitHub
 
-캡스톤 팀 생성을 축하합니다.
+# 💻   2022 캡스톤 28팀 - 방구석 전시회
 
-## 팀소개 및 페이지를 꾸며주세요.
+![KakaoTalk_Photo_2022-03-18-17-00-33](https://user-images.githubusercontent.com/28584299/158960513-e54ae75d-bb1f-49e0-a188-9617415dbf8a.jpeg)
 
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
+## 1. 프로젝트 소개
 
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
+> 🎨방구석전시회는 공간의 제약없이 사용자가 자신의 창작물들을 통해 자신만의 전시회를 기획하고, 감상할 수 있는 플랫폼입니다.
 
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
+##    Abstract
+> It is a platform where you can view works online without space constraints. Also, you can trade your works through NFT.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+<br>
 
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
+방구석의 **지향점**은 다음과 같습니다.
 
+<br>
 
-## 내용에 아래와 같은 내용들을 추가하세요.
-
-### 1. 프로잭트 소개
-
-프로젝트
-
-### 2. 소개 영상
-
-프로젝트 소개하는 영상을 추가하세요
-
-### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
-
-
-## Markdown을 사용하여 내용꾸미기
-
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+1. 새로운 전시 패러다임을 제시한다.
+2. NFT토큰을 사용하여 사용자는 원하는 작품을 손쉽게 구입하고 작가들에겐 새로운 수입의 창구가 된다.
+3. 공간의 제약없이 어느곳이든 프로젝터를 사용해 더욱 생생한 관람이 가능해진다.
+4. 잠재력이 뛰어난 신인 작가들의 등용문이 될 수 있다.
+5. 성별과 나이의 제약없이 모든 사용자가 아티스트가 될 수 있다. 
 
-### Support or Contact
+```
+<br>
 
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+## 2. 소개 영상
+> [![방구석 전시회 소개 영상](http://img.youtube.com/vi/altemD0MEvk/0.jpg)](https://www.youtube.com/watch?v=altemD0MEvk) 
+
+
+
+<br>
+
+## 3. 💁 팀원 소개
+
+**🥅 민대인**
+
+```
+student ID : xxxx1621
+e-mail : bamin0422@kookmin.ac.kr
+Role : token, projector
+```
+
+<br>
+
+**⚽ 노성환**
+
+```
+student ID : xxxx1615
+e-mail : nsh1998@kookmin.ac.kr
+Role : front-end, back-end
+```
+
+<br>
+
+**⚾ 최지희**
+
+```
+student ID : xxxx1701
+e-mail : judyi19997@kookmin.ac.kr
+Role : token, back-end
+```
+
+<br>
+
+**🏀 이도원**
+
+```
+student ID : xxxx1636
+e-mail : dowon3036@kookmin.ac.kr
+Role : front-end, back-end
+```
+
+<br>
+
+**🎱 김하연** 
+
+```
+student ID : xxxx1580
+e-mail : hayoun28@kookmin.ac.kr
+Role : front-end, projector
+```
+<br>
+
+## 4. 사용법
+> 소스코드제출시 설치법이나 사용법을 작성하세요.
+
+<br>
+
+## 5. 기타
+> 추가적인 내용은 자유롭게 작성하세요.
