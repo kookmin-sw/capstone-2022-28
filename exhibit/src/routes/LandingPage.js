@@ -6,7 +6,8 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const clickListener = () => {
-    navigate("/http://localhost:8000/get/11")
+    console.log(localStorage)
+    // navigate("/http://localhost:8000/get/11")
   }
 
   return (

@@ -7,6 +7,7 @@ const session = require('express-session');
 const multer = require('multer');
 const dotenv = require('dotenv');
 const passport = require('passport')
+const cors = require("cors");
 
 const passportConfig = require('./passport/index')
 const {sequelize} = require('./models');
@@ -18,6 +19,10 @@ const authRouter = require('./routes/auth');
 dotenv.config(); 
 var app = express();
 passportConfig();
+app.use(cors({
+  origin:"http://localhost:3000",
+  credentials:true
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,7 +54,7 @@ sequelize.sync({force:false})
   .then(()=>{
     console.log("데이터베이스 연결 성공")
   })
-  .catch((err)=>{
+  .catch((err)=>{ 
     console.log(err)
   }); 
 

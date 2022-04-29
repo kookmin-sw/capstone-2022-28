@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
  
 function Data() {
   const [data,setData] = useState({});
-  fetch('/oauth/justData')
+  fetch('/oauth/justData/12')
   .then(res => res.json())
   .then(data => setData(data),()=>{
   console.log('data read : ' , data);
@@ -10,12 +10,16 @@ function Data() {
  
   return (
     <div>
-
-      <h1>{data.nick}</h1> 
-      <h1>{data.snsId}</h1>
-      <h1>{data.provider}</h1>
+      {data.nick} {data.snsId}
     </div>
   );
 }
 
+// callApi = async() =>{
+// 	console.log('callApi');
+// 	const response = await fetch('/api/customers');
+// 	const body = await response.json();
+// 	return body;
+// }
+ 
 export default Data;
