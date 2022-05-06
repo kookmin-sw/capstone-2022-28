@@ -9,6 +9,7 @@ import card7 from "../Image/007.png";
 import card8 from "../Image/008.png";
 import card9 from "../Image/009.png";
 import card10 from "../Image/010.png";
+
 import styled from "styled-components";
 
 const Card = props => {
