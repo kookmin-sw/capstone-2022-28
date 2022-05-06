@@ -74,7 +74,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
-  "proxy":"http://localhost:8000",
+  "proxy":"http://3.39.32.4:8000",
   "eslintConfig": {
     "extends": [
       "react-app",
