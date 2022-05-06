@@ -21,7 +21,7 @@ const navigate = useNavigate();
 //   getKakaoTokenHandler실행
   React.useEffect(() => {  
     if (query.code) {
-      console.log(query.code)
+      // console.log(query.code)
       const token = getKakaoTokenHandler(query.code.toString()); 
       console.log("token====", token)
       navigate('/');
@@ -45,37 +45,39 @@ const navigate = useNavigate();
 
   //code를 바탕으로 backend로 보내서 back에서 토큰받아오기
   const getKakaoTokenHandler = async (code) => {
-  
+    let header_token
+    try{
+      header_token = localStorage.getItem('access_token')
+    }catch(err){
+      header_token = ''
+    }
+
     //서버로 요청
-    await axios({
-      method:"GET",
-      url:`http://localhost:8000/oauth/kakao/callback?code=${code}`
-    }).then(res =>{
-      console.log(res);
-      console.log("토큰은 여깄어~",res.data.tokens[0].jwt_access_token);
-      window.localStorage.setItem("token", JSON.stringify({
-        access_token: res.data.tokens[0].jwt_access_token,
-        refresh_token:res.data.tokens[1].jwt_refresh_token
-      })); 
+    await axios.get(`http://localhost:8000/oauth/kakao/callback?code=${code}`,{
+      headers:{
+        Authorizations: `${header_token}`
+      }
+    })
+    .then(res =>{
+      if (res.data.result == "create"){ //새롭게 db에 저장한 경우
+        window.localStorage.setItem("access_token", JSON.stringify(
+          res.data.tokens.jwt_access_token)); 
+        window.localStorage.setItem("refresh_token", JSON.stringify(
+          res.data.tokens.jwt_refresh_token)); 
+      }
+      else if(res.data.result == "update"){ //기존에 접근한 적이 있던 사람이 재 접속
+        console.log("토큰은 여깄어~");
+      }
+      else if(res.data.result == "invalid"){
+        if (res.data.data == "TOKEN_EXPIRED"){ //만료된 토큰일경우 
+
+        }
+      }
     })
 
   }
-    //일반 로그인
-  const sendKakaoTokenToServer = (token) => {
-    axios.post('/auth/kakao',{access_token: token})
-      .then(res => {
-        if (res.status == 201 || res.status == 200) {
-          const user =res.data.user;
-          window.localStorage.setItem("token", JSON.stringify({
-            access_token: res.data.jwt_access_token,
-            refresh_token:res.data.jwt_refresh_token
-          })); 
-          }
-        else {
-          window.alert("로그인에 실패하였습니다.");
-        }
-      })
-  }
+  
+  
 
   return (
     <Modal
