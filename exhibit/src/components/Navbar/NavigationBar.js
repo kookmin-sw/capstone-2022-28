@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
-import LoginModal from "../LoginModal/LoginModal";
+import LoginModal from "../../routes/LoginModal/LoginModal";
 
 function NavigationBar() {
   const [loginModal, setLoginModal] = useState(false);

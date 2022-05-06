@@ -1,0 +1,29 @@
+.root {
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+.contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 8em;
+}
+
+.dropZone {
+  width: 300px;
+  height: 240px;
+  border: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitBtn {
+  display: flex;
+  justify-content: center;
+}

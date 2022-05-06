@@ -5,7 +5,10 @@ import MyAssetPage from "./routes/MyAssetPage";
 import MyAccount from "./routes/MyAccount";
 import ContestPage from "./routes/ContestPage";
 import MyArtPage from "./routes/MyArtPage";
+import UploadPage from "./routes/UploadPage/UploadPage";
 import Caver from "caver-js";
+import Data from "./data.js"
+import Kakao from "./routes/LoginModal/kakao";
 
 const COUNT_CONTRACT_ADDRESS = "0x3aEDa4A4e7EA89fC72C0CAf6e95C11f19493f8d7";
 const ACCESS_KEY_ID = "KASKO3SVMXYIKU61S1AN326W";
@@ -28,19 +31,25 @@ const CHAIN_ID = "1001"; // MAINNET 8217 TESTNNET 1001
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/individual" element={<ArtPage />} />
-        <Route path="/my-collection" element={<MyAssetPage />} />
-        <Route path="/my-art" element={<MyArtPage />} />
-        <Route path="/my-account" element={<MyAccount />} />
-        <Route path="/art-wall" element={<ContestPage />} />
-        <Route path="/oauth/kakao/callback">
+    <div>
+    {/* <div>
+      <Data />
+    </div> */}
+     <Router>
+       <Routes>
+         <Route path="/" element={<LandingPage />} />
+         <Route path="/individual" element={<ArtPage />} />
+         <Route path="/my-collection" element={<MyAssetPage />} />
+         <Route path="/my-art" element={<MyArtPage />} />
+         <Route path="/my-account" element={<MyAccount />} />
+         <Route path="/art-wall" element={<ContestPage />} />
+         <Route path="/upload" element={<UploadPage />} />
+         <Route path="/loggedIn" element={<Data />} />
+         <Route path="/oauth/kakao/callback" element={<Kakao />}/>
+       </Routes>
+     </Router>
+    </div>
     
-          </Route>
-      </Routes>
-    </Router>
   );
 }
 
