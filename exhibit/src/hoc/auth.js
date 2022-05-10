@@ -24,7 +24,10 @@ export default function (SpecificComponent, option) {
       // 로그인 되지 않은 상태
       if (!res.data.isAuth) {
         // 회원들만 접근 가능할 때
-        if (option) navigate("/login");
+        if (option) {
+          alert("로그인해야합니다!");
+          navigate("/");
+        }
       }
       // 로그인 된 상태
       else {

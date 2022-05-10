@@ -9,8 +9,6 @@ import UploadPage from "./routes/UploadPage/UploadPage";
 import Caver from "caver-js";
 import Data from "./data.js";
 import Kakao from "./routes/LoginModal/kakao";
-import Auth from "./hoc/auth";
-import LoginModal from "./routes/LoginModal/LoginModal";
 
 const COUNT_CONTRACT_ADDRESS = "0x3aEDa4A4e7EA89fC72C0CAf6e95C11f19493f8d7";
 const ACCESS_KEY_ID = "KASKO3SVMXYIKU61S1AN326W";
@@ -34,10 +32,6 @@ const CHAIN_ID = "1001"; // MAINNET 8217 TESTNNET 1001
 // true: 로그인한 유저만 출입 가능
 // false: 로그인하지 않은 유저만 출입 가능
 function App() {
-  const AuthLandingPage = Auth(LandingPage, null);
-  const AuthIndividual = Auth(LoginModal, false);
-  const AuthUploadPage = Auth(UploadPage, true);
-
   return (
     <div>
       {/* <div>
@@ -45,13 +39,13 @@ function App() {
     </div> */}
       <Router>
         <Routes>
-          <Route path="/" element={<AuthLandingPage />} />
-          <Route path="/individual" element={<AuthIndividual />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/individual" element={<ArtPage />} />
           <Route path="/my-collection" element={<MyAssetPage />} />
           <Route path="/my-art" element={<MyArtPage />} />
           <Route path="/my-account" element={<MyAccount />} />
           <Route path="/art-wall" element={<ContestPage />} />
-          <Route path="/upload" element={<AuthUploadPage />} />
+          <Route path="/upload" element={<UploadPage />} />
           <Route path="/loggedIn" element={<Data />} />
           <Route path="/oauth/kakao/callback" element={<Kakao />} />
         </Routes>

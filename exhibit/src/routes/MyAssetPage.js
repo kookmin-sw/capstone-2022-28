@@ -1,9 +1,10 @@
-import NavigationBar from "../components/Navbar/NavigationBar";
+import Auth from "../hoc/auth";
+import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 
 function MyAssetPage() {
   return (
     <div>
-      <NavigationBar />
+      <LoginNavigationBar />
       <div
         style={{
           display: "flex",
@@ -18,4 +19,4 @@ function MyAssetPage() {
   );
 }
 
-export default MyAssetPage;
+export default Auth(MyAssetPage, true);

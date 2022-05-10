@@ -12,7 +12,7 @@ import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
 import LoginModal from "../../routes/LoginModal/LoginModal";
 
-function NavigationBar() {
+function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
 
   return (
@@ -43,25 +43,19 @@ function NavigationBar() {
             </NavDropdown>
           </Nav>
 
-          <Form className="d-flex">
-            <FormControl
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <Nav.Link className={styles.menu} href="/individual">
+            (닉네임)님 지갑
+          </Nav.Link>
 
           <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
 
           <Button
             className={styles.loginBtn}
             onClick={() => {
-              setLoginModal(true);
+              alert("로그아웃 버튼 누름");
             }}
           >
-            내계정
+            Log Out
           </Button>
         </Navbar.Collapse>
       </Container>
@@ -69,4 +63,4 @@ function NavigationBar() {
   );
 }
 
-export default NavigationBar;
+export default LoginNavigationBar;

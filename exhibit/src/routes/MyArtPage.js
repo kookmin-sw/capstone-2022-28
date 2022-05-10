@@ -1,9 +1,10 @@
-import NavigationBar from "../components/Navbar/NavigationBar";
+import Auth from "../hoc/auth";
+import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 
 function MyArtPage() {
   return (
     <div>
-      <NavigationBar />
+      <LoginNavigationBar />
       <div
         style={{
           display: "flex",
@@ -18,4 +19,4 @@ function MyArtPage() {
   );
 }
 
-export default MyArtPage;
+export default Auth(MyArtPage, true);
