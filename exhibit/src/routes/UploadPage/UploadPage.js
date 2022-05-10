@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import NavigationBar from "../../components/Navbar/NavigationBar";
 import Dropzone from "react-dropzone";
 import { Typography, Button, Form, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import styles from "./UploadPage.module.css";
+import Auth from "../../hoc/auth";
+import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -45,7 +46,7 @@ function UploadPage() {
 
   return (
     <div>
-      <NavigationBar />
+      <LoginNavigationBar />
       <div className={styles.root}>
         <div className={styles.title}>
           <Title level={2}>Upload Video</Title>
@@ -105,4 +106,4 @@ function UploadPage() {
   );
 }
 
-export default UploadPage;
+export default Auth(UploadPage, true);

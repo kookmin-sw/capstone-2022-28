@@ -1,9 +1,10 @@
-import NavigationBar from "../components/Navbar/NavigationBar";
+import Auth from "../hoc/auth";
+import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 
 function ContestPage() {
   return (
     <div>
-      <NavigationBar />
+      <LoginNavigationBar />
       <div
         style={{
           display: "flex",
@@ -18,4 +19,4 @@ function ContestPage() {
   );
 }
 
-export default ContestPage;
+export default Auth(ContestPage, true);
