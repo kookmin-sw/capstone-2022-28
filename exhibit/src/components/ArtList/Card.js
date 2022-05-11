@@ -11,8 +11,18 @@ import card9 from "../Image/009.png";
 import card10 from "../Image/010.png";
 
 import styled from "styled-components";
+import ModalPortal from "../Modal/Portal";
+import Modal from "../Modal/Modal";
 
 const Card = props => {
+  const [modalOn, setModalon] = useState(false);
+  const [content, setContent] = useState("");
+  const handleModal = e => {
+    const {src} = e.target;
+    setModalon(!modalOn);
+    setContent(src);
+  };
+
   return (
     <div>
     <ImgBox
@@ -20,7 +30,7 @@ const Card = props => {
       src={card1}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -28,7 +38,7 @@ const Card = props => {
       src={card2}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -36,7 +46,7 @@ const Card = props => {
       src={card3}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -44,7 +54,7 @@ const Card = props => {
       src={card4}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -52,7 +62,7 @@ const Card = props => {
       src={card5}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -60,7 +70,7 @@ const Card = props => {
       src={card6}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -68,7 +78,7 @@ const Card = props => {
       src={card7}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -76,7 +86,7 @@ const Card = props => {
       src={card8}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -84,7 +94,7 @@ const Card = props => {
       src={card9}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -92,10 +102,12 @@ const Card = props => {
       src={card10}
       // src={props.img}
       alt="imgbox"
-      onClick={props.onClick}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
-
+    <ModalPortal>
+      {modalOn && <Modal onClose={handleModal} id={props.id} src={content}/>}
+    </ModalPortal>
     </div>
   );
 };
