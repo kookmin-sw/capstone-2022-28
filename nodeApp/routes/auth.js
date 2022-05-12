@@ -3,7 +3,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 var router = express.Router();
 const User = require("../models/user");
-const kakaoAuth = require("../util/kakaoAuth");
+
 const { getAccessToken, getUserInfo } = require("../util/getToken");
 const { dbinput, jwtVerify } = require("../util/data");
 // import LandingPage from "../routes/LandingPage";
@@ -55,11 +55,33 @@ router.get("/checkAuth", (req, res) => {
     let decoded = jwt.verify(result, process.env.JWT_SECRET);
     console.log(decoded);
 
-    const return_json = {
-      isAuth: true,
-    };
+    const id = decoded.id
+
+
+    console.log(id)
+    User.findOne({
+      where:{snsId:`${id}`}
+    }).then(user=>{
+      if(user){
+        const nick = user.nick;
+        return nick
+      }
+      else{
+        console.log("유저 없음 ===> 에러")
+        const nick = ''
+        return nick
+      }
+    }).then(nickname=>{
+      const return_json = {
+        isAuth: true,
+        'nick' : nickname
+      };
+      return res.status(200).json(return_json);
+
+    }) 
+
+    
     // console.log(return_json)
-    return res.status(200).json(return_json);
   } catch (err) {
     if (err.message === "jwt expired") {
       console.log("expired token");
@@ -69,6 +91,7 @@ router.get("/checkAuth", (req, res) => {
       result = "TOKEN_INVALID";
     } else {
       console.log("another error");
+      console.log(err)
       result = "another error";
     }
     const return_json = {

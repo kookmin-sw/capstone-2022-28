@@ -15,6 +15,7 @@ const {sequelize} = require('./models');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const videoRouter = require('./routes/video');
 
 dotenv.config(); 
 var app = express();
@@ -45,9 +46,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+
 app.use('/oauth',authRouter);
+app.use('/video', videoRouter);
 
 //force : true => 서버 껐다 키면 내부의 데이터/컬럼들 전부 새로시작
 sequelize.sync({force:false}) 
