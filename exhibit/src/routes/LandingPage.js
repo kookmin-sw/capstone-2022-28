@@ -15,7 +15,7 @@ function LandingPage() {
       header_token = "";
     }
     console.log(header_token);
-    const res = await axios.get("http://3.39.32.4:8000/oauth/checkAuth", {
+    const res = await axios.get("http://localhost:8000/oauth/checkAuth", {
       headers: {
         Authorizations: `${header_token}`,
       },
