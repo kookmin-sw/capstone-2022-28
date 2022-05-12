@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Auth from "../hoc/auth";
 
 function LandingPage() {
+
   const [IsMember, setIsMember] = useState(false);
 
   useEffect(async () => {
@@ -23,8 +24,9 @@ function LandingPage() {
     setIsMember(res.data.isAuth);
   }, []);
 
+
   // 로그인됨
-  if (IsMember) {
+  if (isMember) {
     console.log("login");
     return (
       <div>

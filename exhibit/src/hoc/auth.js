@@ -20,7 +20,8 @@ export default function (SpecificComponent, option) {
         },
       });
       console.log(res);
-
+      // 로그인된 상태인지 매 페이지마다 로컬에 업데이트
+      localStorage.setItem("isMember", res.data.isAuth);
       // 로그인 되지 않은 상태
       if (!res.data.isAuth) {
         // 회원들만 접근 가능할 때

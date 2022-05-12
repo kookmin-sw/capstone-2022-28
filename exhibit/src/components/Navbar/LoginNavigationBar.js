@@ -11,9 +11,12 @@ import {
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
 import LoginModal from "../../routes/LoginModal/LoginModal";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
@@ -36,6 +39,10 @@ function LoginNavigationBar() {
               개인전
             </Nav.Link>
 
+            <Nav.Link className={styles.menu} href="/upload">
+              업로드
+            </Nav.Link>
+
             <NavDropdown title="내 컬렉션" className={styles.menu}>
               <NavDropdown.Item href="/my-collection">내 작품</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -43,7 +50,7 @@ function LoginNavigationBar() {
             </NavDropdown>
           </Nav>
 
-          <Nav.Link className={styles.menu} href="/individual">
+          <Nav.Link className={styles.menu} href="/">
             (닉네임)님 지갑
           </Nav.Link>
 
@@ -51,8 +58,21 @@ function LoginNavigationBar() {
 
           <Button
             className={styles.loginBtn}
+            // 혹시 axios 방법이 맘에 안드신다면 바꾸셔도 됩니다...
             onClick={() => {
-              alert("로그아웃 버튼 누름");
+              axios
+                .get("http://3.39.32.4:8000/oauth/checkAuth")
+                .then((response) => {
+                  // 백엔드에서 DB에 저장된거 잘 지웠는지에 대한 응답...
+                  if (response.data) {
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
+                    localStorage.removeItem("isMember");
+                    // localStorage.removeItem("nickName");
+                    alert("로그아웃 되었습니다.");
+                    navigate("/");
+                  } else alert("로그아웃 실패...");
+                });
             }}
           >
             Log Out
