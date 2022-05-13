@@ -80,6 +80,7 @@ function LoginNavigationBar() {
                 .then((response) => {
                   // 백엔드에서 DB에 저장된거 잘 지웠는지에 대한 응답...
                   if (response.data) {
+                    
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
                     localStorage.removeItem("isMember");

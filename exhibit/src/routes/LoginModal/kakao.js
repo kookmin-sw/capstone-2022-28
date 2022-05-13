@@ -30,17 +30,6 @@ const Kakao = (props) => {
     }
   }, []);
 
-  // const loginHandler = () => {
-  //   window.open(KAKAO_AUTH_URL, '_self')
-
-  //   const query = queryString.parse(window.location.search);
-  //   console.log(query)
-  //   if (query.code) {
-  //     console.log(query.code)
-  //     const token = getKakaoTokenHandler(query.code.toString());
-  //     console.log(token)
-  //   }
-  // }
 
   //code를 바탕으로 backend로 보내서 back에서 토큰받아오기
   const getKakaoTokenHandler = async (code) => {

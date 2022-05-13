@@ -32,6 +32,7 @@ return (
             </ContentDetailLeft>
             <ContentDetailRight>
               <H4>국가 : 대한민국</H4>
+
             </ContentDetailRight>
           </ContentDetail>
         </ContentInfo>
