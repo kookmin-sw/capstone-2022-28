@@ -18,18 +18,17 @@ router.get("/logout", async (req, res) => {
   let decoded = jwt.verify(result, process.env.JWT_SECRET);
   console.log(decoded);
 
-  const id = decoded.id
+  const id = decoded.id;
   await User.destroy({
-    where:{snsId:`${id}`}
+    where: { snsId: `${id}` },
   });
-  res.send({signOut:"success"});
+  res.send({ signOut: "success" });
   // .then(()=>{
   //   const return_json = {
   //     signOut : true
   //   };
   //   return res.json(return_json)
   // })
-  
 });
 
 router.get("/kakao/callback", async (req, res) => {
@@ -47,8 +46,8 @@ router.get("/kakao/callback", async (req, res) => {
     return_json = await axios.get("http://localhost:8000/oauth/checkAuth", {
       headers: {
         Authorizations: `${header_token}`,
-        refresh : `${refresh_token}`,
-      }
+        refresh: `${refresh_token}`,
+      },
     });
     console.log(return_json);
 
@@ -71,53 +70,50 @@ router.get("/kakao/callback", async (req, res) => {
 });
 
 router.get("/checkAuth", (req, res) => {
-   
   try {
     access = req.header("Authorizations");
     refresh = req.header("refresh_token");
-    result = access.slice(1, -1); 
+    result = access.slice(1, -1);
     console.log(result);
     let decoded = jwt.verify(result, process.env.JWT_SECRET);
     console.log(decoded);
 
-    const id = decoded.id
+    const id = decoded.id;
 
-
-    console.log(id)
+    console.log(id);
     User.findOne({
-      where:{snsId:`${id}`}
-    }).then(user=>{
-      if(user){
-        const nick = user.nick;
-        return nick
-      }
-      else{
-        console.log("유저 없음 ===> 에러")
-        const nick = ''
-        return nick
-      }
-    }).then(nickname=>{
-      const return_json = {
-        isAuth: true,
-        'nick' : nickname
-      };
-      return res.status(200).json(return_json);
+      where: { snsId: `${id}` },
+    })
+      .then((user) => {
+        if (user) {
+          const nick = user.nick;
+          return nick;
+        } else {
+          console.log("유저 없음 ===> 에러");
+          const nick = "";
+          return nick;
+        }
+      })
+      .then((nickname) => {
+        const return_json = {
+          isAuth: true,
+          nick: nickname,
+        };
+        return res.status(200).json(return_json);
+      });
 
-    }) 
-
-    
     // console.log(return_json)
   } catch (err) {
     if (err.message === "jwt expired") {
       console.log("expired token");
-      console.log(decoded)
+      console.log(decoded);
       result = "TOKEN_EXPIRED";
     } else if (err.message === "invalid token") {
       console.log("invalid token");
       result = "TOKEN_INVALID";
     } else {
       console.log("another error");
-      console.log(err)
+      console.log(err);
       result = "another error";
     }
     const return_json = {
