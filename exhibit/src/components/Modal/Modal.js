@@ -2,9 +2,10 @@
 import React from "react";
 import ModalPortal from "./Portal";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Modal = ({onClose, id, src}) => {
-
+  const navigate = useNavigate();
 return (
   <ModalPortal>
     <Background>
@@ -17,9 +18,11 @@ return (
           <Title>
             <Left>전시회 제목</Left>
             <Right>
-              <PlayBtn>
-                <PlayIcon className="fa-solid fa-play" />
-                <span>Play</span>
+              <PlayBtn onClick={() =>{ 
+                  navigate("/video");
+                }}>
+                <PlayIcon className="fa-solid fa-play"/>
+                <span>재생</span>
               </PlayBtn>    
             </Right>
           </Title>

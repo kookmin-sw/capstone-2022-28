@@ -22,17 +22,13 @@ const ArtContainer = () => {
 const Card = props => {
   const navigate = useNavigate();
   
-  const onClickListener = (id) =>{
-    navigate('/video')
-  }
-  
-//   const [modalOn, setModalon] = useState(false);
-//   const [content, setContent] = useState("");
-//   const handleModal = e => {
-//     const {src} = e.target;
-//     setModalon(!modalOn);
-//     setContent(src);
-//   };
+  const [modalOn, setModalon] = useState(false);
+  const [content, setContent] = useState("");
+  const handleModal = e => {
+    const {src} = e.target;
+    setModalon(!modalOn);
+    setContent(src);
+  };
 
   return (
     <div>
@@ -41,9 +37,7 @@ const Card = props => {
       src={card1}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -51,9 +45,7 @@ const Card = props => {
       src={card2}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -61,9 +53,7 @@ const Card = props => {
       src={card3}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -71,9 +61,7 @@ const Card = props => {
       src={card4}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -81,9 +69,7 @@ const Card = props => {
       src={card5}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -91,9 +77,7 @@ const Card = props => {
       src={card6}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -101,9 +85,7 @@ const Card = props => {
       src={card7}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -111,9 +93,7 @@ const Card = props => {
       src={card8}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -121,9 +101,7 @@ const Card = props => {
       src={card9}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ImgBox
@@ -131,9 +109,7 @@ const Card = props => {
       src={card10}
       // src={props.img}
       alt="imgbox"
-      onClick={() => {
-        onClickListener(props.id);
-      }}
+      onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
     <ModalPortal>
