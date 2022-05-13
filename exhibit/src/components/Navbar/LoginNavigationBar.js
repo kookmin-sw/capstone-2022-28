@@ -51,7 +51,7 @@ function LoginNavigationBar() {
           </Nav>
 
           <Nav.Link className={styles.menu} href="/">
-            (닉네임)님 지갑
+            {localStorage.getItem("nick")}님 지갑
           </Nav.Link>
 
           <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
@@ -67,15 +67,15 @@ function LoginNavigationBar() {
                 refresh_token = localStorage.getItem("refresh_token");
               } catch (err) {
                 header_token = "";
-                refresh_token = '';
+                refresh_token = "";
               }
-              console.log(header_token)
+              console.log(header_token);
               axios
-                .get("http://localhost:8000/oauth/logout",{
+                .get("http://3.39.32.4:8000/oauth/logout", {
                   headers: {
                     Authorizations: `${header_token}`,
-                    refresh : `${refresh_token}`,
-                  }
+                    refresh: `${refresh_token}`,
+                  },
                 })
                 .then((response) => {
                   // 백엔드에서 DB에 저장된거 잘 지웠는지에 대한 응답...
@@ -83,7 +83,7 @@ function LoginNavigationBar() {
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
                     localStorage.removeItem("isMember");
-                    // localStorage.removeItem("nickName");
+                    localStorage.removeItem("nick");
                     alert("로그아웃 되었습니다.");
                     navigate("/");
                   } else alert("로그아웃 실패...");

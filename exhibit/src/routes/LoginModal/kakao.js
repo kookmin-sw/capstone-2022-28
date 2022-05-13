@@ -18,12 +18,12 @@ const Kakao = (props) => {
   const query = queryString.parse(window.location.search);
 
   //   getKakaoTokenHandler실행
-  React.useEffect(() => {
+  React.useEffect(async () => {
     if (query.code) {
       // console.log(query.code)
-      const token = getKakaoTokenHandler(query.code.toString());
-      console.log("token====", token);
-      
+      const token = await getKakaoTokenHandler(query.code.toString());
+      // console.log("token====", token);
+
       navigate("/");
     } else {
       console.log("시리패");
