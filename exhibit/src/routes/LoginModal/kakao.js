@@ -23,6 +23,7 @@ const Kakao = (props) => {
       // console.log(query.code)
       const token = getKakaoTokenHandler(query.code.toString());
       console.log("token====", token);
+      
       navigate("/");
     } else {
       console.log("시리패");
@@ -52,9 +53,7 @@ const Kakao = (props) => {
 
     //서버로 요청
     await axios
-      // .get(`http://3.39.32.4:8000/oauth/kakao/callback?code=${code}`, {
-      .get(`http://localhost:8000/oauth/kakao/callback?code=${code}`, {
-
+      .get(`http://3.39.32.4:8000/oauth/kakao/callback?code=${code}`, {
         headers: {
           Authorizations: `${header_token}`,
         },

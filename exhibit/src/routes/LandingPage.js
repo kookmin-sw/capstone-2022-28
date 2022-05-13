@@ -5,26 +5,8 @@ import React, { useEffect, useState } from "react";
 import Auth from "../hoc/auth";
 
 function LandingPage() {
-
-  const [IsMember, setIsMember] = useState(false);
-
-  useEffect(async () => {
-    let header_token;
-    try {
-      header_token = localStorage.getItem("access_token");
-    } catch (err) {
-      header_token = "";
-    }
-    console.log(header_token);
-    const res = await axios.get("http://localhost:8000/oauth/checkAuth", {
-      headers: {
-        Authorizations: `${header_token}`,
-      },
-    });
-    setIsMember(res.data.isAuth);
-  }, []);
-
-
+  let isMember = localStorage.getItem("isMember");
+  console.log("landing", isMember);
   // 로그인됨
   if (isMember) {
     console.log("login");

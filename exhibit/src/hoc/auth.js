@@ -8,16 +8,21 @@ export default function (SpecificComponent, option) {
 
     useEffect(async () => {
       let header_token;
+      let refresh_token;
       try {
         header_token = localStorage.getItem("access_token");
+        refresh_token = localStorage.getItem("refresh_token");
       } catch (err) {
         header_token = "";
+        refresh_token = '';
+
       }
       console.log(header_token);
       const res = await axios.get("http://localhost:8000/oauth/checkAuth", {
         headers: {
           Authorizations: `${header_token}`,
-        },
+          refresh : `${refresh_token}`,
+        }
       });
       console.log(res);
       // 로그인된 상태인지 매 페이지마다 로컬에 업데이트
