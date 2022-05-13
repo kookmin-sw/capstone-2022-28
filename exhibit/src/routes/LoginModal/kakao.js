@@ -23,6 +23,7 @@ const Kakao = (props) => {
       // console.log(query.code)
       const token = getKakaoTokenHandler(query.code.toString());
       console.log("token====", token);
+      
       navigate("/");
     } else {
       console.log("시리패");
