@@ -32,8 +32,11 @@ export default function (SpecificComponent, option) {
       if (!res.data.isAuth) {
         // 회원들만 접근 가능할 때
         if (option) {
-          alert("로그인해야합니다!");
+          localStorage.removeItem("isMember");
+          localStorage.removeItem("nick");
           navigate("/");
+
+          alert("로그인해야합니다!");
         }
       }
       // 로그인 된 상태
