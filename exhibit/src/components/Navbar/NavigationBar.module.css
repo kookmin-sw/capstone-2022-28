@@ -1,3 +1,7 @@
+.navbar.navbar-dark.bg-dark{
+  background-color: #000000!important;
+}
+
 .Logo {
   width: 8em;
 }
@@ -5,9 +9,32 @@
   font-size: large;
   margin-left: 2em;
   margin-right: 2em;
+  position: relative;
 }
 
 .loginBtn {
   margin-right: 3em;
   margin-left: 3em;
+}
+
+.navbar__button {
+  position: relative;
+}
+.menu .MuiButton-label::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 30px;
+  right: 100%;
+  bottom: 0;
+  background: #f9f9f9;
+  height: 2px;
+  width: 0;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+.menu:hover .MuiButton-label::before {
+  transition: all 0.25s ease-in-out;
+  opacity: 1;
+  width: calc(100% - 37px);
 }

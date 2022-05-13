@@ -1,11 +1,12 @@
 import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
+import "./page.css";
 
 function ContestPage() {
   return (
     <div>
       <LoginNavigationBar />
-      <div
+      <div class="page"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -13,7 +14,7 @@ function ContestPage() {
           height: "100vh",
         }}
       >
-        <h1>Art Wall</h1>
+        <h1 class="title">Art Wall</h1>
       </div>
     </div>
   );

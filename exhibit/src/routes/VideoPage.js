@@ -51,7 +51,7 @@ function Detail(id){
   let vi = id;
 
   useEffect(()=>{                               
-    let timer = setTimeout(()=>{ alertState(false) }, 3000);
+    let timer = setTimeout(()=>{ alertState(false) }, 5000);
     return ()=>{ clearTimeout(timer)}
   },[]);
 

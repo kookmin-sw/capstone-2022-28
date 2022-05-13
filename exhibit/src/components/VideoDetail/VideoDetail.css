@@ -38,12 +38,12 @@
     margin-right: 18px;
   }
   button.detailPage__playBtn {
-    background: white;
+    background: black;
     font-weight: 700;
     border-radius: 2px;
   }
   button.detailPage__playBtn:hover {
-    background: #cbcbcb;
+    background: black;
   }
   button.detailPage__playBtn,
   button.detailPage__trailerBtn {
@@ -53,9 +53,8 @@
   }
   button.detailPage__trailerBtn,
   button.detailPage_radialBtn {
-    border: 2px solid #f9f9f9;
     background: black;
-    color: white;
+    color: rgb(0, 0, 0);
   }
   button.detailPage_radialBtn {
     padding: 7px;
@@ -151,8 +150,8 @@
         rgb(26, 29, 41)
       );
     }
-    button.detailPage__playBtn,
-    button.detailPage__trailerBtn {
+    button.detailPage__webBtn,
+    button.detailPage__chromecastBtn {
       padding: 13px 20px;
       width: auto;
       margin-bottom: 0;

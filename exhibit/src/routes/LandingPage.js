@@ -3,6 +3,7 @@ import axios from "axios";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import React, { useEffect, useState } from "react";
 import Auth from "../hoc/auth";
+import "./page.css"
 
 function LandingPage() {
   let isMember = localStorage.getItem("isMember");
@@ -13,7 +14,7 @@ function LandingPage() {
     return (
       <div>
         <LoginNavigationBar />
-        <div
+        <div class="page"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -21,7 +22,7 @@ function LandingPage() {
             height: "100vh",
           }}
         >
-          <h1>LandingPage</h1>
+          <h1 class="title">LandingPage</h1>
         </div>
       </div>
     );
@@ -32,7 +33,7 @@ function LandingPage() {
     return (
       <div>
         <NavigationBar />
-        <div
+        <div class="page"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -40,7 +41,7 @@ function LandingPage() {
             height: "100vh",
           }}
         >
-          <h1>LandingPage</h1>
+          <h1 class="title">LandingPage</h1>
         </div>
       </div>
     );
