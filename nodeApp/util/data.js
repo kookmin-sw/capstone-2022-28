@@ -9,7 +9,6 @@ exports.dbinput = async(data_json) =>{
         })
         if(find_user){
             console.log("이미 존재하는 유저입니다.!!!!!!!!!!!!!!")
-            // jwtVerify() -인자로 client에서 헤더로 받아오는 jwt token값
         }else{
             const new_user = await User.create({
                 email:data_json.kakao_account.email,
@@ -40,7 +39,8 @@ exports.dbinput = async(data_json) =>{
             };
             const return_json = {
                 "result" : "create",
-                "tokens" : jwts
+                "tokens" : jwts,
+                
             }
             return return_json
         }
@@ -52,35 +52,35 @@ exports.dbinput = async(data_json) =>{
     }
 }
 
-exports.jwtVerify = ((token)=>{
-    try{
-        result = token.slice(1,-1)
-        let decoded = jwt.verify(result,process.env.JWT_SECRET);
-        console.log(decoded)
+// exports.jwtVerify = ((token)=>{
+//     try{
+//         result = token.slice(1,-1)
+//         let decoded = jwt.verify(result,process.env.JWT_SECRET);
+//         console.log(decoded)
 
-        const return_json = {
-            "result" : "update",
-            "tokens" : result
-        }
-        return return_json
+//         const return_json = {
+//             "result" : "update",
+//             "tokens" : result
+//         }
+//         return return_json
 
-    } catch(err){
-        if (err.message === 'jwt expired') {
-            console.log('expired token');
-            result = "TOKEN_EXPIRED";
-        } else if (err.message === 'invalid token') { 
-            console.log('invalid token');
-            result = "TOKEN_INVALID"; 
-        } else {
-            console.log("another error");  
-            result = "another error"; 
-        }
-        const return_json = {
-            "result" : "invalid",
-            "data" : result
-        }
-        return return_json
+//     } catch(err){
+//         if (err.message === 'jwt expired') {
+//             console.log('expired token');
+//             result = "TOKEN_EXPIRED";
+//         } else if (err.message === 'invalid token') { 
+//             console.log('invalid token');
+//             result = "TOKEN_INVALID"; 
+//         } else {
+//             console.log("another error");  
+//             result = "another error"; 
+//         }
+//         const return_json = {
+//             "result" : "invalid",
+//             "data" : result
+//         }
+//         return return_json
 
-    }
+//     }
 
-})  
+// })  

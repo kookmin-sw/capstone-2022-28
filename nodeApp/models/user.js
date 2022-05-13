@@ -20,11 +20,12 @@ module.exports = class User extends Sequelize.Model{
                 type: Sequelize.STRING(10),
                 allowNull:false
             }
+            
         },{
             sequelize,
             timestamps: true,
             underscored: true,
-            paranoid: true,
+            paranoid: false,
             modelName: 'User',
             tableName:'users',
             charser:'utf8',
