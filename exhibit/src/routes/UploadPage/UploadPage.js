@@ -66,6 +66,8 @@ function UploadPage() {
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}>
             {/* Drop Zone */}
+
+            
             {/* <Dropzone
               onDrop={onDropHandler}
               multiple={false}
