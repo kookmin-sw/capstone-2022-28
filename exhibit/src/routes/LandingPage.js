@@ -1,47 +1,50 @@
 import NavigationBar from "../components/Navbar/NavigationBar";
-import {Button} from "antd"
-import {useNavigate} from "react-router-dom"
 import axios from "axios";
-
+import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
+import React, { useEffect, useState } from "react";
+import Auth from "../hoc/auth";
 
 function LandingPage() {
-  const navigate = useNavigate();
-
-  const checkAuth = async(token) => {
-    let header_token
-    try{
-      header_token = localStorage.getItem('access_token')
-    }catch(err){
-      header_token = ''
-    }
-    console.log(header_token)
-    const res = await axios.get('http://localhost:8000/oauth/checkAuth',{
-      headers:{
-        Authorizations: `${header_token}`
-      }
-    })
-    console.log(res)
-    
-  }
-  
-
-  return (
-    <div>
-      <NavigationBar />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <h1>LandingPage</h1>
-        
-        <Button onClick={checkAuth}>Button</Button>
+  let isMember = localStorage.getItem("isMember");
+  console.log("landing", isMember);
+  // 로그인됨
+  if (isMember) {
+    console.log("login");
+    return (
+      <div>
+        <LoginNavigationBar />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <h1>LandingPage</h1>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  // 로그인 안됨
+  else {
+    console.log("Not login");
+    return (
+      <div>
+        <NavigationBar />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <h1>LandingPage</h1>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default LandingPage;
+export default Auth(LandingPage, null);

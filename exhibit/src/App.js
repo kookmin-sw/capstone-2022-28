@@ -7,7 +7,7 @@ import ContestPage from "./routes/ContestPage";
 import MyArtPage from "./routes/MyArtPage";
 import UploadPage from "./routes/UploadPage/UploadPage";
 import Caver from "caver-js";
-import Data from "./data.js"
+import Data from "./data.js";
 import Kakao from "./routes/LoginModal/kakao";
 import VideoPage from "./routes/VideoPage";
 
@@ -19,7 +19,6 @@ const Authorization =
 
 const CHAIN_ID = "1001"; // MAINNET 8217 TESTNNET 1001
 
-
 /*const option = {
   headers:[ 
     {
@@ -30,10 +29,13 @@ const CHAIN_ID = "1001"; // MAINNET 8217 TESTNNET 1001
   ]
 }*/
 
+// null: 아무나 출입이 가능
+// true: 로그인한 유저만 출입 가능
+// false: 로그인하지 않은 유저만 출입 가능
 function App() {
   return (
     <div>
-    {/* <div>
+      {/* <div>
       <Data />
     </div> */}
      <Router>
@@ -51,7 +53,6 @@ function App() {
        </Routes>
      </Router>
     </div>
-    
   );
 }
 

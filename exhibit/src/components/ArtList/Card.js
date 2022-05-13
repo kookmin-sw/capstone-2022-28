@@ -12,6 +12,8 @@ import card10 from "../Image/010.png";
 import VideoPage from "../../routes/VideoPage";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import ModalPortal from "../Modal/Portal";
+import Modal from "../Modal/Modal";
 
 
 const ArtContainer = () => {
@@ -24,6 +26,14 @@ const Card = props => {
     navigate('/video')
   }
   
+//   const [modalOn, setModalon] = useState(false);
+//   const [content, setContent] = useState("");
+//   const handleModal = e => {
+//     const {src} = e.target;
+//     setModalon(!modalOn);
+//     setContent(src);
+//   };
+
   return (
     <div>
     <ImgBox 
@@ -126,7 +136,9 @@ const Card = props => {
       }}
       onMouseEnter={props.onMouseEnter}
     />
-
+    <ModalPortal>
+      {modalOn && <Modal onClose={handleModal} id={props.id} src={content}/>}
+    </ModalPortal>
     </div>
   );
 };
