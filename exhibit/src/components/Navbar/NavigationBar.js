@@ -16,7 +16,8 @@ function NavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+    <div id="navbar--wrap">
+    <Navbar className="topnavbar" bg="dark" variant="dark" expand="lg" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/">
           <img src={logo} className={styles.Logo}></img>
@@ -56,7 +57,7 @@ function NavigationBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
+    </div>);
 }
 
 export default NavigationBar;

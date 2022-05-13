@@ -14,6 +14,7 @@ function ContestPage() {
           height: "100vh",
         }}
       >
+        <div class="page__background"></div>
         <h1 class="title">Art Wall</h1>
       </div>
     </div>

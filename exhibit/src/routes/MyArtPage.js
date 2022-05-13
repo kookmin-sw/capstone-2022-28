@@ -8,7 +8,6 @@ function MyArtPage() {
       <LoginNavigationBar />
       <div class = "page"
         style={{
-          background:"#000000",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
