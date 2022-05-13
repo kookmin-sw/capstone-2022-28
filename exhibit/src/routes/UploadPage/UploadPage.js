@@ -5,6 +5,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
+import { MultipleFilesUpload, ImageUpload} from "react-ipfs-uploader";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -15,6 +16,9 @@ const CategoryOptions = [
 ];
 
 function UploadPage() {
+  const [multipleVideosUrl, setMultipleVideosUrl] = useState("");
+  const [posterUrl, setPosterUrl] = useState("");
+
   const [VideoTitle, setVideoTitle] = useState("");
   const videoTitleHandler = (event) => {
     setVideoTitle(event.target.value);
@@ -46,31 +50,38 @@ function UploadPage() {
 
   return (
     <div>
+      
       <LoginNavigationBar />
       <div className={styles.root}>
         <div className={styles.title}>
-          <Title level={2}>Upload Video</Title>
+          <Title level={2}>전시회 개최</Title>
         </div>
+        <label>전시회 포스터</label>
+        <ImageUpload setUrl={setPosterUrl} />
 
+        <br/>
+
+        <label>작품 업로드</label>
+          <MultipleFilesUpload setUrl={setMultipleVideosUrl} />
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}>
             {/* Drop Zone */}
-            <Dropzone
+            {/* <Dropzone
               onDrop={onDropHandler}
               multiple={false}
               maxSize={9000000000}
             >
               {({ getRootProps, getInputProps }) => (
                 <div className={styles.dropZone} {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <PlusOutlined style={{ fontSize: "3rem" }} />
+                  <input {...getInputProps()}  />
+                  <PlusOutlined style={{ fontSize: "3rem"}} />
                 </div>
               )}
-            </Dropzone>
+            </Dropzone> */}
           </div>
           <br />
 
-          <label>Title</label>
+          <label>전시회 제목</label>
           <Input
             onChange={videoTitleHandler}
             value={VideoTitle}
@@ -78,7 +89,7 @@ function UploadPage() {
           />
           <br />
 
-          <label>Discription</label>
+          <label>전시회 설명</label>
           <TextArea
             onChange={descriptionHandler}
             value={Description}
@@ -94,10 +105,12 @@ function UploadPage() {
             ))}
           </select>
           <br />
+          
+          <br />
 
           <div className={styles.submitBtn}>
-            <Button type="primary" size="large" onClick={onSubmitHandler}>
-              Submit
+            <Button className="submitBtn" size="lg" type="primary" onClick={onSubmitHandler}>
+              전시회 개최
             </Button>
           </div>
         </Form>
