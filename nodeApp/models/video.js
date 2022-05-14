@@ -11,16 +11,8 @@ class Video extends Sequelize.Model {
                 type: Sequelize.STRING(30),
                 allowNull: false,
             },
-            description: {
-                type: Sequelize.STRING(100),
-                allowNull: false,
-            },
             category: {
                 type: Sequelize.STRING(10),
-                allowNull: false,
-            },
-            views: {
-                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             duration: {
@@ -39,7 +31,11 @@ class Video extends Sequelize.Model {
         });
     }
 
-    static associate(db) {}
+    static associate(db) {
+        db.Video.hasOne(db.Token, {foreignKey: "video_id", sourceKey: "token"});
+
+        db.Video.belongsTo(db.Exhibition, {foreignKey: "exhibition_id", sourceKey: "video_id"});
+    };
 };
 
 module.exports = Video;
