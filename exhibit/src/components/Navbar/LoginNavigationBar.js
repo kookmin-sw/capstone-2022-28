@@ -13,9 +13,11 @@ import styles from "./NavigationBar.module.css";
 import LoginModal from "../../routes/LoginModal/LoginModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import WalletModal from "../../routes/WalletModal/WalletModal";
 
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
+  const [walletModal, setWalletModal] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -51,7 +53,7 @@ function LoginNavigationBar() {
           </Nav>
 
           <Nav.Link className={styles.menu} href="/">
-            {localStorage.getItem("nick")}님 지갑
+            {localStorage.getItem("nick")}님
           </Nav.Link>
 
           <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
@@ -93,6 +95,14 @@ function LoginNavigationBar() {
           >
             Log Out
           </Button>
+          <Button className={styles.walletBtn} onClick={() => {
+            console.log("wallet Btn Clicked")
+            setWalletModal(true)
+          }}>
+            지갑 가져오기
+          </Button>
+
+          <WalletModal show={walletModal} onHide={() => setWalletModal(false)} />
         </Navbar.Collapse>
       </Container>
     </Navbar>

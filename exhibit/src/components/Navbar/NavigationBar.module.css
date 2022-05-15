@@ -14,8 +14,12 @@
   }
 
   .loginBtn {
-    margin-right: 3em;
-    margin-left: 3em;
+    margin-right: 1em;
+    margin-left: 2em;
+  }
+  
+  .walletBtn {
+    margin-right: 1em;
   }
 
   .navbar__button {
