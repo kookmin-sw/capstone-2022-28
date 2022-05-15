@@ -1,7 +1,7 @@
 import axios from "axios";
 import { COUNT_CONTRACT_ADDRESS_MAIN, MARKET_CONTRACT_ADDRESS_MAIN, NFT_CONTRACT_ADDRESS_MAIN } from "../constants";
 
-const A2P_API_PREPARE_URL = "https://a2a-api.klipwallet.com/v2/a2a/prepare";
+const A2P_API_PREPARE_URL = "/prepare";
 const APP_NAME = '방구석 전시회';
 
 export const buyCard = async (
@@ -50,7 +50,7 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
         let timerId = setInterval(()=> {
             axios
             .get(
-                `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${request_key}`
+                `/result?request_key=${request_key}`
             )
             .then((res) =>{
                 if(res.data.result){
@@ -58,7 +58,7 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
                     callback(res.data.result);
                     clearInterval(timerId);
                 }
-            }, 10000);
+            }, 100000);
         });
     })
 }
@@ -85,14 +85,14 @@ export const setCount = (count) => {
         let timerId = setInterval(()=> {
             axios
             .get(
-                `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${request_key}`
+                `/result?request_key=${request_key}`
             )
             .then((res) =>{
                 if(res.data.result){
                     console.log(`[Result] ${JSON.stringify(res.data.result.klaytn_address)}`);
                     clearInterval(timerId);
                 }
-            }, 10000);
+            }, 100000);
         });
     })
 };
@@ -103,7 +103,7 @@ export const getAddress = (setQrvalue, callback) => {
             bapp: {
                 name: APP_NAME,
             },
-            type: "auth"
+            type: "auth",
         }
     ).then((response) => {
         const { request_key } = response.data;
@@ -114,17 +114,15 @@ export const getAddress = (setQrvalue, callback) => {
         let timerId = setInterval(()=> {
             axios
             .get(
-                `https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${request_key}`
+                `/result?request_key=${request_key}`
             )
             .then((res) =>{
                 if(res.data.result){
                     console.log(`[Result] ${JSON.stringify(res.data.result)}`);
-                    if (res.data.result.status == 'success'){
-                        callback(res.data.result.klaytn_address);
-                        clearInterval(timerId);                        
-                    }
+                    callback(res.data.result.klaytn_address);
+                    clearInterval(timerId);                        
                 }
-            }, 1000);
+            }, 100000);
         });
     })
 };

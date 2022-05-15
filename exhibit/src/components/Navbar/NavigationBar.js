@@ -10,10 +10,10 @@ import {
 } from "react-bootstrap";
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
-import LoginModal from "../../routes/LoginModal/LoginModal";
+import WalletModal from "../../routes/LoginModal/LoginModal";
 
 function NavigationBar() {
-  const [loginModal, setLoginModal] = useState(false);
+  const [walletModal, setWalletModal] = useState(false);
 
   return (
     <div id="navbar--wrap">
@@ -44,16 +44,17 @@ function NavigationBar() {
             </NavDropdown>
           </Nav>
 
-          <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
+          {/* <LoginModal show={loginModal} onHide={() => setLoginModal(false)} /> */}
 
           <Button
             className={styles.loginBtn}
             onClick={() => {
-              setLoginModal(true);
+              setWalletModal(true);
             }}
           >
             Login
           </Button>
+          <WalletModal show={walletModal} onHide={() => setWalletModal(false)} />
         </Navbar.Collapse>
       </Container>
     </Navbar>

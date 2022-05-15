@@ -59,9 +59,9 @@ function MyWallet() {
 
   const getUserData = () => {
     KlipAPI.getAddress(setQrvalue, (address) => {
-      setMyAddress(myAddress);
-      const _balance = getBalance(myAddress);
-      // setMyBalance(_balance);
+      setMyAddress(address);
+      const _balance = getBalance(address);
+      setMyBalance(_balance);
     });
   };
 
@@ -76,6 +76,8 @@ function MyWallet() {
     // Main Network
     // KlipAPI.setCount(2000);
   };
+
+  
 
   // onClickMint
   const onClickMint = async (uri) => {
