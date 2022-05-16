@@ -99,7 +99,7 @@ function LoginNavigationBar() {
             console.log("wallet Btn Clicked")
             setWalletModal(true)
           }}>
-            지갑 가져오기
+            내 Klip 지갑
           </Button>
 
           <WalletModal show={walletModal} onHide={() => setWalletModal(false)} />

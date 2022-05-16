@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import { Modal, Alert, Container } from "react-bootstrap";
+import { Modal, Alert, Container, Button } from "react-bootstrap";
 import img from "../../components/Image/img.png";
 import styles from "./LoginModal.module.css";
 import QRCode from "qrcode.react";
@@ -13,7 +13,6 @@ import {
 } from "../../api/UserCaver";
 import * as KlipAPI from "../../api/UserKlip";
 import * as CaverAPI from "../../api/UserCaver";
-import { Button } from "antd";
 
 const DEFAULT_QR_CODE = "DEFAULT";
 const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -56,6 +55,10 @@ function WalletModal(props) {
           <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
+        <div className="adba">
+          <h2>{myBalance} KLAY</h2>
+          <p>{myAddress}</p>
+        </div>
         <Button onClick={getUserData}>
           주소 가져오기
         </Button>

@@ -149,7 +149,7 @@ function MyWallet() {
         </Container>
         <div style={{ margin: "auto" }} size={128}>
           {/* 갤러리(마켓, 내 지갑) */}
-          {tab === "MARKET" || tab === "WALLET" ? (
+          {tab === "MARKET" || tab === "WALLET" ? ( 
             <div className="container" style={{ padding: 0, width: "100%" }}>
               {nfts.map((nft, index) => {
                 <Card.Img
