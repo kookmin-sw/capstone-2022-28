@@ -40,6 +40,7 @@ function WalletModal(props) {
   const onClickgetAddress = () => {
     KlipAPI.getAddress(setQrvalue);
   };
+  
 
   return (
     <Modal
