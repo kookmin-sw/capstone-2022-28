@@ -52,7 +52,7 @@ export const getBalance = (address) => {
   return caver.rpc.klay.getBalance(address).then((response) => {
     const balance = caver.utils.convertFromPeb(caver.utils.hexToNumberString(response));
     console.log(balance);
-    return balance;
+    return caver.klay.getBalance(address);
   })
 }
 

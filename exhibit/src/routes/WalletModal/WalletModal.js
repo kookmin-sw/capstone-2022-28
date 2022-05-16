@@ -13,6 +13,7 @@ import {
 } from "../../api/UserCaver";
 import * as KlipAPI from "../../api/UserKlip";
 import * as CaverAPI from "../../api/UserCaver";
+import { Button } from "antd";
 
 const DEFAULT_QR_CODE = "DEFAULT";
 const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -20,7 +21,7 @@ const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
 function WalletModal(props) {
   // State Data
   const [nfts, setNfts] = useState([]); // {Id: '101', Uri: ''}
-  const [myBalance, setMyBalance] = useState("0");
+  const [myBalance, setMyBalance] = useState("120");
   const [myAddress, setMyAddress] = useState(DEFAULT_ADDRESS);
 
   // UI
@@ -29,16 +30,17 @@ function WalletModal(props) {
   const [mintImageUrl, setMintImageUrl] = useState("");
 
   const getUserData = () => {
-    KlipAPI.getAddress(setQrvalue, (address) => {
-      setMyAddress(address);
+    KlipAPI.getAddress(setQrvalue, async (address) => {
+      await setMyAddress(address);
+      const _balance = await getBalance(address);
+      setMyBalance(_balance);
     });
   };
 
   const onClickgetAddress = () => {
     KlipAPI.getAddress(setQrvalue);
   };
-
-  useEffect(() => getUserData());
+  
 
   return (
     <Modal
@@ -54,7 +56,9 @@ function WalletModal(props) {
           <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
-        <p>주소 : {myAddress}</p>
+        <Button onClick={getUserData}>
+          주소 가져오기
+        </Button>
       </Modal.Footer>
     </Modal>
   );
