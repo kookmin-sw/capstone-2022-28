@@ -57,12 +57,13 @@ function UploadPage() {
           <Title level={2}>전시회 개최</Title>
         </div>
         <label>전시회 포스터</label>
-        <ImageUpload setUrl={setPosterUrl} />
-
+        <ImageUpload setUrl={setPosterUrl}/>
+        <p>{posterUrl}</p>
         <br/>
 
         <label>작품 업로드</label>
           <MultipleFilesUpload setUrl={setMultipleVideosUrl} />
+          <p>{multipleVideosUrl}</p>
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}>
             {/* Drop Zone */}
