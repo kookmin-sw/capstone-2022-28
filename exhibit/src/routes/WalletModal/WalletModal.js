@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import { Modal, Alert, Container } from "react-bootstrap";
+import { Modal, Alert, Container, Button } from "react-bootstrap";
 import img from "../../components/Image/img.png";
 import styles from "./LoginModal.module.css";
 import QRCode from "qrcode.react";
@@ -20,7 +20,7 @@ const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
 function WalletModal(props) {
   // State Data
   const [nfts, setNfts] = useState([]); // {Id: '101', Uri: ''}
-  const [myBalance, setMyBalance] = useState("0");
+  const [myBalance, setMyBalance] = useState("120");
   const [myAddress, setMyAddress] = useState(DEFAULT_ADDRESS);
 
   // UI
@@ -28,17 +28,21 @@ function WalletModal(props) {
   const [tab, setTab] = useState("MINT"); // Market, Mint, Wallet
   const [mintImageUrl, setMintImageUrl] = useState("");
 
-  // const getUserData = () => {
-  //   KlipAPI.getAddress(setQrvalue, (address) => {
-  //     setMyAddress(address);
-  //   });
-  // };
+
+
+  const getUserData = () => {
+    KlipAPI.getAddress(setQrvalue, async (address) => {
+      await setMyAddress(address);
+      const _balance = await getBalance(address);
+      setMyBalance(_balance);
+    });
+  };
+
 
   const onClickgetAddress = () => {
     KlipAPI.getAddress(setQrvalue);
   };
 
-  // useEffect(() => getUserData());
 
   return (
     <Modal
@@ -54,7 +58,13 @@ function WalletModal(props) {
           <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
-        <p>주소 : {myAddress}</p>
+        <div className="adba">
+          <h2>{myBalance} KLAY</h2>
+          <p>{myAddress}</p>
+        </div>
+        <Button onClick={getUserData}>
+          주소 가져오기
+        </Button>
       </Modal.Footer>
     </Modal>
   );

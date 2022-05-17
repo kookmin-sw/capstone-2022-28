@@ -112,56 +112,58 @@
 //     });
 //   };
 
-//   return (
-//     <div>
-//       <NavBar />
-//       <div
-//         style={{
-//           backgroundColor: "black",
-//           display: "flex",
-//           alignItems: "center" /* 수직 정렬 */,
-//           flexDirection: "column" /* default: row */,
-//           justifyContent: "center",
-//         }}
-//       >
-//         <div style={{ backgroundColor: "black", padding: 10 }}>
-//           <div style={{ color: "white" }}>내 지갑</div>
-//           <h2 style={{ color: "white" }}> {myAddress} </h2>
-//           <br />
-//           <Alert
-//             variant={"balance"}
-//             style={{ backgroundColor: "#f40075", fontSize: 25, color: "white" }}
-//             onClick={getUserData}
-//           >
-//             {myBalance}
-//           </Alert>
-//         </div>
-//         <Container
-//           style={{
-//             backgroundColor: "black",
-//             display: "flex",
-//             alignItems: "center" /* 수직 정렬 */,
-//             flexDirection: "column" /* default: row */,
-//             justifyContent: "center",
-//           }}
-//         >
-//           <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
-//         </Container>
-//         <div style={{ margin: "auto" }} size={128}>
-//           {/* 갤러리(마켓, 내 지갑) */}
-//           {tab === "MARKET" || tab === "WALLET" ? (
-//             <div className="container" style={{ padding: 0, width: "100%" }}>
-//               {nfts.map((nft, index) => {
-//                 <Card.Img
-//                   onClick={() => {
-//                     onClickCard(nft.id);
-//                   }}
-//                   className="img-responsive"
-//                   src={nfts[index].uri}
-//                 />;
-//               })}
-//             </div>
-//           ) : null}
+
+  return (
+    <div>
+      <NavBar />
+      <div
+        style={{
+          backgroundColor: "black",
+          display: "flex",
+          alignItems: "center" /* 수직 정렬 */,
+          flexDirection: "column" /* default: row */,
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ backgroundColor: "black", padding: 10 }}>
+          <div style={{ color: "white" }}>내 지갑</div>
+          <h2 style={{ color: "white" }}> {myAddress} </h2>
+          <br />
+          <Alert
+            variant={"balance"}
+            style={{ backgroundColor: "#f40075", fontSize: 25, color: "white" }}
+            onClick={getUserData}
+          >
+            {myBalance}
+          </Alert>
+        </div>
+        <Container
+          style={{
+            backgroundColor: "black",
+            display: "flex",
+            alignItems: "center" /* 수직 정렬 */,
+            flexDirection: "column" /* default: row */,
+            justifyContent: "center",
+          }}
+        >
+          <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
+        </Container>
+        <div style={{ margin: "auto" }} size={128}>
+          {/* 갤러리(마켓, 내 지갑) */}
+          {tab === "MARKET" || tab === "WALLET" ? ( 
+            <div className="container" style={{ padding: 0, width: "100%" }}>
+              {nfts.map((nft, index) => {
+                <Card.Img
+                  onClick={() => {
+                    onClickCard(nft.id);
+                  }}
+                  className="img-responsive"
+                  src={nfts[index].uri}
+                />;
+              })}
+            </div>
+          ) : null}
+
 
 //           {/* 발행 페이지 */}
 //           {tab === "MINT" ? (
