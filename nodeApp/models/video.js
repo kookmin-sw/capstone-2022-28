@@ -11,14 +11,14 @@ class Video extends Sequelize.Model {
                 type: Sequelize.STRING(30),
                 allowNull: false,
             },
-            category: {
-                type: Sequelize.STRING(10),
-                allowNull: false,
-            },
             duration: {
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
+            url: {
+                type: Sequelize.STRING(100),
+                allowNull: false,
+            }
 
         }, {
             sequelize,
@@ -32,9 +32,9 @@ class Video extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Video.hasOne(db.Token, {foreignKey: "video_id", sourceKey: "token"});
+        db.Video.hasOne(db.Token, { foreignKey: "video_id", sourceKey: "id" });
 
-        db.Video.belongsTo(db.Exhibition, {foreignKey: "exhibition_id", sourceKey: "video_id"});
+        db.Video.belongsTo(db.Exhibition, { foreignKey: "exhibition_id", targetKey: "id" });
     };
 };
 

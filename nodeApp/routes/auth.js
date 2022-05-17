@@ -58,7 +58,7 @@ router.get("/kakao/callback", async (req, res) => {
   // console.log(token.access_token);
   const userInfo = await (
     await getUserInfo(option.userInfoUrl, token.access_token)
-  ).data;
+  ).data; 
   console.log(userInfo);
   console.log(userInfo.kakao_account.email);
   console.log(userInfo.id);

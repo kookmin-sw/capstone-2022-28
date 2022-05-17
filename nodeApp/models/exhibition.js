@@ -15,10 +15,14 @@ class Exhibition extends Sequelize.Model {
                 type: Sequelize.STRING(10),
                 allowNull: false,
             },
+            poster_url: {
+                type: Sequelize.STRING(100),
+                allowNull: false
+            }
 
         }, {
             sequelize,
-            timestamps: false,
+            timestamps: false, 
             modelName: 'Exhibition',
             tableName: 'exhibitions',
             paranoid: false,
@@ -28,7 +32,7 @@ class Exhibition extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Exhibition.hasMany(db.Video, {foreignKey: "exhibition_id", sourceKey: "video_id"});
+        db.Exhibition.hasMany(db.Video, { foreignKey: "exhibition_id", sourceKey: "id" });
     };
 };
 

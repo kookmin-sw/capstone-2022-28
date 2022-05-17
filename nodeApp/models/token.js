@@ -19,7 +19,7 @@ class Token extends Sequelize.Model {
     }
     
     static associate(db) {
-        db.Token.belongsTo(db.Videos, {foreignKey: "video_id", sourceKey: "token"});
+        db.Token.belongsTo(db.Video, { foreignKey: "video_id", targetKey: "id" });
     };
 };
 
