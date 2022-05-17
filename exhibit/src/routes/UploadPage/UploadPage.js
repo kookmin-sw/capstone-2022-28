@@ -5,11 +5,13 @@ import { PlusOutlined } from "@ant-design/icons";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
-import { MultipleFilesUpload, ImageUpload} from "react-ipfs-uploader";
+import { FileUpload, ImageUpload} from "react-ipfs-uploader";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 const { TextArea } = Input;
+var urlList = []
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
@@ -17,12 +19,18 @@ const CategoryOptions = [
 ];
 
 function UploadPage() {
-  const [multipleVideosUrl, setMultipleVideosUrl] = useState("");
+  const navigate = useNavigate();
+  const [Klay, setKlay] = useState(0);
+  const [fileUrl, setFileUrl] = useState('');
   const [posterUrl, setPosterUrl] = useState("");
 
   const [VideoTitle, setVideoTitle] = useState("");
   const videoTitleHandler = (event) => {
     setVideoTitle(event.target.value);
+  };
+
+  const KlayHandler = (event) => {
+    setKlay(event.target.value);
   };
 
   const [Description, setDescription] = useState("");
@@ -51,7 +59,7 @@ function UploadPage() {
       "title":VideoTitle,
       "description":Description,
       "category":Category,
-      "videosUrl":multipleVideosUrl,
+      "videosUrl":urlList,
       "posterUrl":posterUrl
     };
     // axios.post('http://localhost:8000/video/insert',insertDate)
@@ -63,9 +71,26 @@ function UploadPage() {
     .catch(error => {
        console.log('error : ',error.response) 
       })
+
+    
     
 
   };
+
+  const AddHandler = (event) => {
+    event.preventDefault();
+    const insertdata = {
+      "Url" : fileUrl,
+      "Klay" : Klay
+    }
+    urlList.push(insertdata)
+   console.log(urlList)
+   {fupload()}
+    
+  };
+  function fupload(){
+    return <FileUpload setUrl={setFileUrl} />
+  }
 
   return (
     <div>
@@ -80,26 +105,23 @@ function UploadPage() {
         <br/>
 
         <label>작품 업로드</label>
-          <MultipleFilesUpload setUrl={setMultipleVideosUrl} />
+          {/* <FileUpload setUrl={setFileUrl} /> */}
+          {fupload()}
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}>
-            {/* Drop Zone */}
-
             
-            {/* <Dropzone
-              onDrop={onDropHandler}
-              multiple={false}
-              maxSize={9000000000}
-            >
-              {({ getRootProps, getInputProps }) => (
-                <div className={styles.dropZone} {...getRootProps()}>
-                  <input {...getInputProps()}  />
-                  <PlusOutlined style={{ fontSize: "3rem"}} />
-                </div>
-              )}
-            </Dropzone> */}
           </div>
           <br />
+          <label>가격</label>
+          <Input
+            onChange={KlayHandler}
+            value={Klay}
+            style={{ marginBottom: "2rem" }}
+          />
+          <Button className="submitBtn" size="lg" type="primary" onClick={AddHandler}>
+              Add
+            </Button>
+            <br/> <br></br>
 
           <label>전시회 제목</label>
           <Input
