@@ -6,6 +6,7 @@ import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { MultipleFilesUpload, ImageUpload} from "react-ipfs-uploader";
+import axios from "axios";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -29,23 +30,41 @@ function UploadPage() {
     setDescription(event.target.value);
   };
 
-  const [Category, setCategory] = useState("");
+  const [Category, setCategory] = useState(0);
   const categoryHandler = (event) => {
     setCategory(event.target.value);
   };
 
-  const onDropHandler = (files) => {
-    let formData = new FormData();
+  // const onDropHandler = (files) => {
+  //   let formData = new FormData();
 
-    const config = {
-      header: { "content-type": "multipart/form-data" },
-    };
-    formData.append("file", files[0]);
-  };
+  //   const config = {
+  //     header: { "content-type": "multipart/form-data" },
+  //   };
+  //   formData.append("file", files[0]);
+  // };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    alert("업로드 버튼 누름!");
+    console.log(Category);
+    const insertDate ={
+      "title":VideoTitle,
+      "description":Description,
+      "category":Category,
+      "videosUrl":multipleVideosUrl,
+      "posterUrl":posterUrl
+    };
+    // axios.post('http://localhost:8000/video/insert',insertDate)
+    axios.post('http://3.39.32.4:8000/video/insert',insertDate)
+    .then((response)=>{
+       console.log(response); 
+       alert("디비 저장 ~");
+      }) 
+    .catch(error => {
+       console.log('error : ',error.response) 
+      })
+    
+
   };
 
   return (

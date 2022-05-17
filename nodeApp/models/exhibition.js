@@ -15,7 +15,11 @@ class Exhibition extends Sequelize.Model {
                 type: Sequelize.STRING(10),
                 allowNull: false,
             },
-
+            poster_url:{
+                type: Sequelize.STRING(1000),
+                allowNull: false,
+            },
+ 
         }, {
             sequelize,
             timestamps: false,
@@ -28,7 +32,11 @@ class Exhibition extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Exhibition.hasMany(db.Video, {foreignKey: "exhibition_id", sourceKey: "video_id"});
+        //하나의 source모델을 여러개의 target모델 -> 참조 당하는 hasMany가 sourcekey
+        db.Exhibition.hasMany(db.Video, {
+            foreignKey: "exhibition_id", 
+            // sourceKey: "video_id"
+        });
     };
 };
 

@@ -19,7 +19,9 @@ class Token extends Sequelize.Model {
     }
     
     static associate(db) {
-        db.Token.belongsTo(db.Videos, {foreignKey: "video_id", sourceKey: "token"});
+        // belongsTo 모델에 컬럼이 생김 -> 생성되는 컬럼은 hasOne에 있는 sourceKey
+
+        db.Token.belongsTo(db.Video, {foreignKey: "video_id", sourceKey: "id"});
     };
 };
 

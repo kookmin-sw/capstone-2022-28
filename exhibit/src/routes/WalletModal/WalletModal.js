@@ -28,17 +28,17 @@ function WalletModal(props) {
   const [tab, setTab] = useState("MINT"); // Market, Mint, Wallet
   const [mintImageUrl, setMintImageUrl] = useState("");
 
-  const getUserData = () => {
-    KlipAPI.getAddress(setQrvalue, (address) => {
-      setMyAddress(address);
-    });
-  };
+  // const getUserData = () => {
+  //   KlipAPI.getAddress(setQrvalue, (address) => {
+  //     setMyAddress(address);
+  //   });
+  // };
 
   const onClickgetAddress = () => {
     KlipAPI.getAddress(setQrvalue);
   };
 
-  useEffect(() => getUserData());
+  // useEffect(() => getUserData());
 
   return (
     <Modal
