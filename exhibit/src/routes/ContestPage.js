@@ -3,6 +3,7 @@ import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import "./page.css";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import axios from "axios";
 
 
@@ -11,8 +12,8 @@ function ContestPage() {
 
   useEffect(async()=>{
 
-    // const result = await axios.get("http://localhost:8000/video/get_art",{
-    const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    const result = await axios.get("http://localhost:8000/video/get_art",{
+    // const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:0,
