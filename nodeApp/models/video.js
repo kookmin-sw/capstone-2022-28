@@ -3,12 +3,7 @@ const Sequelize = require('sequelize');
 class Video extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            // id: {
-            //     type: Sequelize.UUID,
-            //     defaultValue: DataTypes.UUIDV4,
-            //     primaryKey: true,
-            //     comment: "고유번호 UUID",
-            //   },
+
             writer: {
                 type: Sequelize.STRING(15),
                 allowNull: false,
@@ -19,7 +14,7 @@ class Video extends Sequelize.Model {
             },
             duration: {
                 type: Sequelize.STRING(100),
-                allowNull: false,
+                allowNull: false, 
             },
             url: {
                 type: Sequelize.STRING(100),
