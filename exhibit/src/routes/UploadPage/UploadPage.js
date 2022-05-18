@@ -4,10 +4,11 @@ import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { FileUpload, ImageUpload} from "react-ipfs-uploader";
+import { mintCardWithURI } from "../../api/UserKlip";
+import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -25,11 +26,11 @@ function UploadPage(props) {
   const handleClose = () => {
     setShow(false);
   };
+  
   const handleShow = () => {
     setShow(true);
   };
-
-
+  
   const [posterUrl, setPosterUrl] = useState("");
 
   const [VideoTitle, setVideoTitle] = useState("");
@@ -111,7 +112,11 @@ function UploadPage(props) {
             <Modal.Title>비디오 추가하기</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <FileUpload setUrl={setFileUrl} />
+            <FileUpload setUrl={(url) => {
+              setFileUrl(url);
+//               alert("주소 : "+addressW+", url : "+url);
+              mintCardWithURI(addressW, 1213213200, url);
+            }} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={ () => {
