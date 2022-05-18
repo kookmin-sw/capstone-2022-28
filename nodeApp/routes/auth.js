@@ -43,8 +43,9 @@ router.get("/kakao/callback", async (req, res) => {
 
   if (header_token != "null") {
     //이미 로그인한 전적이 있는 브라우저 ->db저장필요 없음
-    return_json = await axios.get("http://localhost:8000/oauth/checkAuth", {
-      headers: {
+    // return_json = await axios.get("http://localhost:8000/oauth/checkAuth", {
+    return_json = await axios.get("http://3.39.32.4:8000/oauth/checkAuth", {
+    headers: {
         Authorizations: `${header_token}`,
         refresh: `${refresh_token}`,
       },
@@ -58,7 +59,7 @@ router.get("/kakao/callback", async (req, res) => {
   // console.log(token.access_token);
   const userInfo = await (
     await getUserInfo(option.userInfoUrl, token.access_token)
-  ).data;
+  ).data; 
   console.log(userInfo);
   console.log(userInfo.kakao_account.email);
   console.log(userInfo.id);
