@@ -34,6 +34,8 @@ class Exhibition extends Sequelize.Model {
     static associate(db) {
         db.Exhibition.hasMany(db.Video, { foreignKey: "exhibition_id", sourceKey: "id" });
 
+        db.Exhibition.belongsTo(db.User,{foreignKey : "user_id", targetKey: "id"})
+
         //하나의 source모델을 여러개의 target모델 -> 참조 당하는 hasMany가 sourcekey
     };
 };

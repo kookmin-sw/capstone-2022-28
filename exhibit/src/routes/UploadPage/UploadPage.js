@@ -6,6 +6,7 @@ import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { MultipleFilesUpload, ImageUpload} from "react-ipfs-uploader";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const { Title } = Typography;
@@ -17,6 +18,8 @@ const CategoryOptions = [
 ];
 
 function UploadPage() {
+  const navigate = useNavigate();
+
   const [multipleVideosUrl, setMultipleVideosUrl] = useState("");
   const [posterUrl, setPosterUrl] = useState("");
 
@@ -54,12 +57,14 @@ function UploadPage() {
       "videosUrl":multipleVideosUrl,
       "posterUrl":posterUrl,
       "fileName" : [],
+      "nick":localStorage.getItem("nick")
     };
     axios.post('http://localhost:8000/video/insert',insertDate)
     // axios.post('http://3.39.32.4:8000/video/insert',insertDate)
     .then((response)=>{
        console.log(response); 
        alert("디비 저장 ~");
+       navigate("/");
       }) 
     .catch(error => {
        console.log('error : ',error.response) 

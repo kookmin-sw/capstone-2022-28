@@ -7,19 +7,17 @@ import axios from "axios";
 
 
 function ContestPage() {
-  const navigate = useNavigate();
 
   useEffect(async()=>{
 
-    // const result = await axios.get("http://localhost:8000/video/get_art",{
-    const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    const result = await axios.get("http://localhost:8000/video/get_art",{
+    // const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:0,
       }
     })
     console.log(result);
-    // navigate("/");
 
   },[]);
 
