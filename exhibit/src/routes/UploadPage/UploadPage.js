@@ -3,12 +3,15 @@ import { Typography, Button, Form, Input } from "antd";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
-import { FileUpload, ImageUpload } from "react-ipfs-uploader";
+import { FileUpload, ImageUpload} from "react-ipfs-uploader";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
+
 
 const { Title } = Typography;
 const { TextArea } = Input;
+var urlList = []
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
@@ -16,6 +19,9 @@ const CategoryOptions = [
 ];
 
 function UploadPage(props) {
+  const navigate = useNavigate();
+  const [Klay, setKlay] = useState(0);
+  const [fileUrl, setFileUrl] = useState('');
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -32,6 +38,10 @@ function UploadPage(props) {
     setVideoTitle(event.target.value);
   };
 
+  const KlayHandler = (event) => {
+    setKlay(event.target.value);
+  };
+
   const [Description, setDescription] = useState("");
   const descriptionHandler = (event) => {
     setDescription(event.target.value);
@@ -45,12 +55,14 @@ function UploadPage(props) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log(Category);
-    const insertDate = {
-      title: VideoTitle,
-      description: Description,
-      category: Category,
-      videosUrl: multipleVideosUrl,
-      posterUrl: posterUrl,
+
+    const insertDate ={
+      "title":VideoTitle,
+      "description":Description,
+      "category":Category,
+      "videosUrl":urlList,
+      "posterUrl":posterUrl
+
     };
     // axios.post('http://localhost:8000/video/insert',insertDate)
     axios
@@ -62,7 +74,23 @@ function UploadPage(props) {
       .catch((error) => {
         console.log("error : ", error.response);
       });
+
   };
+
+  const AddHandler = (event) => {
+    event.preventDefault();
+    const insertdata = {
+      "Url" : fileUrl,
+      "Klay" : Klay
+    }
+    urlList.push(insertdata)
+   console.log(urlList)
+   {fupload()}
+    
+  };
+  function fupload(){
+    return <FileUpload setUrl={setFileUrl} />
+  }
 
   return (
     <div>
@@ -105,6 +133,16 @@ function UploadPage(props) {
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}></div>
           <br />
+          <label>가격</label>
+          <Input
+            onChange={KlayHandler}
+            value={Klay}
+            style={{ marginBottom: "2rem" }}
+          />
+          <Button className="submitBtn" size="lg" type="primary" onClick={AddHandler}>
+              Add
+            </Button>
+            <br/> <br></br>
 
           <label>전시회 제목</label>
           <Input
