@@ -15,7 +15,6 @@ import styled from "styled-components";
 import ModalPortal from "../Modal/Portal";
 import Modal from "../Modal/Modal";
 
-
 const ArtContainer = () => {
 }
 
@@ -34,7 +33,7 @@ const Card = props => {
     <div>
     <ImgBox 
       id={props.id}
-      src={card1}
+      src={'https://bafybeifhkkktzerw2m3wioeuogbjuumq46q4spx7vzolulnmdf2xm3awxe.ipfs.infura-ipfs.io/'}
       // src={props.img}
       alt="imgbox"
       onClick={handleModal}

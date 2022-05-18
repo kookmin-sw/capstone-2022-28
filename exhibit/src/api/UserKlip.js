@@ -20,15 +20,17 @@ export const listingCard = async (
     callback
 ) => {
     const functionJSON = '{ "constant": false, "inputs": [ { "name": "from", "type": "address" }, { "name": "to", "type": "address" }, { "name": "tokenId", "type": "uint256" } ], "name": "safeTransferFrom", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
-    executeContract(NFT_CONTRACT_ADDRESS_MAIN, functionJSON, "0", `[\"${fromAddress}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\",\"${tokenId}\"]`,setQrvalue,callback);
+    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "0", `[\"${fromAddress}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\",\"${tokenId}\"]`,setQrvalue,callback);
 };
 
 export const mintCardWithURI = async (toAdress, tokenId, uri, setQrvalue, callback) => {
     const functionJSON = '{ "constant": false, "inputs": [ { "name": "to", "type": "address" }, { "name": "tokenId", "type": "uint256" }, { "name": "tokenURI", "type": "string" } ], "name": "mintWithTokenURI", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
+    console.log("minting start");
     executeContract(NFT_CONTRACT_ADDRESS_MAIN, functionJSON, "0", `[\"${toAdress}\",\"${tokenId}\",\"${uri}\"]`,setQrvalue,callback);
 };
 
 export const executeContract = (txTo, functionJSON, value, params, setQrvalue, callback) => {
+    console.log("minting start");
     axios.post(
         A2P_API_PREPARE_URL,{
             bapp: {
@@ -61,7 +63,7 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
             }, 100000);
         });
     })
-}
+};
 
 export const setCount = (count) => {
     axios.post(

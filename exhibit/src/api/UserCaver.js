@@ -1,7 +1,8 @@
 import Caver from 'caver-js';
 import CounterABI from '../abi/CounterABI.json';
-import KIP17ABI from '../abi/KIP17TokenABI.json'
-import { ACCESS_KEY_ID, SECRET_ACCESS_KEY, COUNT_CONTRACT_ADDRESS, CHAIN_ID, Authorization } from '../constants/index'
+import MarketABI from '../abi/MarketABI.json';
+import KIP17ABI from '../abi/KIP17TokenABI.json';
+import { ACCESS_KEY_ID, SECRET_ACCESS_KEY, COUNT_CONTRACT_ADDRESS, CHAIN_ID, Authorization } from '../constants/index';
 import { ACCESS_KEY_ID_MAIN, SECRET_ACCESS_KEY_MAIN, COUNT_CONTRACT_ADDRESS_MAIN, NFT_CONTRACT_ADDRESS_MAIN, MARKET_CONTRACT_ADDRESS_MAIN, CHAIN_ID_MAIN } from '../constants/constants.cypress';
 
 var global = global || window; global.Buffer = global.Buffer || require("buffer").Buffer;
@@ -17,9 +18,10 @@ const option = {
 }
 
 const caver = new Caver(new Caver.providers.HttpProvider("https://node-api.klaytnapi.com/v1/klaytn", option));
-const NFTContract = new caver.contract(KIP17ABI, COUNT_CONTRACT_ADDRESS);
+const NFTContract = new caver.contract(KIP17ABI, NFT_CONTRACT_ADDRESS_MAIN);
+const MarketContract = new caver.contract(MarketABI, MARKET_CONTRACT_ADDRESS_MAIN);
 
-export const fetchCardsOf = async (address) => {
+export const fetchNftsOf = async (address) => {
   // Fetch Balance
   const balance = await NFTContract.methods.balanceOf(address).call();
   console.log(`[NFT Balance]${balance}`);  
@@ -52,7 +54,7 @@ export const getBalance = (address) => {
   return caver.rpc.klay.getBalance(address).then((response) => {
     const balance = caver.utils.convertFromPeb(caver.utils.hexToNumberString(response));
     console.log(balance);
-    return caver.klay.getBalance(address);
+    return balance;
   })
 }
 

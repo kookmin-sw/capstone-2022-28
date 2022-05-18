@@ -40,7 +40,7 @@ function MyArtPage() {
           height: "100vh",
         }}
       >
-        <h1 class = "title">내가 올린 작품</h1>
+        <h1 class = "title">내 전시회</h1>
       </div>
     </div>
   );
