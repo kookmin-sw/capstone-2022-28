@@ -8,7 +8,6 @@ import { FileUpload, ImageUpload} from "react-ipfs-uploader";
 import { mintCardWithURI } from "../../api/UserKlip";
 import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
 const { Title } = Typography;
@@ -60,7 +59,7 @@ function UploadPage(props) {
       "description":Description,
       "category":Category,
       "videosUrl":urlList,
-      "posterUrl":posterUrl
+      "posterUrl":posterUrl,
       "nick":localStorage.getItem("nick")
     };
     // axios.post('http://localhost:8000/video/insert',insertDate)
