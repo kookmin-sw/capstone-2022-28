@@ -4,31 +4,33 @@ import { useState } from "react";
 import React, { useEffect } from 'react';
 import VideoDetailBox from "../components/VideoDetail/VideoDetail";
 
+export let URL = "https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/1080p.mp4";
+
 function VideoArt(id) {
   let vi = id;
   return (<div>
     <VPlayer width="100%" height="100%" source={[
     {
       url:
-        "https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/720p.mp4",
+        URL,
       type: "video/mp4",
       quality: 720
     },
     {
       url:
-        "https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/1080p.mp4",
+        URL,
       type: "video/mp4",
       quality: 1080
     },
     {
       url:
-        "https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/480p.mp4",
+        URL,
       type: "video/mp4",
       quality: 480
     },
     {
       url:
-        "https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/360p.mp4",
+        URL,
       type: "video/mp4",
       quality: 360
     }
@@ -38,6 +40,9 @@ function VideoArt(id) {
 }
 
 function VideoDetail(id){
+
+  URL = id;
+
   return (
     <div>
       <VideoDetailBox></VideoDetailBox>
@@ -46,6 +51,8 @@ function VideoDetail(id){
 }
 
 function Detail(id){
+
+  URL = id;
 
   let [ alert, alertState ] = useState(true);   
   let vi = id;
@@ -65,6 +72,8 @@ function Detail(id){
 }
 
 function VideoPage(id) {
+
+  URL = id;
     
   return (
     Detail(id)

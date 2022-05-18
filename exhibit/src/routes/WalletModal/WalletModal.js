@@ -14,6 +14,9 @@ import {
 import * as KlipAPI from "../../api/UserKlip";
 import * as CaverAPI from "../../api/UserCaver";
 
+export let addressW = "";
+export let balanceW = 0;
+
 const DEFAULT_QR_CODE = "DEFAULT";
 const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -32,6 +35,8 @@ function WalletModal(props) {
     KlipAPI.getAddress(setQrvalue, async (address) => {
       await setMyAddress(address);
       const _balance = await getBalance(address);
+      balanceW = _balance;
+      addressW = address;
       setMyBalance(_balance);
     });
   };

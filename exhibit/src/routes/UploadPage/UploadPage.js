@@ -5,7 +5,9 @@ import { PlusOutlined } from "@ant-design/icons";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
-import { MultipleFilesUpload, ImageUpload} from "react-ipfs-uploader";
+import { FileUpload, ImageUpload} from "react-ipfs-uploader";
+import { mintCardWithURI } from "../../api/UserKlip";
+import { addressW } from "../WalletModal/WalletModal";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -16,7 +18,7 @@ const CategoryOptions = [
 ];
 
 function UploadPage() {
-  const [multipleVideosUrl, setMultipleVideosUrl] = useState("");
+  const [videosUrl, setVideoUrl] = useState("");
   const [posterUrl, setPosterUrl] = useState("");
 
   const [VideoTitle, setVideoTitle] = useState("");
@@ -61,7 +63,11 @@ function UploadPage() {
         <br/>
 
         <label>작품 업로드</label>
-          <MultipleFilesUpload setUrl={setMultipleVideosUrl} />
+          <FileUpload setUrl={(url) => {
+            alert("주소 : "+addressW+", url : "+url);
+            mintCardWithURI("0x8aBba335E30Ff1107335833DA4f3fD68b548B999", 1213213200, "https://aws1.discourse-cdn.com/standard17/uploads/klaytn/original/2X/0/0532ecfe0e448b4fca3131702ba68f1a05ff361d.png");
+          }} />
+          {/* {mintCardWithURI(addressW, 100, multipleVideosUrl)} */}
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}>
             {/* Drop Zone */}
