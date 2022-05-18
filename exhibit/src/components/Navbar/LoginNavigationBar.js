@@ -75,6 +75,7 @@ function LoginNavigationBar() {
               axios
                 // .get("http://localhost:8000/oauth/logout", {
                   .get("http://3.39.32.4:8000/oauth/logout", {
+
                   headers: {
                     Authorizations: `${header_token}`,
                     refresh: `${refresh_token}`,
