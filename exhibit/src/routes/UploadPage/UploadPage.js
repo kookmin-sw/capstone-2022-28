@@ -20,7 +20,6 @@ const CategoryOptions = [
 
 function UploadPage(props) {
   const navigate = useNavigate();
-  const [Klay, setKlay] = useState(0);
   const [fileUrl, setFileUrl] = useState('');
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -30,7 +29,7 @@ function UploadPage(props) {
     setShow(true);
   };
 
-  const [multipleVideosUrl, setMultipleVideosUrl] = useState("");
+
   const [posterUrl, setPosterUrl] = useState("");
 
   const [VideoTitle, setVideoTitle] = useState("");
@@ -38,10 +37,7 @@ function UploadPage(props) {
     setVideoTitle(event.target.value);
   };
 
-  const KlayHandler = (event) => {
-    setKlay(event.target.value);
-  };
-
+  
   const [Description, setDescription] = useState("");
   const descriptionHandler = (event) => {
     setDescription(event.target.value);
@@ -78,20 +74,14 @@ function UploadPage(props) {
   };
 
   const AddHandler = (event) => {
-    event.preventDefault();
     const insertdata = {
       "Url" : fileUrl,
-      "Klay" : Klay
     }
     urlList.push(insertdata)
    console.log(urlList)
-   {fupload()}
-    
+     
   };
-  function fupload(){
-    return <FileUpload setUrl={setFileUrl} />
-  }
-
+  
   return (
     <div>
       <LoginNavigationBar />
@@ -121,10 +111,13 @@ function UploadPage(props) {
             <Modal.Title>비디오 추가하기</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <FileUpload setUrl={setMultipleVideosUrl} />
+            <FileUpload setUrl={setFileUrl} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={ () => {
+            AddHandler()
+            handleClose()
+             } }>
               비디오 추가하기
             </Button>
           </Modal.Footer>
@@ -134,14 +127,8 @@ function UploadPage(props) {
           <div className={styles.contents}></div>
           <br />
           <label>가격</label>
-          <Input
-            onChange={KlayHandler}
-            value={Klay}
-            style={{ marginBottom: "2rem" }}
-          />
-          <Button className="submitBtn" size="lg" type="primary" onClick={AddHandler}>
-              Add
-            </Button>
+          
+        
             <br/> <br></br>
 
           <label>전시회 제목</label>
