@@ -12,11 +12,14 @@ class Video extends Sequelize.Model {
                 type: Sequelize.STRING(30),
                 allowNull: false,
             },
-
             duration: {
                 type: Sequelize.STRING(100),
                 allowNull: false, 
             },
+            url: {
+                type: Sequelize.STRING(100),
+                allowNull: false,
+            }
 
         }, {
             sequelize,
@@ -31,13 +34,10 @@ class Video extends Sequelize.Model {
 
     static associate(db) {
         // belongsTo 모델에 컬럼이 생김 -> 생성되는 컬럼은 hasOne에 있는 sourceKey
-        db.Video.hasOne(db.Token, {foreignKey: "video_id", sourceKey: "id"});
-
+        db.Video.hasOne(db.Token, { foreignKey: "video_id", sourceKey: "id" });
+         
         //1:N에서 N쪽이 hasMany, 1쪽이 belongsTo ->참조하는 belongsTo가 targetKey
-        db.Video.belongsTo(db.Exhibition, {
-            foreignKey: "exhibition_id", 
-            // targetKey: "video_id"
-        });
+        db.Video.belongsTo(db.Exhibition, { foreignKey: "exhibition_id", targetKey: "id" });
     };
 };
 

@@ -21,6 +21,7 @@ export default function (SpecificComponent, option) {
       const res = await axios.get("http://3.39.32.4:8000/oauth/checkAuth", {
         
       headers: {
+
           Authorizations: `${header_token}`,
           refresh: `${refresh_token}`,
         },
