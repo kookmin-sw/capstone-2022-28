@@ -8,6 +8,8 @@ import { FileUpload, ImageUpload} from "react-ipfs-uploader";
 import { mintCardWithURI } from "../../api/UserKlip";
 import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
+import QRCode from "qrcode.react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 
 const { Title } = Typography;
@@ -36,6 +38,7 @@ function UploadPage(props) {
   };
 
   const [posterUrl, setPosterUrl] = useState("");
+  const [qrvalue, setQrvalue] = useState("DEFAULT");
 
   const [VideoTitle, setVideoTitle] = useState("");
   const videoTitleHandler = (event) => {
@@ -134,8 +137,11 @@ function UploadPage(props) {
             <FileUpload setUrl={(url) => {
               setFileUrl(url);
 //               alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI(addressW, 1213213200, url);
+              mintCardWithURI("0x8aBba335E30Ff1107335833DA4f3fD68b548B999", 1213213200, url, setQrvalue, (result) => {
+                alert(JSON.stringify(result));
+              });
             }} />
+
             <label>비디오 제목</label>
           <Input
             onChange={TitleHandler}
@@ -151,6 +157,9 @@ function UploadPage(props) {
             style={{ marginBottom: "2rem" }}
           />
           <br />
+
+            <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>작품 Minting</QRCode>
+
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={ () => {
