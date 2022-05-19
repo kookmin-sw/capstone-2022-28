@@ -4,14 +4,7 @@ class Video extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
 
-            writer: {
-                type: Sequelize.STRING(15),
-                allowNull: false,
-            },
-            title: {
-                type: Sequelize.STRING(30),
-                allowNull: false,
-            },
+
             duration: {
                 type: Sequelize.STRING(100),
                 allowNull: false, 
@@ -19,6 +12,14 @@ class Video extends Sequelize.Model {
             url: {
                 type: Sequelize.STRING(100),
                 allowNull: false,
+            },
+            title:{
+                type: Sequelize.STRING(100),
+                allowNull: false, 
+            },
+            description:{
+                type: Sequelize.STRING(1000),
+                allowNull: false, 
             }
 
         }, {
@@ -38,6 +39,8 @@ class Video extends Sequelize.Model {
          
         //1:N에서 N쪽이 hasMany, 1쪽이 belongsTo ->참조하는 belongsTo가 targetKey
         db.Video.belongsTo(db.Exhibition, { foreignKey: "exhibition_id", targetKey: "id" });
+
+        db.Video.belongsTo(db.User,{foreignKey:"writer",sourceKey:'id'});
     };
 };
 
