@@ -3,6 +3,7 @@ import { Typography, Button, Form, Input } from "antd";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
+import { useNavigate } from "react-router-dom";
 import { FileUpload, ImageUpload} from "react-ipfs-uploader";
 import { mintCardWithURI } from "../../api/UserKlip";
 import { addressW } from "../WalletModal/WalletModal";
@@ -20,6 +21,7 @@ const CategoryOptions = [
   { value: 1, label: "Challenge" },
 ];
 
+
 function UploadPage(props) {
   const navigate = useNavigate();
   const [fileUrl, setFileUrl] = useState('');
@@ -31,7 +33,7 @@ function UploadPage(props) {
   const handleShow = () => {
     setShow(true);
   };
-  
+
   const [posterUrl, setPosterUrl] = useState("");
   const [qrvalue, setQrvalue] = useState("DEFAULT");
 
@@ -60,15 +62,16 @@ function UploadPage(props) {
       "description":Description,
       "category":Category,
       "videosUrl":urlList,
-      "posterUrl":posterUrl
-
+      "posterUrl":posterUrl,
+      "nick":localStorage.getItem("nick")
     };
     // axios.post('http://localhost:8000/video/insert',insertDate)
-    axios
-      .post("http://3.39.32.4:8000/video/insert", insertDate)
+    axios.post("http://3.39.32.4:8000/video/insert", insertDate)
       .then((response) => {
         console.log(response);
         alert("디비 저장 ~");
+        navigate("/");
+
       })
       .catch((error) => {
         console.log("error : ", error.response);
