@@ -17,7 +17,6 @@ var urlList = []
 var titleList = []
 var descriptionList = []
 
-
 const CategoryOptions = [
   { value: 0, label: "Competition" },
   { value: 1, label: "Challenge" },
@@ -26,12 +25,12 @@ const CategoryOptions = [
 
 function UploadPage(props) {
   const navigate = useNavigate();
-  const [fileUrl, setFileUrl] = useState('');
+  const [fileUrl, setFileUrl] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
   };
-  
+
   const handleShow = () => {
     setShow(true);
   };
@@ -44,12 +43,12 @@ function UploadPage(props) {
     setVideoTitle(event.target.value);
   };
 
+
   const [vTitle, setvTitle] = useState("");
   const TitleHandler = (event) => {
     setvTitle(event.target.value);
   };
 
-  
   const [Description, setDescription] = useState("");
   const descriptionHandler = (event) => {
     setDescription(event.target.value);
@@ -88,7 +87,6 @@ function UploadPage(props) {
       .catch((error) => {
         console.log("error : ", error.response);
       });
-
   };
 
   const AddHandler = (event) => {
@@ -96,14 +94,13 @@ function UploadPage(props) {
       "Url" : fileUrl,
       "titleList":vTitle,
       "descriptionList":videoDescription
-
     }
     urlList.push(insertdata)
     
    console.log(urlList)
-     
+
   };
-  
+
   return (
     <div>
       <LoginNavigationBar />
@@ -133,6 +130,7 @@ function UploadPage(props) {
             <Modal.Title>비디오 추가하기</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+
             <FileUpload setUrl={(url) => {
               setFileUrl(url);
 //               alert("주소 : "+addressW+", url : "+url);
@@ -161,10 +159,13 @@ function UploadPage(props) {
 
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={ () => {
-            AddHandler()
-            handleClose()
-             } }>
+            <Button
+              variant="primary"
+              onClick={() => {
+                AddHandler();
+                handleClose();
+              }}
+            >
               비디오 추가하기
             </Button>
           </Modal.Footer>
@@ -174,10 +175,7 @@ function UploadPage(props) {
           <div className={styles.contents}></div>
           <br />
           <label>가격</label>
-          
-        
-            <br/> <br></br>
-
+          <br /> <br></br>
           <label>전시회 제목</label>
           <Input
             onChange={videoTitleHandler}
@@ -185,7 +183,6 @@ function UploadPage(props) {
             style={{ marginBottom: "2rem" }}
           />
           <br />
-
           <label>전시회 설명</label>
           <TextArea
             onChange={descriptionHandler}
@@ -193,7 +190,6 @@ function UploadPage(props) {
             style={{ marginBottom: "2rem" }}
           />
           <br />
-
           <select onChange={categoryHandler} style={{ marginBottom: "2rem" }}>
             {CategoryOptions.map((item, index) => (
               <option key={index} value={item.value}>
@@ -202,9 +198,7 @@ function UploadPage(props) {
             ))}
           </select>
           <br />
-
           <br />
-
           <div className={styles.submitBtn}>
             <Button
               className="submitBtn"
