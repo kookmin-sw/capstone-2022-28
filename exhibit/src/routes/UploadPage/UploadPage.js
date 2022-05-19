@@ -122,7 +122,6 @@ function UploadPage(props) {
               });
             }} />
             <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>작품 Minting</QRCode>
-
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={ () => {
