@@ -1,0 +1,18 @@
+.loginBtn {
+  justify-content: center !important;
+}
+
+.adba {
+  justify-content: center !important;
+  border-radius: 80px  40px !important;
+}
+
+.modal_header {
+  font-weight: 500;
+}
+
+.modal_body {
+  display: flex;
+  justify-content: center;
+}
+
