@@ -22,9 +22,12 @@ router.post('/insert',async(req,res)=>{
         poster_url : data_json.posterUrl,
         user_id : find_userID.id,
     })
-    console.log("new_exhibit : ",new_exhibit);
-    console.log("videoUrl : ",data_json.videosUrl);
     const video_url = data_json.videosUrl;
+
+    console.log("video_url : ",video_url);
+    console.log("titleList : ",video_url[0].titleList);
+    console.log("descriptionList : ",video_url[0].descriptionList);
+
 
     for (var i=0; i<video_url.length; i++){
         const new_video = await Video.create({
@@ -32,9 +35,9 @@ router.post('/insert',async(req,res)=>{
             duration : "2week",
             url : video_url[i].Url, 
             exhibition_id : new_exhibit.id,
-            title : data_json.titleList,
-            description : data_json.descriptionList,
-        })
+            title :  video_url[i].titleList,
+            description :  video_url[i].descriptionList,
+        }) 
         console.log("new_video : ",new_video);
 
     }

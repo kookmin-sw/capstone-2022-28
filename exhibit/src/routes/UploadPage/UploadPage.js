@@ -76,8 +76,8 @@ function UploadPage(props) {
       "posterUrl":posterUrl,
       "nick":localStorage.getItem("nick")
     };
-    // axios.post('http://localhost:8000/video/insert',insertDate)
-    axios.post("http://3.39.32.4:8000/video/insert", insertDate)
+    axios.post('http://localhost:8000/video/insert',insertDate)
+    // axios.post("http://3.39.32.4:8000/video/insert", insertDate)
       .then((response) => {
         console.log(response);
         alert("디비 저장 ~");
@@ -174,8 +174,10 @@ function UploadPage(props) {
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}></div>
           <br />
-          <label>가격</label>
-          <br /> <br></br>
+          
+        
+            <br/> <br></br>
+
           <label>전시회 제목</label>
           <Input
             onChange={videoTitleHandler}
