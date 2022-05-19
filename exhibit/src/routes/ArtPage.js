@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button'; // Button을 import 한다.
 
 function Exhibition({ exhibition }) {
   return (
-    <ImgBox 
+    <Card
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
@@ -55,18 +55,6 @@ function ArtPage() {
   );
 }
 
-const ImgBox = styled.img`
-  width: 220px;
-  height: 308px;
-  border-radius: 7px;
-  margin: 10px;
-  
-  cursor: pointer;
 
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 0.35s;
-  }
-`;
 
 export default Auth(ArtPage, true);

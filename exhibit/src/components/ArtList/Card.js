@@ -15,8 +15,6 @@ import styled from "styled-components";
 import ModalPortal from "../Modal/Portal";
 import Modal from "../Modal/Modal";
 
-const ArtContainer = () => {
-}
 
 const Card = props => {
   const navigate = useNavigate();
@@ -33,84 +31,12 @@ const Card = props => {
     <div>
     <ImgBox 
       id={props.id}
-      src={'https://bafybeifhkkktzerw2m3wioeuogbjuumq46q4spx7vzolulnmdf2xm3awxe.ipfs.infura-ipfs.io/'}
-      // src={props.img}
+      src={props.img}
       alt="imgbox"
       onClick={handleModal}
       onMouseEnter={props.onMouseEnter}
     />
-    <ImgBox
-      id={props.id}
-      src={card2}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card3}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card4}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card5}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card6}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card7}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card8}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card9}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
-    <ImgBox
-      id={props.id}
-      src={card10}
-      // src={props.img}
-      alt="imgbox"
-      onClick={handleModal}
-      onMouseEnter={props.onMouseEnter}
-    />
+    
     <ModalPortal>
       {modalOn && <Modal onClose={handleModal} id={props.id} src={content}/>}
     </ModalPortal>
