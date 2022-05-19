@@ -55,8 +55,8 @@ function UploadPage() {
       "posterUrl":posterUrl,
       "fileName" : [],
     };
-    axios.post('http://localhost:8000/video/insert',insertDate)
-    // axios.post('http://3.39.32.4:8000/video/insert',insertDate)
+    // axios.post('http://localhost:8000/video/insert',insertDate)
+    axios.post('http://3.39.32.4:8000/video/insert',insertDate)
     .then((response)=>{
        console.log(response); 
        alert("디비 저장 ~");

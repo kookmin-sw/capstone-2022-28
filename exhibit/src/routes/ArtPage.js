@@ -11,6 +11,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToolTwoTone } from "@ant-design/icons";
+import Button from '@material-ui/core/Button'; // Button을 import 한다.
+
 
 function Exhibition({ exhibition }) {
   return (
@@ -18,6 +20,7 @@ function Exhibition({ exhibition }) {
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
+      on
     />
   );
 }
@@ -26,8 +29,8 @@ function Exhibition({ exhibition }) {
 function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
   useEffect(async()=>{
-    const result = await axios.get("http://localhost:8000/video/get_art",{
-    // const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    // const result = await axios.get("http://localhost:8000/video/get_art",{
+    const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:0,
