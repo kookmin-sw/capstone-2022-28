@@ -7,7 +7,6 @@ import axios from "axios";
 
 
 function ContestPage() {
-  const navigate = useNavigate();
 
   useEffect(async()=>{
 
@@ -19,7 +18,6 @@ function ContestPage() {
       }
     })
     console.log(result);
-    // navigate("/");
 
   },[]);
 

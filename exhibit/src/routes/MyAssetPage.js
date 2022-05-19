@@ -1,7 +1,7 @@
 import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import "./page.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Card} from "react-bootstrap";
 import { fetchNftsOf } from "../api/UserCaver";
 import React from "react";
@@ -15,11 +15,10 @@ function MyAssetPage() {
 
     // fetchMyNFT
   const fetchMyNFTs = async () => {
-    const _nfts = await fetchNftsOf(addressW);
+    const _nfts = await fetchNftsOf("0x0d516f32c3a488955c37648A139Ad1E3DBAfa7ad");
     setNfts(_nfts);
+    alert(_nfts[0].uri);
   };
-
-  fetchMyNFTs();
 
   return (
     <div>
@@ -32,8 +31,8 @@ function MyAssetPage() {
           height: "100vh",
         }}
       >
-        <h1 class="title">내 작품</h1>
-        <div className="container" style={{ padding: 0, width: "100%" }}>
+        <h1 class="title" onClick={fetchMyNFTs}>내 작품</h1>
+        <div className="container" style={{ padding: 0, width: "100%" }} onClick={fetchMyNFTs}>
               {nfts.map((nft, index) => {
                 <Card.Img
                   onClick={() => {
