@@ -5,10 +5,13 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/core": "^7.16.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@flowplayer/player": "^2.9.11",
     "@flowplayer/react-flowplayer": "^0.2.2",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "@mui/material": "^5.8.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.2",
@@ -84,7 +87,6 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
-  "proxy": "http://3.39.32.4:8000",
   "proxy": "https://a2a-api.klipwallet.com/v2/a2a",
   "eslintConfig": {
     "extends": [

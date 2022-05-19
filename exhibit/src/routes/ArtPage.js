@@ -11,26 +11,63 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToolTwoTone } from "@ant-design/icons";
-import Button from '@material-ui/core/Button'; // Button을 import 한다.
+import { Modal } from "react-bootstrap";
+import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
 
 function Exhibition({ exhibition }) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+  
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
+    <div>
     <ImgBox 
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
-      on
+      onClick={handleShow}
     />
+    <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+    >
+        <Modal.Header closeButton>
+          {exhibition.title}
+          <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
+        </Modal.Header>
+        <Modal.Body>
+          {exhibition.description}
+        </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
+    </Modal>
+      </div>
   );
 }
 
-
 function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+  
+  const handleShow = () => {
+    setShow(true);
+  };
+  
   useEffect(async()=>{
-    const result = await axios.get("http://localhost:8000/video/get_art",{
-    // const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    // const result = await axios.get("http://localhost:8000/video/get_art",{
+    const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:0,
