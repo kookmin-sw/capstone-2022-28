@@ -23,6 +23,23 @@ router.post('/insert',async(req,res)=>{
         user_id : find_userID.id,
     })
     console.log("new_exhibit : ",new_exhibit);
+    console.log("videoUrl : ",data_json.videosUrl);
+    const video_url = data_json.videosUrl;
+
+    for (var i=0; i<video_url.length; i++){
+        const new_video = await Video.create({
+            writer : find_userID.id,
+            duration : "2week",
+            url : video_url[i].Url, 
+            exhibition_id : new_exhibit.id,
+            title : data_json.titleList,
+            description : data_json.descriptionList,
+        })
+        console.log("new_video : ",new_video);
+
+    }
+
+
 
     // const new_video =  await Video.create({
 

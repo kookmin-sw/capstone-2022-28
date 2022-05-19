@@ -37,6 +37,7 @@ function ArtPage() {
       }
     })
     setExhibition(result.data);
+    console.log(result);
 
   },[]);
 
