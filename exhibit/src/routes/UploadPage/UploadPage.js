@@ -15,6 +15,9 @@ import { Modal } from "react-bootstrap";
 const { Title } = Typography;
 const { TextArea } = Input;
 var urlList = []
+var titleList = []
+var descriptionList = []
+
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
@@ -42,10 +45,20 @@ function UploadPage(props) {
     setVideoTitle(event.target.value);
   };
 
+  const [vTitle, setvTitle] = useState("");
+  const TitleHandler = (event) => {
+    setvTitle(event.target.value);
+  };
+
   
   const [Description, setDescription] = useState("");
   const descriptionHandler = (event) => {
     setDescription(event.target.value);
+  };
+
+  const [videoDescription, setvideoDescription] = useState("");
+  const videodescriptionHandler = (event) => {
+    setvideoDescription(event.target.value);
   };
 
   const [Category, setCategory] = useState(0);
@@ -82,8 +95,12 @@ function UploadPage(props) {
   const AddHandler = (event) => {
     const insertdata = {
       "Url" : fileUrl,
+      "titleList":vTitle,
+      "descriptionList":videoDescription
+
     }
     urlList.push(insertdata)
+    
    console.log(urlList)
      
   };
@@ -124,7 +141,25 @@ function UploadPage(props) {
                 alert(JSON.stringify(result));
               });
             }} />
+
+            <label>비디오 제목</label>
+          <Input
+            onChange={TitleHandler}
+            value={vTitle}
+            style={{ marginBottom: "2rem" }}
+          />
+          <br />
+
+          <label>비디오 설명</label>
+          <TextArea
+            onChange={videodescriptionHandler}
+            value={videoDescription}
+            style={{ marginBottom: "2rem" }}
+          />
+          <br />
+
             <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>작품 Minting</QRCode>
+
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={ () => {
