@@ -4,15 +4,21 @@ import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import { Typography, Button, Form, message, Input } from "antd";
 import img from "../components/Image/001.png";
+import { Modal } from "react-bootstrap";
 
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const buyBtnListener = () => {
-  alert("구매버튼 클릭!");
-};
-
 function BuyPage() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <div>
       <LoginNavigationBar />
@@ -53,9 +59,22 @@ function BuyPage() {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button size="lg" type="primary" onClick={buyBtnListener}>
+        <Button size="lg" type="primary" onClick={handleShow}>
           구매하기
         </Button>
+
+        <Modal
+          show={show}
+          onHide={handleClose}
+          size="1g"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>비디오 구매</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>QR코드 들어가면 됨</Modal.Body>
+        </Modal>
       </div>
     </div>
   );

@@ -35,6 +35,7 @@
     }
   
     .Cbtn {
+
         width: 80px;
         height: 40px;
 	color: #000;
@@ -50,6 +51,7 @@
 
     
     }
+
   
     card:hover {
       transform: scale(1.02);
