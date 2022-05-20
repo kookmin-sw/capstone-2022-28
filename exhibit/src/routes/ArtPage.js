@@ -26,31 +26,29 @@ function Exhibition({ exhibition }) {
   };
 
   return (
-    <div>
     <ImgBox 
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
       onClick={handleShow}
     />
-    <Modal
-        show={show}
-        onHide={handleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-    >
-        <Modal.Header closeButton>
-          {exhibition.title}
-          <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
-        </Modal.Header>
-        <Modal.Body>
-          {exhibition.description}
-        </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
-    </Modal>
-      </div>
+    // <Modal
+    //     show={show}
+    //     onHide={handleClose}
+    //     size="lg"
+    //     aria-labelledby="contained-modal-title-vcenter"
+    //     centered
+    // >
+    //     <Modal.Header closeButton>
+    //       {exhibition.title}
+    //       <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
+    //     </Modal.Header>
+    //     <Modal.Body>
+    //       {exhibition.description}
+    //     </Modal.Body>
+    //     <Modal.Footer>
+    //     </Modal.Footer>
+    // </Modal>
   );
 }
 
@@ -70,7 +68,7 @@ function ArtPage() {
     const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
-        category:0,
+        category:1,
       }
     })
     setExhibition(result.data);
