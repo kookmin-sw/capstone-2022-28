@@ -12,7 +12,8 @@ import styled from "styled-components";
 import { ToolTwoTone } from "@ant-design/icons";
 import { Modal } from "react-bootstrap";
 import "./page.css";
-import "./cardmodal.css"
+
+
 
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
@@ -54,32 +55,33 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
     >
-        <Modal.Header closeButton class="modal_header">
+     <div class="modal_header">
+     <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+     </div>
           
-        </Modal.Header>
-        <Modal.Body>
+        <Modal.Body class="modal_body">
           <img class="poster" id={exhibition.id} src={exhibition.poster_url}/>
           <br/>
-          <h1>{exhibition.title}</h1>
+          <h1 class="title">{exhibition.title}</h1>
           <br/><br/><br/>
-          <div> {exhibition.description}</div>
+          <div class="title"> {exhibition.description}</div>
         </Modal.Body>
-        <Modal.Body>
+        <Modal.Body class="modal_body">
           {video.map((video) => 
-            <div class="card">
+            <div class="FrameRoot">
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <img class="image" src={video.url} alt={video.title}/>
+            <img class="video" src={video.url} alt={video.title}/>
             <div>
-            <h1> {video.title} </h1>
-            <span> {video.description} </span>
+            <h4 class="Text2"> {video.title} </h4>
+            <span class="Text1"> {video.description} </span>
             </div>
-          <button style={{ float:'right' }}class="Cbtn">buy</button>
+          <button class="Cbtn">buy</button>
           </div>
         </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
+      )}
+      
+      </Modal.Body>
+      
     </Modal>
     </span>
 
@@ -108,8 +110,8 @@ function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
   
   useEffect(async()=>{
-    const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
-    // const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    // const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
+    const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:1,
@@ -149,6 +151,70 @@ const ImgBox = styled.img`
   }
 `;
 
+const Text1 = styled.div`
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Poppins;
+  font-weight: 500;
+  align-self: stretch;
+  font-size: ${(props) => props.fontSize};
+`;
+const Text2 = styled.div`
+  color: #ffffff;
+  font-size: 20px;
+  font-family: Poppins;
+  font-weight: 700;
+`;
+const FrameRoot = styled.div`
+  background-color: #69aae7;
+  width: 337px;
+  height: 621px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding-left: 31px;
+  padding-right: 31px;
+  margin: auto;
+  border-radius: 20px;
+`;
+const Image1 = styled.img`
+  width: 337px;
+  height: 389px;
+`;
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 65px;
+  align-items: flex-start;
+`;
+const ArtistAndTitle = styled.div`
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+`;
+const CurrentBid1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+const PurpleHeartText = styled.div`
+  color: #ffffff;
+  display: flex;
+  font-size: 20px;
+  font-family: Poppins;
+  font-weight: 500;
+  background-color: #8e3bf1;
+  width: 337px;
+  height: 30px;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+`;
 
 
 export default Auth(ArtPage, true);
