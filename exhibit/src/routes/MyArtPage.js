@@ -1,10 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import "./page.css"
 import axios from "axios";
+import styled from "styled-components";
+import Layout from "../components/Layout";
 
-function MyArtPage() {
+function MyArt({ myArt }) {
+  return (
+    <ImgBox 
+      id={myArt.id}
+      src={myArt.poster_url}
+      alt={myArt.title}
+    />
+  );
+}
+
+function MyArtPage() { 
+  const [myArt, setMyArt] = useState([]);
 
   useEffect(async()=>{
     const nick = localStorage.getItem("nick");
@@ -23,6 +36,7 @@ function MyArtPage() {
         nick:charToUni(nick),
       }
     })
+    setMyArt(result.data);
     console.log("result가 들어왔어요~~~~~~~~",result);
     // navigate("/");
 
@@ -32,18 +46,30 @@ function MyArtPage() {
   return (
     <div class="page">
       <LoginNavigationBar />
-      <div class = "page"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <h1 class = "title">내 전시회</h1>
-      </div>
+      <body class="page">
+        <Layout>
+          <h1 className="pageTitle">내 전시회</h1>
+        </Layout>
+      </body>
+      {myArt.map(
+        myArt => (<MyArt myArt={myArt} key={myArt.id}/>
+      ))}
     </div>
   );
 }
+
+const ImgBox = styled.img`
+  width: 220px;
+  height: 308px;
+  border-radius: 7px;
+  margin: 10px;
+  
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.35s;
+  }
+`;
 
 export default Auth(MyArtPage, true);
