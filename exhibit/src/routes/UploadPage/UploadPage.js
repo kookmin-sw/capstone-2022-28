@@ -4,24 +4,27 @@ import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { useNavigate } from "react-router-dom";
-import { FileUpload, ImageUpload} from "react-ipfs-uploader";
+import { FileUpload, ImageUpload } from "react-ipfs-uploader";
 import { mintCardWithURI } from "../../api/UserKlip";
 import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
 import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
+import VideoImageThumbnail from "react-video-thumbnail-image";
 
 const { Title } = Typography;
 const { TextArea } = Input;
-var urlList = []
-var titleList = []
-var descriptionList = []
+var urlList = [];
+var titleList = [];
+var descriptionList = [];
+
+const urlName =
+  "https://bafybeibirhaujcjhrmapdtzx7aqhjgcxfrefffy35pswub7ouixjrenlf4.ipfs.infura-ipfs.io";
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
   { value: 1, label: "Challenge" },
 ];
-
 
 function UploadPage(props) {
   const navigate = useNavigate();
@@ -42,7 +45,6 @@ function UploadPage(props) {
   const videoTitleHandler = (event) => {
     setVideoTitle(event.target.value);
   };
-
 
   const [vTitle, setvTitle] = useState("");
   const TitleHandler = (event) => {
@@ -67,43 +69,50 @@ function UploadPage(props) {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log(Category);
-
-    const insertDate ={
-      "title":VideoTitle,
-      "description":Description,
-      "category":Category,
-      "videosUrl":urlList,
-      "posterUrl":posterUrl,
-      "nick":localStorage.getItem("nick")
-    };
-    // axios.post('http://localhost:8000/video/insert',insertDate)
-    axios.post("http://3.39.32.4:8000/video/insert", insertDate)
-      .then((response) => {
-        console.log(response);
-        alert("디비 저장 ~");
-        navigate("/");
-
-      })
-      .catch((error) => {
-        console.log("error : ", error.response);
-      });
+    if (
+      posterUrl === "" ||
+      urlList.length === 0 ||
+      Description === "" ||
+      VideoTitle === ""
+    ) {
+      alert("모든 정보를 입력해야합니다.");
+    } else {
+      const insertDate = {
+        title: VideoTitle,
+        description: Description,
+        category: Category,
+        videosUrl: urlList,
+        posterUrl: posterUrl,
+        nick: localStorage.getItem("nick"),
+      };
+      // axios.post('http://localhost:8000/video/insert',insertDate)
+      axios
+        .post("http://3.39.32.4:8000/video/insert", insertDate)
+        .then((response) => {
+          console.log(response);
+          alert("디비 저장 ~");
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log("error : ", error.response);
+        });
+    }
   };
 
   const AddHandler = (event) => {
     const insertdata = {
-      "Url" : fileUrl,
-      "titleList":vTitle,
-      "descriptionList":videoDescription
-    }
-    urlList.push(insertdata)
-    
-   console.log(urlList)
+      Url: fileUrl,
+      titleList: vTitle,
+      descriptionList: videoDescription,
+    };
+    urlList.push(insertdata);
 
+    console.log(urlList);
   };
-  const setTokenId = ()=>{
+  const setTokenId = () => {
     const timestamps = new Date().getTime();
-    return timestamps
-  }
+    return timestamps;
+  };
 
   return (
     <div>
@@ -116,7 +125,7 @@ function UploadPage(props) {
         <ImageUpload setUrl={setPosterUrl} />
         <br />
 
-        <label>작품 업로드</label>
+        <label>작품 업로드({urlList.length})</label>
         <br />
         <Button size="lg" type="primary" onClick={handleShow}>
           업로드 하러가기
@@ -134,41 +143,55 @@ function UploadPage(props) {
             <Modal.Title>비디오 추가하기</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
-            <FileUpload setUrl={(url) => {
-              setTokenId();
-              setFileUrl(url);
-//               alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI("0x9C9679BE06f5EC8cF7998564C24C1cb0643c9b2d", setTokenId(), url, setQrvalue, (result) => {
-                alert(JSON.stringify(result));
-              });
-            }} />
+            <FileUpload
+              setUrl={(url) => {
+                setTokenId();
+                setFileUrl(url);
+                //               alert("주소 : "+addressW+", url : "+url);
+                mintCardWithURI(
+                  "0x9C9679BE06f5EC8cF7998564C24C1cb0643c9b2d",
+                  setTokenId(),
+                  url,
+                  setQrvalue,
+                  (result) => {
+                    alert(JSON.stringify(result));
+                  }
+                );
+              }}
+            />
 
             <label>비디오 제목</label>
-          <Input
-            onChange={TitleHandler}
-            value={vTitle}
-            style={{ marginBottom: "2rem" }}
-          />
-          <br />
+            <Input
+              onChange={TitleHandler}
+              value={vTitle}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
 
-          <label>비디오 설명</label>
-          <TextArea
-            onChange={videodescriptionHandler}
-            value={videoDescription}
-            style={{ marginBottom: "2rem" }}
-          />
-          <br />
+            <label>비디오 설명</label>
+            <TextArea
+              onChange={videodescriptionHandler}
+              value={videoDescription}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
 
-            <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>작품 Minting</QRCode>
-
+            <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>
+              작품 Minting
+            </QRCode>
           </Modal.Body>
           <Modal.Footer>
             <Button
               variant="primary"
               onClick={() => {
-                AddHandler();
-                handleClose();
+                if (vTitle === "" || videoDescription === "")
+                  alert("비디오 정보를 입력해주세요.");
+                else {
+                  AddHandler();
+                  handleClose();
+                  setvTitle("");
+                  setvideoDescription("");
+                }
               }}
             >
               비디오 추가하기
@@ -179,10 +202,7 @@ function UploadPage(props) {
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}></div>
           <br />
-          
-        
-            <br/> <br></br>
-
+          <br /> <br></br>
           <label>전시회 제목</label>
           <Input
             onChange={videoTitleHandler}
@@ -218,6 +238,13 @@ function UploadPage(props) {
           </div>
         </Form>
       </div>
+      <VideoImageThumbnail
+        videoUrl={urlName}
+        thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+        width={120}
+        height={80}
+        alt="my test video"
+      />
     </div>
   );
 }
