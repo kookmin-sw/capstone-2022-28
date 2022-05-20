@@ -117,8 +117,8 @@ function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
   
   useEffect(async()=>{
-    const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
-    // const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    // const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
+    const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:1,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Container,
@@ -14,6 +14,15 @@ import LoginModal from "../../routes/LoginModal/LoginModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import WalletModal from "../../routes/WalletModal/WalletModal";
+import { getBalance } from "../../api/UserCaver";
+
+function getBal(status){
+  if(status){
+    return getBalance(localStorage.getItem("addressW"));
+  }else{
+    return 0;
+  }
+}
 
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -24,6 +33,8 @@ function LoginNavigationBar() {
   if (localStorage.getItem("addressW") !== "null") {
     klip_btn = "Klip 변경";
   }
+
+  // useEffect(getBal(), []);
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
@@ -109,7 +120,7 @@ function LoginNavigationBar() {
           <Nav className={styles.info}>{localStorage.getItem("nick")}님</Nav>
 
           <Nav className={styles.info}>
-            현재주소: {localStorage.getItem("addressW")}
+            {localStorage.getItem("balance")} KLAY
           </Nav>
 
           <WalletModal
