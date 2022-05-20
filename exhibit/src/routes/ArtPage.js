@@ -5,13 +5,15 @@ import Card from "../components/ArtList/Card";
 import Layout from "../components/Layout";
 import "../components/titleInPage.css";
 import Auth from "../hoc/auth";
-import "./page.css";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ToolTwoTone } from "@ant-design/icons";
 import { Modal } from "react-bootstrap";
+import "./page.css";
+import "./cardmodal.css"
+
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
 
@@ -26,31 +28,55 @@ function Exhibition({ exhibition }) {
   };
 
   return (
-    <div>
+    <span>
     <ImgBox 
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
       onClick={handleShow}
     />
-    <Modal
+    <Modal 
         show={show}
         onHide={handleClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
     >
-        <Modal.Header closeButton>
-          {exhibition.title}
-          <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
+        <Modal.Header closeButton class="modal_header">
+          
         </Modal.Header>
         <Modal.Body>
-          {exhibition.description}
+          <img class="poster" id={exhibition.id} src={exhibition.poster_url}/>
+          <br/>
+          <h1>{exhibition.title}</h1>
+          <br/><br/><br/>
+          <div> {exhibition.description}</div>
+        </Modal.Body>
+        <Modal.Body>
+        <div class="card">
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      
+      <img src="https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"  class="image"/>
+      <div>
+      <h1>{exhibition.title}</h1>
+      <span>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</span>
+      </div>
+    <button style={{ float:'right' }}class="Cbtn">buy</button>
+    </div>
+  </div>
+  
+
+  
+
+  
+
+
         </Modal.Body>
         <Modal.Footer>
+
         </Modal.Footer>
     </Modal>
-      </div>
+    </span>
   );
 }
 
@@ -106,5 +132,7 @@ const ImgBox = styled.img`
     transition: transform 0.35s;
   }
 `;
+
+
 
 export default Auth(ArtPage, true);
