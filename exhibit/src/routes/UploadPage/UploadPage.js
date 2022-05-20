@@ -64,6 +64,8 @@ function UploadPage(props) {
     setCategory(event.target.value);
   };
 
+  const [qrhide, setQrhide] = useState(false);
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log(Category);
@@ -138,9 +140,10 @@ function UploadPage(props) {
             <FileUpload setUrl={(url) => {
               setTokenId();
               setFileUrl(url);
-//               alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI("0x9C9679BE06f5EC8cF7998564C24C1cb0643c9b2d", setTokenId(), url, setQrvalue, (result) => {
-                alert(JSON.stringify(result));
+              setQrhide(true);
+//            alert("주소 : "+addressW+", url : "+url);
+              mintCardWithURI(localStorage.getItem("addressW"), setTokenId(), url, setQrvalue, (result) => {
+              alert("NFT가 민팅되었습니다.");
               });
             }} />
 
@@ -160,7 +163,17 @@ function UploadPage(props) {
           />
           <br />
 
-            <QRCode value={qrvalue} size={256} style={{ margin: "auto" }}>작품 Minting</QRCode>
+          { qrhide ? 
+          <div>
+            <p>NFT Minting하기</p>
+            <hr></hr>
+            <br></br>
+            <div style={{display: 'flex'}}>
+              <QRCode value={qrvalue} size={200} style={{ margin: "auto" }}>작품 Minting</QRCode> 
+            </div>
+            <br></br>
+            
+          </div> : null }
 
           </Modal.Body>
           <Modal.Footer>
