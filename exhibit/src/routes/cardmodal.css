@@ -1,0 +1,69 @@
+
+  
+  .Cbody {
+    /* height: 200; */
+    margin: 2rem;
+    display: grid;
+
+  }
+  
+  .card {
+    overflow: hidden;
+    display: grid;
+    /* height: 200; */
+  /* border-radius: var(--radius); */
+  /* display: flex; */
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* transition: transform 200ms ease-in; */
+    
+  }
+    .image {
+      /* object-fit: cover; */
+      width: 149px;
+    height: 100px;
+    border-radius: 7px;
+    margin: 5px;
+    cursor: pointer;
+
+    }
+  
+    
+  
+    .description {
+      padding: 0 1rem;
+    }
+  
+    .Cbtn {
+        width: 80px;
+        height: 40px;
+	color: #000;
+	background: rgb(255, 222, 114);
+	border: 3px solid #ffffff;
+	/* padding: 10px; */
+	border-radius: 5px;
+	font-weight: bold;
+    text-align: center;
+    
+    }
+  
+    card:hover {
+      transform: scale(1.02);
+    }
+  
+    .Cbtn:hover {
+        background: black;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    
+    .Cbtn:active {
+        background: black;
+        color: #ffffff;
+    }
+    
+    .Cbtn:focus {
+        background-color: black;
+        outline:0;
+    }
+  
