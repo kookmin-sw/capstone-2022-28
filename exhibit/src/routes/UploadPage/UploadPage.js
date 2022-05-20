@@ -10,16 +10,12 @@ import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
 import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
-import VideoImageThumbnail from "react-video-thumbnail-image";
 
 const { Title } = Typography;
 const { TextArea } = Input;
 var urlList = [];
 var titleList = [];
 var descriptionList = [];
-
-const urlName =
-  "https://bafybeibirhaujcjhrmapdtzx7aqhjgcxfrefffy35pswub7ouixjrenlf4.ipfs.infura-ipfs.io";
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
@@ -145,45 +141,53 @@ function UploadPage(props) {
             <Modal.Title>비디오 추가하기</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
-            <FileUpload setUrl={(url) => {
-              setTokenId();
-              setFileUrl(url);
-              setQrhide(true);
-//            alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI(localStorage.getItem("addressW"), setTokenId(), url, setQrvalue, (result) => {
-              alert("NFT가 민팅되었습니다.");
-              });
-            }} />
+            <FileUpload
+              setUrl={(url) => {
+                setTokenId();
+                setFileUrl(url);
+                setQrhide(true);
+                //            alert("주소 : "+addressW+", url : "+url);
+                mintCardWithURI(
+                  localStorage.getItem("addressW"),
+                  setTokenId(),
+                  url,
+                  setQrvalue,
+                  (result) => {
+                    alert("NFT가 민팅되었습니다.");
+                  }
+                );
+              }}
+            />
 
             <label>비디오 제목</label>
-          <Input
-            onChange={TitleHandler}
-            value={vTitle}
-            style={{ marginBottom: "2rem" }}
-          />
-          <br />
+            <Input
+              onChange={TitleHandler}
+              value={vTitle}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
 
-          <label>비디오 설명</label>
-          <TextArea
-            onChange={videodescriptionHandler}
-            value={videoDescription}
-            style={{ marginBottom: "2rem" }}
-          />
-          <br />
+            <label>비디오 설명</label>
+            <TextArea
+              onChange={videodescriptionHandler}
+              value={videoDescription}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
 
-          { qrhide ? 
-          <div>
-            <p>NFT Minting하기</p>
-            <hr></hr>
-            <br></br>
-            <div style={{display: 'flex'}}>
-              <QRCode value={qrvalue} size={200} style={{ margin: "auto" }}>작품 Minting</QRCode> 
-            </div>
-            <br></br>
-            
-          </div> : null }
-
+            {qrhide ? (
+              <div>
+                <p>NFT Minting하기</p>
+                <hr></hr>
+                <br></br>
+                <div style={{ display: "flex" }}>
+                  <QRCode value={qrvalue} size={200} style={{ margin: "auto" }}>
+                    작품 Minting
+                  </QRCode>
+                </div>
+                <br></br>
+              </div>
+            ) : null}
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -243,13 +247,6 @@ function UploadPage(props) {
           </div>
         </Form>
       </div>
-      <VideoImageThumbnail
-        videoUrl={urlName}
-        thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-        width={120}
-        height={80}
-        alt="my test video"
-      />
     </div>
   );
 }
