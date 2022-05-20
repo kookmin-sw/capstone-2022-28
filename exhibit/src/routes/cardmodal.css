@@ -35,17 +35,21 @@
     }
   
     .Cbtn {
-        width: 80px;
-        height: 40px;
-	color: #000;
-	background: rgb(255, 222, 114);
-	border: 3px solid #ffffff;
-	/* padding: 10px; */
-	border-radius: 5px;
-	font-weight: bold;
-    text-align: center;
-    
-    }
+      width: 80px;
+      height: 40px;
+color:white;
+background:  #8e3bf1;
+border: 3px solid #ffffff;
+/* padding: 10px; */
+border-radius: 5px;
+font-weight: bold;
+  text-align: center;
+  position: absolute; 
+  right: 0px; 
+  /* bottom: 0px; */
+
+  
+  }
   
     card:hover {
       transform: scale(1.02);

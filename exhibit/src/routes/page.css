@@ -50,7 +50,13 @@
     transform: scale(1.1);
     transition: transform 0.35s;
   }
- 
+
+  .thumbnail {
+    width: 149px;
+    height: 100px;
+    border-radius: 7px;
+    margin: 10px;
+  }
 
   
   
