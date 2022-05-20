@@ -42,12 +42,6 @@ router.post('/insert',async(req,res)=>{
 
     }
 
-
-
-    // const new_video =  await Video.create({
-
-    // })
-
     return_json = { 
         insert:"success"
     }
@@ -98,5 +92,20 @@ router.get("/get_myart",async(req,res)=>{
 
      
 }) 
+
+router.get('/get_video',async(req,res)=>{ 
+    console.log("~~~~~~~~~~~~~~get video~~~~~~~~~~~~~~~~~~~~~")
+
+    const exhibit_id = req.header("exhibition");
+    console.log("exhibit : ",exhibit_id)
+    const videos = await Video.findAll({
+        where:{
+            exhibition_id : exhibit_id
+        }
+    })
+    console.log(videos);
+    return res.status(200).json(videos);
+
+})
  
 module.exports = router;

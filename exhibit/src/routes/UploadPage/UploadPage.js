@@ -100,6 +100,10 @@ function UploadPage(props) {
    console.log(urlList)
 
   };
+  const setTokenId = ()=>{
+    const timestamps = new Date().getTime();
+    return timestamps
+  }
 
   return (
     <div>
@@ -132,9 +136,10 @@ function UploadPage(props) {
           <Modal.Body>
 
             <FileUpload setUrl={(url) => {
+              setTokenId();
               setFileUrl(url);
 //               alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI("0x8aBba335E30Ff1107335833DA4f3fD68b548B999", 1213213200, url, setQrvalue, (result) => {
+              mintCardWithURI("0x9C9679BE06f5EC8cF7998564C24C1cb0643c9b2d", setTokenId(), url, setQrvalue, (result) => {
                 alert(JSON.stringify(result));
               });
             }} />

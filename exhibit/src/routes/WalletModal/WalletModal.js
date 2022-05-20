@@ -14,11 +14,12 @@ import {
 import * as KlipAPI from "../../api/UserKlip";
 import * as CaverAPI from "../../api/UserCaver";
 
-export let addressW = "";
-export let balanceW = 0;
+export let balanceW= 0;
+let addressW="0X00000000000000000000000000";
+
 
 const DEFAULT_QR_CODE = "DEFAULT";
-const DEFAULT_ADDRESS = "0x0000000000000000000000000000000000000000";
+const DEFAULT_ADDRESS = "";
 
 function WalletModal(props) {
   // State Data
@@ -32,16 +33,23 @@ function WalletModal(props) {
   const [mintImageUrl, setMintImageUrl] = useState("");
 
 
+  function setBal(bal){
+    setMyBalance(bal);
+    console.log("bal : ",bal)
+  }
 
   const getUserData = () => {
-    KlipAPI.getAddress(setQrvalue, async (address) => {
+    KlipAPI.getAddress(setQrvalue, async (address) => { 
       await setMyAddress(address);
       const _balance = await getBalance(address);
       balanceW = _balance;
       addressW = address;
+      localStorage.setItem("addressW", addressW);
+      console.log("월렌모달내의 addressw : ",addressW);
+      // axio.get('')
       setMyBalance(_balance);
     });
-  };
+  }; 
 
 
   const onClickgetAddress = () => {
@@ -76,3 +84,4 @@ function WalletModal(props) {
 }
 
 export default WalletModal;
+// export  {WalletModal , setBal};

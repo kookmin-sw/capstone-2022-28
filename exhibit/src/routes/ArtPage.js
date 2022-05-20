@@ -21,8 +21,18 @@ function Exhibition({ exhibition }) {
     setShow(false);
   };
   
-  const handleShow = () => {
+  const handleShow = async(id) => {
     setShow(true);
+
+    // const result = await axios.get("http://localhost:8000/video/get_video",{
+    const result = await axios.get("http://3.39.32.4:8000/video/get_video",{
+      headers:{
+          exhibition:id,
+        }
+      })
+      console.log("result가 들어왔어요~~~~~~~~",result);
+     
+
   };
 
   return (
@@ -30,7 +40,7 @@ function Exhibition({ exhibition }) {
       id={exhibition.id}
       src={exhibition.poster_url}
       alt={exhibition.title}
-      onClick={handleShow}
+      onClick={()=>handleShow(exhibition.id)}
     />
     // <Modal
     //     show={show}
@@ -64,8 +74,8 @@ function ArtPage() {
   };
   
   useEffect(async()=>{
-    // const result = await axios.get("http://localhost:8000/video/get_art",{
-    const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+    const result = await axios.get("http://localhost:8000/video/get_art",{
+    // const result = await axios.get("http://3.39.32.4:8000/video/get_art",{
       
     headers:{
         category:1,
