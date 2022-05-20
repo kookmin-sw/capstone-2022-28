@@ -13,6 +13,7 @@ import { ToolTwoTone } from "@ant-design/icons";
 import { Modal } from "react-bootstrap";
 import "./page.css";
 import "./cardmodal.css"
+import VideoImageThumbnail from 'react-video-thumbnail-image';
 
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
@@ -34,7 +35,6 @@ function Exhibition({ exhibition }) {
       console.log("video_result가 들어왔어요~~~~~~~~",video_result);
     setVideo(video_result.data);
     console.log("video!!!!!!!", video);
-    console.log("video title", video.title);
   };
 
   return (
@@ -68,7 +68,16 @@ function Exhibition({ exhibition }) {
           {video.map((video) => 
             <div class="card">
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <img class="image" src={video.url} alt={video.title}/>
+            <div class="thumbnail">
+              <VideoImageThumbnail 
+                videoUrl={video.url}
+                width={150}
+                height={100}
+                thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                alt={video.title}
+              />  
+            </div>
+            {/* <img class="image" src={video.url} alt={video.title}/> */}
             <div>
             <h1> {video.title} </h1>
             <span> {video.description} </span>
