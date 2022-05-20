@@ -19,7 +19,7 @@ let addressW="0X00000000000000000000000000";
 
 
 const DEFAULT_QR_CODE = "DEFAULT";
-const DEFAULT_ADDRESS = "";
+const DEFAULT_ADDRESS = "0X00000000000000000000000000";
 
 function WalletModal(props) {
   // State Data
@@ -31,7 +31,13 @@ function WalletModal(props) {
   const [qrvalue, setQrvalue] = useState(DEFAULT_QR_CODE);
   const [tab, setTab] = useState("MINT"); // Market, Mint, Wallet
   const [mintImageUrl, setMintImageUrl] = useState("");
+  const [qrhide, setQrhide] = useState(false);
+  const [hide, setHide] = useState(false);
 
+  // if(localStorage.getItem("addressW") == "0X00000000000000000000000000" ){
+  //   setQrhide(true);
+  //   setHide(false);
+  // }
 
   function setBal(bal){
     setMyBalance(bal);
@@ -48,6 +54,8 @@ function WalletModal(props) {
       console.log("월렌모달내의 addressw : ",addressW);
       // axio.get('')
       setMyBalance(_balance);
+      setQrhide(false);
+      setHide(true);
     });
   }; 
 
@@ -68,14 +76,19 @@ function WalletModal(props) {
         Klip 지갑 가져오기
       </Modal.Header>
       <Modal.Body className={styles.modal_body}>
-          <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} />
+      { qrhide ? <QRCode value={qrvalue} size={256} style={{ margin: "auto" }} /> : <img src={img}/> }
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
         <div className="adba">
-          <h2>{myBalance} KLAY</h2>
-          <p>{myAddress}</p>
         </div>
-        <Button onClick={getUserData}>
+        { hide ? <div>
+          <p>{myAddress}</p>
+          <h3>{myBalance} KLAY</h3>
+        </div> : null}
+        <Button onClick={() => {
+          getUserData();
+          setQrhide(true);
+        }}>
           주소 가져오기
         </Button>
       </Modal.Footer>
