@@ -51,6 +51,7 @@ function WalletModal(props) {
       balanceW = _balance;
       addressW = address;
       localStorage.setItem("addressW", addressW);
+      localStorage.setItem("balance", _balance);
       console.log("월렌모달내의 addressw : ",addressW);
       // axio.get('')
       setMyBalance(_balance);

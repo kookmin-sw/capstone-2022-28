@@ -10,8 +10,8 @@ export const buyCard = async (
     setQrvalue,
     callback
 ) => {
-    const functionJSON = '{ "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "seller", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }';
-    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "10000000000000000", `[\"${tokenId}\",\"${NFT_CONTRACT_ADDRESS_MAIN}\"]`,setQrvalue,callback);
+    const functionJSON = '{"constant": false,"inputs": [{"name": "tokenId","type": "uint256"},{"name":"NFT","type": "address"}],"name": "buyNFT","outputs": [{"name": "","type": "bool"}],"payable": true,"stateMutability": "payable","type": "function"}';
+    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "10000000000000000", `[\"${tokenId}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\"]`,setQrvalue,callback);
 };
 
 const getKlipAccessUrl = (method, request_key) => {
@@ -90,7 +90,7 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
               clearInterval(timerId);
             }
           });
-      }, 1000);
+      }, 10000000);
     });
 };
 
