@@ -23,6 +23,9 @@ function BuyPage(tokenId) {
   const video_title = video_datas.state.title;
   const video_description = video_datas.state.description;
   const video_url = video_datas.state.url;
+  const poster_url = video_datas.state.poster_url;
+  const poster_title = video_datas.state.poster_title;
+
 
   console.log("비디오정보", video_datas.state);
   
@@ -40,53 +43,53 @@ function BuyPage(tokenId) {
   return (
     <div>
       <LoginNavigationBar />
-      <div style={{ maxWidth: "1100px", margin: "7rem auto" }}>
+      <div style={{ maxWidth: "900px", margin: "7rem auto" }}>
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <Title level={2}>Buy Video</Title>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          {/* <VideoImageThumbnail 
+        <div style={{display:'flex',justifyContent:'center', alignItems: "center"}}>
+          <VideoImageThumbnail 
                 videoUrl={video_url}
-                width={500}
-                height={500}
+                width={720}
+                height={528}
                 thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                 alt={video_title}
-              />   */}
-          <img src={img} width="500" height="500" alt="image" />
-          <label>
-            <br />
-            <br />
-            <br />
-            동영상 제목: {video_title}
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            동영상 설명: {video_description}
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            동영상 가격: 가격
-          </label>
-          <br />
+              />  
         </div>
+          {/* <img src={poster_url} width="100" height="100" alt="image" /> */}
+          {/* <label> 포스터 제목 : {poster_title}</label> */}
+          
+          <div class="box1">
+            <div class='box2'>
+            <h1>{video_title}</h1>
+            <div>
+            <span class='creater'>creater</span>
+            <span class='nick'>김하연</span>
+            <span>    (address : 00000000000000000000x00000)</span>
+            </div>
+            <br/>
+            
+            <div class='description'>{video_description}</div>
+            </div>
+            <div class='box3'>
+              <span class='sell'>판매가</span>
+              <span class='klay'>0.1Klay</span>
+              
+                
+              <div class='buyBtn' onClick={handleShow}>
+                구매하기
+            </div>
+            </div>
+            
+            
+            
+    
+          </div>
+           
+           
+          
+          <br />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button size="lg" type="primary" onClick={handleShow}>
-          구매하기
-        </Button>
 
         <Modal
           show={show}

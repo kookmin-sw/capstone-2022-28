@@ -29,6 +29,8 @@ function Exhibition({ exhibition }) {
         title: video.title,
         description: video.description,
         url: video.url,
+        poster_url: exhibition.poster_url,
+        poster_title: exhibition.title,
       },
     });
   };
@@ -154,7 +156,7 @@ function ArtPage() {
   return (
     <div class="page">
       <LoginNavigationBar />
-      <body class="page">
+      <body>
         <Layout>
           <h1 className="pageTitle">개인전</h1>
         </Layout>
@@ -178,71 +180,6 @@ const ImgBox = styled.img`
     transform: scale(1.1);
     transition: transform 0.35s;
   }
-`;
-
-const Text1 = styled.div`
-  color: rgba(255, 255, 255, 0.5);
-  font-family: Poppins;
-  font-weight: 500;
-  align-self: stretch;
-  font-size: ${(props) => props.fontSize};
-`;
-const Text2 = styled.div`
-  color: #ffffff;
-  font-size: 20px;
-  font-family: Poppins;
-  font-weight: 700;
-`;
-const FrameRoot = styled.div`
-  background-color: #69aae7;
-  width: 337px;
-  height: 621px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  padding-left: 31px;
-  padding-right: 31px;
-  margin: auto;
-  border-radius: 20px;
-`;
-const Image1 = styled.img`
-  width: 337px;
-  height: 389px;
-`;
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 65px;
-  align-items: flex-start;
-`;
-const ArtistAndTitle = styled.div`
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-`;
-const CurrentBid1 = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-const PurpleHeartText = styled.div`
-  color: #ffffff;
-  display: flex;
-  font-size: 20px;
-  font-family: Poppins;
-  font-weight: 500;
-  background-color: #8e3bf1;
-  width: 337px;
-  height: 30px;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 10px;
 `;
 
 export default Auth(ArtPage, true);

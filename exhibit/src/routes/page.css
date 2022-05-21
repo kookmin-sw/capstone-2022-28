@@ -1,18 +1,12 @@
 .page {
-    height: 100% important!;
+  background-color: black important!;
+    height: 100vh important!;
 }
 
 .title {
     color: black;    
     margin-left: 350px;
     margin-top: 40px;
-    
-
-  ;
-}
-
-.body {
-    background-color: black;
 }
 
 .page__background {
@@ -74,7 +68,7 @@
 .FrameRoot{
     border : white;
     display: grid;
-   background-color: rgb(252, 239, 246);
+   background-color: rgb(226, 226, 226);
   width: 100%;
   /* height: 280px; */
   overflow: hidden;
@@ -215,4 +209,97 @@
   
 
 
+  .box1{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
   
+  .box2{
+    height: 100%;
+    width:60%;
+    justify-content: left;
+    margin: 20px;
+  }
+
+  .box3{
+    height: 200px;
+    width:40%;
+    justify-content: right;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    /* border: 5px solid rgb(104, 104, 104);
+    border-radius: 7px; */
+  }
+
+  .box4{
+    height: 100px;
+    width:40%;
+    justify-content: center;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .klay{
+    font-size: 30px;
+    color: rgb(58, 58, 58);
+    float: right;
+  }
+
+  .sell{
+    margin-top: 5px;
+    font-size: 20px;
+    color: rgb(107, 107, 107);
+    float: left;
+  }
+
+  .buyBtn{
+    width: 100%;
+    height: 40px;
+  color:white;
+  background: rgb(53, 59, 145);
+  border: 0px solid #ffffff;
+  /* padding: 10px; */
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  font-display: flex;
+  margin-top: 100px;
+  font-size: larger;
+  padding: 7px;
+  
+  
+  }
+
+  .nick{
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .creater{
+    margin-left: 30px;
+    font-size: 20px;
+    color: gray;
+  }
+  
+  .buyBtn:hover {
+    background: black;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.buyBtn:active {
+    background: black;
+    color: #ffffff;
+}
+
+.buyBtn:focus {
+    background-color: black;
+    outline:0;
+}
