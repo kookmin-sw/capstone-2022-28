@@ -74,9 +74,9 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
     })
     .then((response) => {
       const { request_key } = response.data;
-
+      console.log("Upload file...2");
       setQrvalue(getKlipAccessUrl("QR", request_key));
-
+      console.log(getKlipAccessUrl("QR", request_key));
       let timerId = setInterval(() => {
         axios
           .get(
