@@ -23,6 +23,7 @@ function BuyPage(tokenId) {
   const video_title = video_datas.state.title;
   const video_description = video_datas.state.description;
   const video_url = video_datas.state.url;
+  const video_token = video_datas.state.token;
 
   console.log("비디오정보", video_datas.state);
   
@@ -31,11 +32,13 @@ function BuyPage(tokenId) {
   };
 
   const handleShow = () => {
-    buyCard(1653042229731, setQrvalue, () => {
+    buyCard(video_token, setQrvalue, () => {
       alert("작품이 성공적으로 구매되었습니다.")
     });
     setShow(true);
   };
+  console.log(video_token);
+  // console.log(tokenId);
   
   return (
     <div>
