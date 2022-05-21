@@ -146,9 +146,10 @@ function UploadPage(props) {
                 setFileUrl(url);
                 setQrhide(true);
                 //            alert("주소 : "+addressW+", url : "+url);
+                console.log(localStorage.getItem("addressW"));
                 mintCardWithURI(
                   localStorage.getItem("addressW"),
-                  {timestamps},
+                  Number(timestamps),
                   url,
                   setQrvalue,
                   (result) => {
