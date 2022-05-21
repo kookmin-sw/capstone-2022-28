@@ -1,11 +1,14 @@
 .page {
     height: 100% important!;
-    background-image: url("https://ipfs.io/ipfs/QmVwjD4xHkG1s59c2EjiGMwGULGictGR9QD5C2SZWg48L7?filename=black-370118.png");
 }
 
 .title {
-    color: white;    
-    margin-left: 20px;
+    color: black;    
+    margin-left: 350px;
+    margin-top: 40px;
+    
+
+  ;
 }
 
 .body {
@@ -26,26 +29,21 @@
   border-radius: 7px;
   margin: 10px;
   float:left;
+  margin-left: 20px;
 
   }
 
 
   .modal_header {
-      background-color: black;
       font-weight: 500;
-    
-  }
-  
-  .modal_body {
-      background-color: black;
     
   }
   
   
 
   .video {
-    width: 200px;
-    height: 130px;
+    width: 160px;
+    height: 120px;
     border-radius: 7px;
     margin: 10px;
     cursor: pointer;
@@ -59,15 +57,16 @@
  
   .Text1{
     margin-left: 20px;
-    color: rgb(196, 196, 196);
+    color: gray;
     font-size: 15px;
     font-family: Poppins;
     font-weight: 700;
+    margin-top: 20px;
 }
 .Text2 {
     margin-left: 20px;
     margin-top: 10px;
-  color:white;
+  color:black;
   font-size: 20px;
   font-family: Poppins;
   font-weight: 700;
@@ -75,7 +74,7 @@
 .FrameRoot{
     border : white;
     display: grid;
-  background-color: rgb(32, 32, 32);
+   background-color: rgb(252, 239, 246);
   width: 100%;
   /* height: 280px; */
   overflow: hidden;
@@ -87,7 +86,7 @@
   padding: 20px;
   margin: auto;
   border-radius: 10px;
-  border: 5px solid #000000;
+  border: 5px solid white;
   
 }
 .Image1{
@@ -181,7 +180,7 @@
         width: 80px;
         height: 40px;
 	color:white;
-	background: gray;
+	background: rgb(82, 90, 206);
 	border: 0px solid #ffffff;
 	/* padding: 10px; */
 	border-radius: 5px;
@@ -213,4 +212,7 @@
         background-color: black;
         outline:0;
     }
+  
+
+
   
