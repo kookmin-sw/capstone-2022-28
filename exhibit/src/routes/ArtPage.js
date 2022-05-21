@@ -18,10 +18,21 @@ import VideoImageThumbnail from 'react-video-thumbnail-image';
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
 function Exhibition({ exhibition }) {
+  const navigate = useNavigate();
   const [video, setVideo] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
+  };
+
+  const moveBuyPage = ( video ) => { 
+    navigate('/buy', {
+      state: {
+        title: video.title,
+        description: video.description,
+        url: video.url,
+      },
+    });
   };
   
   const handleShow = async(id) => {
@@ -82,7 +93,7 @@ function Exhibition({ exhibition }) {
             <h1> {video.title} </h1>
             <span> {video.description} </span>
             </div>
-          <button style={{ float:'right' }}class="Cbtn">buy</button>
+          <button style={{ float:'right' }} class="Cbtn" onClick={() => moveBuyPage(video)}>buy</button>
           </div>
         </div>
           )}

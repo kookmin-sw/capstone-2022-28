@@ -4,6 +4,9 @@ import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import { Typography, Button, Form, message, Input } from "antd";
 import img from "../components/Image/001.png";
+import { useLocation } from "react-router-dom";
+import VideoImageThumbnail from 'react-video-thumbnail-image';
+
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -13,6 +16,13 @@ const buyBtnListener = () => {
 };
 
 function BuyPage() {
+  const video_datas = useLocation();
+  const video_title = video_datas.state.title;
+  const video_description = video_datas.state.description;
+  const video_url = video_datas.state.url;
+
+  console.log("비디오정보", video_datas.state);
+  
   return (
     <div>
       <LoginNavigationBar />
@@ -26,12 +36,19 @@ function BuyPage() {
             justifyContent: "space-between",
           }}
         >
+          {/* <VideoImageThumbnail 
+                videoUrl={video_url}
+                width={500}
+                height={500}
+                thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                alt={video_title}
+              />   */}
           <img src={img} width="500" height="500" alt="image" />
           <label>
             <br />
             <br />
             <br />
-            동영상 제목: 제목
+            동영상 제목: {video_title}
             <br />
             <br />
             <br />
@@ -39,7 +56,7 @@ function BuyPage() {
             <br />
             <br />
             <br />
-            동영상 설명: 설명
+            동영상 설명: {video_description}
             <br />
             <br />
             <br />
