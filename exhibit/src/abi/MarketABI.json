@@ -3,6 +3,29 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"name": "NFT",
+				"type": "address"
+			}
+		],
+		"name": "buyNFT",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "operator",
 				"type": "address"
 			},
@@ -47,29 +70,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"name": "NFT",
-				"type": "address"
-			}
-		],
-		"name": "buyNFT",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": true,
-		"stateMutability": "payable",
 		"type": "function"
 	}
 ]

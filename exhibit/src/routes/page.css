@@ -5,6 +5,7 @@
 
 .title {
     color: white;    
+    margin-left: 20px;
 }
 
 .body {
@@ -30,17 +31,21 @@
 
 
   .modal_header {
-    font-weight: 500;
+      background-color: black;
+      font-weight: 500;
+    
   }
   
   .modal_body {
-    display: flex;
-    height: 400px;
+      background-color: black;
+    
   }
+  
+  
 
   .video {
-    width: 149px;
-    height: 100px;
+    width: 200px;
+    height: 130px;
     border-radius: 7px;
     margin: 10px;
     cursor: pointer;
@@ -50,7 +55,162 @@
     transform: scale(1.1);
     transition: transform 0.35s;
   }
+
  
+  .Text1{
+    margin-left: 20px;
+    color: rgb(196, 196, 196);
+    font-size: 15px;
+    font-family: Poppins;
+    font-weight: 700;
+}
+.Text2 {
+    margin-left: 20px;
+    margin-top: 10px;
+  color:white;
+  font-size: 20px;
+  font-family: Poppins;
+  font-weight: 700;
+}
+.FrameRoot{
+    border : white;
+    display: grid;
+  background-color: rgb(32, 32, 32);
+  width: 100%;
+  /* height: 280px; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  border: 5px solid #000000;
+  
+}
+.Image1{
+  width: 337px;
+  height: 389px;
+}
+.InfoContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+}
+.ArtistAndTitle{
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.CurrentBid1{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.PurpleHeartText{
+  color: #ffffff;
+  display: flex;
+  /* font-size: ; */
+  font-family: Poppins;
+  font-weight: 500;
+  background-color: #8e3bf1;
+  width: 220px;
+  height: 40px;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+  .thumbnail {
+    width: 149px;
+    height: 100px;
+    border-radius: 7px;
+    margin: 10px;
+  }
+
+
 
   
+  
+  
+.Cbody {
+    /* height: 200; */
+    margin: 2rem;
+    display: grid;
+
+  }
+  
+  .card {
+    overflow: hidden;
+    display: grid;
+    height: 200;
+    background-color:black;
+  /* border-radius: var(--radius); */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: space-between;
+  /* transition: transform 200ms ease-in; */
+    
+  }
+    .image {
+      /* object-fit: cover; */
+      width: 149px;
+    height: 100px;
+    border-radius: 7px;
+    margin: 5px;
+    cursor: pointer;
+
+    }
+  
+    
+  
+    .description {
+      padding: 0 1rem;
+    }
+  
+    .Cbtn {
+        width: 80px;
+        height: 40px;
+	color:white;
+	background: gray;
+	border: 0px solid #ffffff;
+	/* padding: 10px; */
+	border-radius: 5px;
+	font-weight: bold;
+    text-align: center;
+    position: absolute; 
+    right: 40px; 
+    /* bottom: 0px; */
+
+    
+    }
+  
+    card:hover {
+      transform: scale(1.02);
+    }
+  
+    .Cbtn:hover {
+        background: black;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    
+    .Cbtn:active {
+        background: black;
+        color: #ffffff;
+    }
+    
+    .Cbtn:focus {
+        background-color: black;
+        outline:0;
+    }
   
