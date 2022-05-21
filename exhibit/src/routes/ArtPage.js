@@ -10,7 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FullscreenExitOutlined, ToolTwoTone } from "@ant-design/icons";
-import { Modal } from "react-bootstrap";
+import { Modal, ModalTitle } from "react-bootstrap";
 import "./page.css";
 import VideoImageThumbnail from "react-video-thumbnail-image";
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
@@ -65,36 +65,32 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <div class="modal_header">
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <Modal.Body class="modal_body">
+        <Modal.Header closeButton class='modal_header'>
+        상세정보
+      </Modal.Header>
+        <Modal.Body>
           <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
           <br />
           <h1 class="title">{exhibition.title}</h1>
           <br />
-          <br />
-          <br />
+          
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
-        <Modal.Body class="modal_body">
+        <Modal.Body>
           {video.map((video) => (
             <div class="FrameRoot">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
-                  class="thumbnail"
+                  class="video"
                   onClick={() => window.open(video.url, "_blank")}
                 >
                   <VideoImageThumbnail
+            
                     videoUrl={video.url}
-                    width={150}
-                    height={100}
+                    width={160}
+                    height={120}
+                    borderRadius={7}
                     thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                     alt={video.title}
                   />
