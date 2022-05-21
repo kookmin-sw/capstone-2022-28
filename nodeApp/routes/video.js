@@ -37,6 +37,7 @@ router.post('/insert',async(req,res)=>{
             exhibition_id : new_exhibit.id,
             title :  video_url[i].titleList,
             description :  video_url[i].descriptionList,
+            tokenId : video_url[i].tokenList
         }) 
         console.log("new_video : ",new_video);
 

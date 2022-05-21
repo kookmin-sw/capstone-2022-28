@@ -20,6 +20,10 @@ class Video extends Sequelize.Model {
             description:{
                 type: Sequelize.STRING(1000),
                 allowNull: false, 
+            },
+            tokenId:{
+                type: Sequelize.STRING(100),
+                allowNull: true, 
             }
 
         }, {
