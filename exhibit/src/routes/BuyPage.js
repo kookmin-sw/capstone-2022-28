@@ -46,7 +46,8 @@ function BuyPage(tokenId) {
       <div style={{ maxWidth: "900px", margin: "7rem auto" }}>
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
         </div>
-        <div style={{display:'flex',justifyContent:'center', alignItems: "center"}}>
+        <div >
+          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" }}>
           <VideoImageThumbnail 
                 videoUrl={video_url}
                 width={720}
@@ -54,6 +55,8 @@ function BuyPage(tokenId) {
                 thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                 alt={video_title}
               />  
+          </div>
+          
         </div>
           {/* <img src={poster_url} width="100" height="100" alt="image" /> */}
           {/* <label> 포스터 제목 : {poster_title}</label> */}
