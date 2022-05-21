@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import React, { useState, useEffect, useRef } from "react";
 import Card from "../components/ArtList/Card";
@@ -9,10 +9,10 @@ import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ToolTwoTone } from "@ant-design/icons";
+import { FullscreenExitOutlined, ToolTwoTone } from "@ant-design/icons";
 import { Modal } from "react-bootstrap";
 import "./page.css";
-import VideoImageThumbnail from 'react-video-thumbnail-image';
+import VideoImageThumbnail from "react-video-thumbnail-image";
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
 
 function Exhibition({ exhibition }) {
@@ -23,8 +23,8 @@ function Exhibition({ exhibition }) {
     setShow(false);
   };
 
-  const moveBuyPage = ( video ) => { 
-    navigate('/buy', {
+  const moveBuyPage = (video) => {
+    navigate("/buy", {
       state: {
         title: video.title,
         description: video.description,
@@ -32,76 +32,90 @@ function Exhibition({ exhibition }) {
       },
     });
   };
-  
-  const handleShow = async(id) => {
+
+  const handleShow = async (id) => {
     setShow(true);
     // const video_result = await axios.get("http://localhost:8000/video/get_video",{
-    const video_result = await axios.get("http://3.39.32.4:8000/video/get_video",{
-      headers:{
-          exhibition:id,
-        }
-      })
-      console.log("video_result가 들어왔어요~~~~~~~~",video_result);
+    const video_result = await axios.get(
+      "http://3.39.32.4:8000/video/get_video",
+      {
+        headers: {
+          exhibition: id,
+        },
+      }
+    );
+    console.log("video_result가 들어왔어요~~~~~~~~", video_result);
     setVideo(video_result.data);
     console.log("video!!!!!!!", video);
   };
 
   return (
-    
     <span>
-    <ImgBox 
-      id={exhibition.id}
-      src={exhibition.poster_url}
-      alt={exhibition.title}
-      onClick={()=>handleShow(exhibition.id)}
-    />
+      <ImgBox
+        id={exhibition.id}
+        src={exhibition.poster_url}
+        alt={exhibition.title}
+        onClick={() => handleShow(exhibition.id)}
+      />
 
-    <Modal 
+      <Modal
         show={show}
         onHide={handleClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-    >
-     <div class="modal_header">
-     <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
-     </div>
-          
+      >
+        <div class="modal_header">
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            aria-label="Close"
+          ></button>
+        </div>
+
         <Modal.Body class="modal_body">
-          <img class="poster" id={exhibition.id} src={exhibition.poster_url}/>
-          <br/>
+          <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
+          <br />
           <h1 class="title">{exhibition.title}</h1>
-          <br/><br/><br/>
+          <br />
+          <br />
+          <br />
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
         <Modal.Body class="modal_body">
-          {video.map((video) => 
+          {video.map((video) => (
             <div class="FrameRoot">
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-
-//             <img class="video" src={video.url} alt={video.title}/>
-            <div class="thumbnail">
-              <VideoImageThumbnail 
-                videoUrl={video.url}
-                width={150}
-                height={100}
-                thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                alt={video.title}
-              />  
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                {/* <img class="video" src={video.url} alt={video.title}/> */}
+                <div
+                  class="thumbnail"
+                  onClick={() => window.open(video.url, "_blank")}
+                >
+                  <VideoImageThumbnail
+                    videoUrl={video.url}
+                    width={150}
+                    height={100}
+                    thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                    alt={video.title}
+                  />
+                </div>
+                {/* <img class="image" src={video.url} alt={video.title}/> */}
+                <div>
+                  <h4 class="Text2"> {video.title} </h4>
+                  <span class="Text1"> {video.description} </span>
+                </div>
+                <button
+                  style={{ float: "right" }}
+                  class="Cbtn"
+                  onClick={() => moveBuyPage(video)}
+                >
+                  buy
+                </button>
+              </div>
             </div>
-            {/* <img class="image" src={video.url} alt={video.title}/> */}
-            <div>
-            <h4 class="Text2"> {video.title} </h4>
-            <span class="Text1"> {video.description} </span>
-            </div>
-          <button style={{ float:'right' }} class="Cbtn" onClick={() => moveBuyPage(video)}>buy</button>
-          </div>
-        </div>
-      )}
-      
-      </Modal.Body>
-      
-    </Modal>
+          ))}
+        </Modal.Body>
+      </Modal>
     </span>
 
     // <Modal
@@ -121,25 +135,25 @@ function Exhibition({ exhibition }) {
     //     <Modal.Footer>
     //     </Modal.Footer>
     // </Modal>
-
   );
 }
 
 function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
-  
-  useEffect(async()=>{
+
+  useEffect(async () => {
     // const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
-    const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
-      
-    headers:{
-        category:1,
+    const exhibition_result = await axios.get(
+      "http://3.39.32.4:8000/video/get_art",
+      {
+        headers: {
+          category: 1,
+        },
       }
-    })
+    );
     setExhibition(exhibition_result.data);
     console.log(exhibition_result);
-
-  },[]);
+  }, []);
 
   return (
     <div class="page">
@@ -149,8 +163,8 @@ function ArtPage() {
           <h1 className="pageTitle">개인전</h1>
         </Layout>
       </body>
-      {exhibition.map(
-        exhibition => (<Exhibition exhibition={exhibition} key={exhibition.id}/>
+      {exhibition.map((exhibition) => (
+        <Exhibition exhibition={exhibition} key={exhibition.id} />
       ))}
     </div>
   );
@@ -161,7 +175,7 @@ const ImgBox = styled.img`
   height: 308px;
   border-radius: 7px;
   margin: 10px;
-  
+
   cursor: pointer;
 
   &:hover {
@@ -234,6 +248,5 @@ const PurpleHeartText = styled.div`
   padding-bottom: 10px;
   border-radius: 10px;
 `;
-
 
 export default Auth(ArtPage, true);
