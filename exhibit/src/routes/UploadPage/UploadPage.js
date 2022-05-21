@@ -17,6 +17,7 @@ const { TextArea } = Input;
 var urlList = [];
 var titleList = [];
 var descriptionList = [];
+let tokenList = [];
 
 const urlName =
   "https://bafybeibirhaujcjhrmapdtzx7aqhjgcxfrefffy35pswub7ouixjrenlf4.ipfs.infura-ipfs.io";
@@ -37,6 +38,9 @@ function UploadPage(props) {
   const handleShow = () => {
     setShow(true);
   };
+
+  let timestamps = new Date().getTime();
+
 
   const [posterUrl, setPosterUrl] = useState("");
   const [qrvalue, setQrvalue] = useState("DEFAULT");
@@ -87,9 +91,8 @@ function UploadPage(props) {
         posterUrl: posterUrl,
         nick: localStorage.getItem("nick"),
       };
-      // axios.post('http://localhost:8000/video/insert',insertDate)
-      axios
-        .post("http://3.39.32.4:8000/video/insert", insertDate)
+      axios.post('http://localhost:8000/video/insert',insertDate)
+      // axios.post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           alert("디비 저장 ~");
@@ -106,14 +109,11 @@ function UploadPage(props) {
       Url: fileUrl,
       titleList: vTitle,
       descriptionList: videoDescription,
+      tokenList : timestamps,
     };
     urlList.push(insertdata);
 
     console.log(urlList);
-  };
-  const setTokenId = () => {
-    const timestamps = new Date().getTime();
-    return timestamps;
   };
 
   return (
@@ -147,14 +147,13 @@ function UploadPage(props) {
           <Modal.Body>
 
             <FileUpload setUrl={(url) => {
-              setTokenId();
               setFileUrl(url);
               setQrhide(true);
 //            alert("주소 : "+addressW+", url : "+url);
-              mintCardWithURI(localStorage.getItem("addressW"), setTokenId(), url, setQrvalue, (result) => {
-              alert("NFT가 민팅되었습니다.");
+              mintCardWithURI(localStorage.getItem("addressW"), {timestamps}, url, setQrvalue, (result) => {
+                alert("NFT가 민팅되었습니다.");
               });
-            }} />
+            }} /> 
 
             <label>비디오 제목</label>
           <Input
