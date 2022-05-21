@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Container,
@@ -14,11 +14,27 @@ import LoginModal from "../../routes/LoginModal/LoginModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import WalletModal from "../../routes/WalletModal/WalletModal";
+import { getBalance } from "../../api/UserCaver";
+
+function getBal(status){
+  if(status){
+    return getBalance(localStorage.getItem("addressW"));
+  }else{
+    return 0;
+  }
+}
 
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
   const [walletModal, setWalletModal] = useState(false);
   const navigate = useNavigate();
+
+  let klip_btn = "내 Klip 지갑";
+  if (localStorage.getItem("addressW") !== "null") {
+    klip_btn = "Klip 변경";
+  }
+
+  // useEffect(getBal(), []);
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
@@ -52,10 +68,6 @@ function LoginNavigationBar() {
             </NavDropdown>
           </Nav>
 
-          <Nav.Link className={styles.menu} href="/">
-            {localStorage.getItem("nick")}님
-          </Nav.Link>
-
           <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
 
           <Button
@@ -73,9 +85,8 @@ function LoginNavigationBar() {
               }
               console.log(header_token);
               axios
-                  // .get("http://localhost:8000/oauth/logout", {
-                  .get("http://3.39.32.4:8000/oauth/logout", {
-
+                // .get("http://localhost:8000/oauth/logout", {
+                .get("http://3.39.32.4:8000/oauth/logout", {
                   headers: {
                     Authorizations: `${header_token}`,
                     refresh: `${refresh_token}`,
@@ -84,7 +95,6 @@ function LoginNavigationBar() {
                 .then((response) => {
                   // 백엔드에서 DB에 저장된거 잘 지웠는지에 대한 응답...
                   if (response.data) {
-                    
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
                     localStorage.removeItem("isMember");
@@ -97,14 +107,26 @@ function LoginNavigationBar() {
           >
             Log Out
           </Button>
-          <Button className={styles.walletBtn} onClick={() => {
-            console.log("wallet Btn Clicked")
-            setWalletModal(true)
-          }}>
-            내 Klip 지갑
+          <Button
+            className={styles.walletBtn}
+            onClick={() => {
+              console.log("wallet Btn Clicked");
+              setWalletModal(true);
+            }}
+          >
+            {klip_btn}
           </Button>
 
-          <WalletModal show={walletModal} onHide={() => setWalletModal(false)} />
+          <Nav className={styles.info}>{localStorage.getItem("nick")}님</Nav>
+
+          <Nav className={styles.info}>
+            {localStorage.getItem("balance")} KLAY
+          </Nav>
+
+          <WalletModal
+            show={walletModal}
+            onHide={() => setWalletModal(false)}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>
