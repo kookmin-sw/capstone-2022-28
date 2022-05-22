@@ -5,6 +5,7 @@ import "./page.css"
 import axios from "axios";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import Footer from "../components/Footer"
 
 function MyArt({ myArt }) {
   return (
@@ -46,14 +47,14 @@ function MyArtPage() {
   return (
     <div class="page">
       <LoginNavigationBar />
-      <body class="page">
-        <Layout>
-          <h1 className="pageTitle">내 전시회</h1>
-        </Layout>
-      </body>
+      <div class="Cbody">
+          <h1 className="Text2">내 전시회</h1>
+        
       {myArt.map(
         myArt => (<MyArt myArt={myArt} key={myArt.id}/>
       ))}
+      </div>
+      <Footer/>
     </div>
   );
 }

@@ -10,6 +10,8 @@ import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
 import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
+import Footer from "../../components/Footer"
+import "../../routes/page.css"
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -113,12 +115,13 @@ function UploadPage(props) {
   };
 
   return (
-    <div>
+    <div className='page'>
       <LoginNavigationBar />
       <div className={styles.root}>
         <div >
           <Title level={2} class={styles.title}>전시회 개최</Title>
         </div>
+        <div className={styles.box}>
         <label>전시회 포스터</label>
         <ImageUpload setUrl={setPosterUrl} />
         <br />
@@ -160,7 +163,7 @@ function UploadPage(props) {
               }}
             />
 
-            <label style>비디오 제목</label>
+            <label>비디오 제목</label>
             <Input
               onChange={TitleHandler}
               value={vTitle}
@@ -218,7 +221,7 @@ function UploadPage(props) {
             onChange={videoTitleHandler}
             value={VideoTitle}
             style={{ marginBottom: "2rem" }}
-          />
+          ></Input>
           <br />
           <label>전시회 설명</label>
           <TextArea
@@ -245,9 +248,11 @@ function UploadPage(props) {
             >
               전시회 개최
             </Button>
-          </div>
+            </div>
         </Form>
+          </div>
       </div>
+      <Footer/>
     </div>
   );
 }

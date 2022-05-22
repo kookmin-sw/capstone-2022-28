@@ -5,8 +5,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 20%;
+    
 }
 
+.footer{
+    /* position: absolute; left: 0; bottom: 0; width: 100%;
+    margin-top: auto; */
+    display: block;
+    
+
+}
 .footer-subscription {
     display: flex;
     flex-direction: column;
@@ -34,7 +43,16 @@
     font-size: 20px;
 
 }
-
+#wrapper{
+    height: auto;
+    min-height: 100%;
+    padding-bottom: (footer높이);
+  }
+  footer{
+    height: (footer높이);
+    position : relative;
+    transform : translateY(-100%);
+  }
 
 .footer-links {
     width: 100%;

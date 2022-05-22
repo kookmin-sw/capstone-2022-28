@@ -1,7 +1,8 @@
 .page {
-  background-color: black important!;
-    height: 100vh important!;
-}
+  background-color: black;
+      height: 100vh;
+    }
+
 
 .title {
     color: white;    
@@ -54,13 +55,22 @@
 
   .modal_header {
       font-weight: 500;
+      background-color: #242424;
+      color: white;
     
   }
+
+  .modal_body {
+    background-color: #000000;
+    height:100%;
+    color: white;
+  
+}
   
   
 
   .video {
-    width: 160px;
+    width: 180px;
     height: 120px;
     border-radius: 7px;
     margin: 10px;
@@ -79,20 +89,20 @@
     font-size: 15px;
     font-family: Poppins;
     font-weight: 700;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .Text2 {
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
     color: white;    
   font-size: 20px;
   font-family: Poppins;
   font-weight: 700;
 }
 .FrameRoot{
-    border : white;
+    border :black;
     display: grid;
-   background-color: rgb(226, 226, 226);
+   background-color: rgb(0, 0, 0);
   width: 100%;
   /* height: 280px; */
   overflow: hidden;
@@ -100,11 +110,11 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  
+  margin-bottom: 10px;
   padding: 20px;
-  margin: auto;
-  border-radius: 10px;
-  border: 5px solid white;
+
+  border-radius: 3px;
+  border: 1px solid rgb(233, 233, 233,0.3);
   
 }
 .Image1{
@@ -142,10 +152,9 @@
   
   
 .Cbody {
-    /* height: 200; */
-    margin: 2rem;
+   padding-top: 90px;
     display: grid;
-
+    min-height: 80%;
   }
   
   .card {
