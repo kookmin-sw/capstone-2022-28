@@ -143,6 +143,7 @@ function UploadPage(props) {
           <Modal.Body>
             <FileUpload
               setUrl={(url) => {
+                alert(url);
                 setFileUrl(url);
                 setQrhide(true);
                 //            alert("주소 : "+addressW+", url : "+url);

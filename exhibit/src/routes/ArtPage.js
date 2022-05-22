@@ -32,13 +32,16 @@ function Exhibition({ exhibition }) {
         url: video.url,
         poster_url: exhibition.poster_url,
         poster_title: exhibition.title,
+        token: video.tokenId,
+        creator_nick: video.userNick,
       },
     });
   };
 
   const handleShow = async (id) => {
     setShow(true);
-    // const video_result = await axios.get("http://localhost:8000/video/get_video",{
+    // const video_result = await axios.get(
+    //  "http://localhost:8000/video/get_video",
     const video_result = await axios.get(
       "http://3.39.32.4:8000/video/get_video",
       {
@@ -86,7 +89,14 @@ function Exhibition({ exhibition }) {
                 {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
                   class="video"
-                  onClick={() => window.open(video.url, "_blank")}
+                  onClick={() => navigate("/video", {
+                    state: {
+                      title: video.title,
+                      description: video.description,
+                      url: video.url,
+                      creator_nick: video.userNick,
+                    },
+                  })}
                 >
                   <VideoImageThumbnail
             
@@ -141,10 +151,11 @@ function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
 
   useEffect(async () => {
-    // const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
+    // const exhibition_result = await axios.get(
+    //  "http://localhost:8000/video/get_art",
     const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",
-      {
+      "http://3.39.32.4:8000/video/get_art",{
+      
         headers: {
           category: 1,
         },
