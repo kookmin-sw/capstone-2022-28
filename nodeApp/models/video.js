@@ -24,12 +24,16 @@ class Video extends Sequelize.Model {
             tokenId:{
                 type: Sequelize.STRING(100),
                 allowNull: true, 
+            },
+            userNick:{
+                type: Sequelize.STRING(10),
+                allowNull: false, 
             }
 
         }, {
             sequelize,
-            timestamps: false,
-            modelName: 'Video',
+            timestamps: true,
+            modelName: 'Video', 
             tableName: 'videos',
             paranoid: false,
             charset: 'utf8mb4',
