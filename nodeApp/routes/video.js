@@ -2,7 +2,8 @@ const express = require("express")
 const router = express.Router();
 const Video = require('../models/video');
 const Exhibition = require('../models/exhibition');
-const User = require("../models/user");
+const User = require("../models/user.js");
+
 const Token = require("../models/token");
 
 const uniToChar = (split_list) =>{
@@ -16,7 +17,7 @@ const uniToChar = (split_list) =>{
 //전시회 저장
 router.post('/insert',async(req,res)=>{
     console.log(req.body);
-    data_json = req.body;
+    data_json = req.body; 
     const find_userID = await User.findOne({
         where : {
             nick : data_json.nick
@@ -62,6 +63,7 @@ router.post('/insert',async(req,res)=>{
 })
 
 router.get('/get_art',async(req,res)=>{
+    let resultList=[];
     console.log("====================get_art!~!~!!!~!~!~!~!~!~!~!~!~!~!~!~!!~!~~!!~!~")
     const category = req.header("category");
     const art_data = await Exhibition.findAll({
@@ -70,22 +72,27 @@ router.get('/get_art',async(req,res)=>{
         }
     })
     console.log("art_data :", art_data)
-    // console.log("createAt :", art_data[0].createAt)
+    console.log("createAt :", art_data[0].createdAt)
 
 
-    // for(var i=0; i<art_data.length;i++){
-    //     console.log("art_data.createAt :", art_data[i].createAt)
-    //     let art_date = art_data[i].createAt
-    //     let now_date = new Date();
-    //     let end_date = art_date.getMonth() + 1
-    //     if(end_date < now_date){ //아직 게시 기간일때
-    //         console.log(end_date,now_date)
-    //     }
+    for(var i=0; i<art_data.length;i++){
+        console.log("art_data:", art_data[i])
+        let art_date = art_data[i].createdAt  
+        let now_date = new Date().getTime();
+        let end_date = art_date.setHours(art_date.getHours() + 24)
+        console.log("end_date : ",end_date,now_date)
+        if(end_date > now_date){ //아직 게시 기간일때 -> 끝나는 기간이 현재시간보다 나중일때
+            resultList.push(art_data[i])
+        }
+        else{
+            continue
+        }
  
-    // }
+    }
+    console.log(resultList)
 
     
-    return res.status(200).json(art_data);
+    return res.status(200).json(resultList);
 })
 
 router.get("/get_myart",async(req,res)=>{
