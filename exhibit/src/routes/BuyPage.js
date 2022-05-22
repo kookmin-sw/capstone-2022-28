@@ -43,7 +43,7 @@ function BuyPage(tokenId) {
       };
       return uni_code
     }
-
+    console.log("video_token : "+video_token);
     buyCard(video_token, setQrvalue, async() => {
       // const result = await axios.get("http://localhost:8000/video/buy_art",{
         const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
