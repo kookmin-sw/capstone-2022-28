@@ -23,6 +23,8 @@ function BuyPage(tokenId) {
   const video_title = video_datas.state.title;
   const video_description = video_datas.state.description;
   const video_url = video_datas.state.url;
+  const video_token = video_datas.state.token;
+  const video_creator_nick = video_datas.state.creator_nick;
   const poster_url = video_datas.state.poster_url;
   const poster_title = video_datas.state.poster_title;
 
@@ -34,7 +36,6 @@ function BuyPage(tokenId) {
   };
 
   const handleShow = () => {
-
     const charToUni = (char)=>{
       var uni_code = ""
       for(var i=0; i<char.length;i++){
@@ -43,11 +44,11 @@ function BuyPage(tokenId) {
       return uni_code
     }
 
-    buyCard(1653042229731, setQrvalue, async() => {
+    buyCard(video_token, setQrvalue, async() => {
       // const result = await axios.get("http://localhost:8000/video/buy_art",{
         const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
         headers:{
-            token_id:1653053565607, //토큰 id가져오는 부분으로 변경
+            token_id:video_token, //토큰 id가져오는 부분으로 변경
             nick : charToUni(localStorage.getItem("nick")),
           }
         })
@@ -56,6 +57,8 @@ function BuyPage(tokenId) {
     });
     setShow(true);
   };
+  console.log(video_token);
+  // console.log(tokenId);
   
   return (
     <div>
@@ -83,7 +86,7 @@ function BuyPage(tokenId) {
             <h1>{video_title}</h1>
             <div>
             <span class='creater'>creater</span>
-            <span class='nick'>김하연</span>
+            <span class='nick'>{video_creator_nick}</span>
             <span>    (address : 00000000000000000000x00000)</span>
             </div>
             <br/>
