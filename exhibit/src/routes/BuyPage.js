@@ -34,7 +34,24 @@ function BuyPage(tokenId) {
   };
 
   const handleShow = () => {
-    buyCard(1653042229731, setQrvalue, () => {
+
+    const charToUni = (char)=>{
+      var uni_code = ""
+      for(var i=0; i<char.length;i++){
+        uni_code += '\\'+char[i].charCodeAt(0).toString(16);
+      };
+      return uni_code
+    }
+
+    buyCard(1653042229731, setQrvalue, async() => {
+      // const result = await axios.get("http://localhost:8000/video/buy_art",{
+        const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+        headers:{
+            token_id:1653053565607, //토큰 id가져오는 부분으로 변경
+            nick : charToUni(localStorage.getItem("nick")),
+          }
+        })
+        console.log("result가 들어왔어요~~~~~~~~",result);
       alert("작품이 성공적으로 구매되었습니다.")
     });
     setShow(true);

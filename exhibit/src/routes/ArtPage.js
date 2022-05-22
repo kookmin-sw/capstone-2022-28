@@ -38,15 +38,12 @@ function Exhibition({ exhibition }) {
   const handleShow = async (id) => {
     setShow(true);
     // const video_result = await axios.get("http://localhost:8000/video/get_video",{
-    const video_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_video",
-      {
-        headers: {
-          exhibition: id,
-        },
-      }
-    );
-    console.log("video_result가 들어왔어요~~~~~~~~", video_result);
+    const video_result = await axios.get("http://3.39.32.4:8000/video/get_video",{
+      headers:{
+          exhibition:id,
+        }
+      })
+      console.log("video_result가 들어왔어요~~~~~~~~",video_result);
     setVideo(video_result.data);
     console.log("video!!!!!!!", video);
   };
@@ -138,17 +135,15 @@ function Exhibition({ exhibition }) {
 
 function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
-
-  useEffect(async () => {
-    // const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
-    const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",
-      {
-        headers: {
-          category: 1,
-        },
+  
+  useEffect(async()=>{
+    const exhibition_result = await axios.get("http://localhost:8000/video/get_art",{
+    // const exhibition_result = await axios.get("http://3.39.32.4:8000/video/get_art",{
+      
+    headers:{
+        category:1,
       }
-    );
+  });
     setExhibition(exhibition_result.data);
     console.log(exhibition_result);
   }, []);

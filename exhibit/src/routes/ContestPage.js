@@ -30,6 +30,7 @@ function ContestPage() {
       
     headers:{
         category:0,
+        
       }
     })
     setExhibition(result.data);
