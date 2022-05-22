@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Typography, Button, Form, Input } from "antd";
+import { Typography, Form, Input, Button } from "antd";
 import styles from "./UploadPage.module.css";
 import Auth from "../../hoc/auth";
 import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { useNavigate } from "react-router-dom";
 import { FileUpload, ImageUpload } from "react-ipfs-uploader";
-import { mintCardWithURI } from "../../api/UserKlip";
+import { listingCard, mintCardWithURI } from "../../api/UserKlip";
 import { addressW } from "../WalletModal/WalletModal";
 import axios from "axios";
 import QRCode from "qrcode.react";
@@ -19,6 +19,7 @@ var urlList = [];
 var titleList = [];
 var descriptionList = [];
 let tokenList = [];
+let tokenId = 0;
 
 const CategoryOptions = [
   { value: 0, label: "Competition" },
@@ -29,16 +30,18 @@ function UploadPage(props) {
   const navigate = useNavigate();
   const [fileUrl, setFileUrl] = useState("");
   const [show, setShow] = useState(false);
+  const [id, setId] = useState(0);
+
   const handleClose = () => {
     setShow(false);
   };
 
-  const handleShow = () => {
+  const handleShow = async() => {
+    const time = await Number(new Date().getTime())
+    setFileUrl("");
     setShow(true);
+    tokenId = time;
   };
-
-  let timestamps = new Date().getTime();
-
 
   const [posterUrl, setPosterUrl] = useState("");
   const [qrvalue, setQrvalue] = useState("DEFAULT");
@@ -69,6 +72,8 @@ function UploadPage(props) {
   };
 
   const [qrhide, setQrhide] = useState(false);
+  const [mintorlist, setMintorlist] = useState("NFT Minting하기");
+  const [closeModal, setCloseModal] = useState(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -93,7 +98,6 @@ function UploadPage(props) {
       axios.post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
-          alert("디비 저장 ~");
           navigate("/");
         })
         .catch((error) => {
@@ -107,7 +111,7 @@ function UploadPage(props) {
       Url: fileUrl,
       titleList: vTitle,
       descriptionList: videoDescription,
-      tokenList : timestamps,
+      tokenList : tokenId,
     };
     urlList.push(insertdata);
 
@@ -145,18 +149,17 @@ function UploadPage(props) {
           </Modal.Header>
           <Modal.Body>
             <FileUpload
-              setUrl={(url) => {
-                alert(url);
+              setUrl={async (url) => {
                 setFileUrl(url);
                 setQrhide(true);
-                //            alert("주소 : "+addressW+", url : "+url);
-                console.log(localStorage.getItem("addressW"));
-                mintCardWithURI(
+                setMintorlist("NFT Minting하기");
+                console.log(localStorage.getItem("addressW")+", "+tokenId);
+                await mintCardWithURI(
                   localStorage.getItem("addressW"),
-                  Number(timestamps),
+                  tokenId,
                   url,
                   setQrvalue,
-                  (result) => {
+                  () => {
                     alert("NFT가 민팅되었습니다.");
                   }
                 );
@@ -181,12 +184,12 @@ function UploadPage(props) {
 
             {qrhide ? (
               <div>
-                <p>NFT Minting하기</p>
+                <p>{mintorlist}</p>
                 <hr></hr>
                 <br></br>
                 <div style={{ display: "flex" }}>
                   <QRCode value={qrvalue} size={200} style={{ margin: "auto" }}>
-                    작품 Minting
+                    
                   </QRCode>
                 </div>
                 <br></br>
@@ -195,27 +198,36 @@ function UploadPage(props) {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="primary"
-              onClick={() => {
+              onClick={async() => {
+                
                 if (vTitle === "" || videoDescription === "")
                   alert("비디오 정보를 입력해주세요.");
+                else if(fileUrl == ""){
+                  alert("NFT 민팅을 완료해주세요.");
+                }
                 else {
-                  AddHandler();
-                  handleClose();
-                  setvTitle("");
-                  setvideoDescription("");
+                  setQrhide(true)
+                  setMintorlist("Market에 등록하기");
+                  listingCard(localStorage.getItem("addressW"),tokenId, setQrvalue, (result) => {
+                    alert("마켓에 NFT가 등록되었습니다.");
+                  });
+                  closeModal(true);
                 }
               }}
             >
-              비디오 추가하기
+             ① 마켓 등록
+            </Button>
+            <Button
+            type="primary">
+            ② 비디오 추가
             </Button>
           </Modal.Footer>
         </Modal>
 
         <Form onSubmit={onSubmitHandler}>
           <div className={styles.contents}></div>
-          <br />
-          <br /> <br></br>
+          <br/>
+          <br/> <br></br>
           <label>전시회 제목</label>
           <Input
             onChange={videoTitleHandler}
