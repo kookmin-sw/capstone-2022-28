@@ -86,8 +86,11 @@ function BuyPage(tokenId) {
             <h1>{video_title}</h1>
             <div>
             <span class='creater'>creater</span>
+
+
             <span class='nick'>{video_creator_nick}</span>
             <span>    (address : 00000000000000000000x00000)</span>
+
             </div>
             <br/>
             

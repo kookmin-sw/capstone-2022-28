@@ -116,8 +116,8 @@ function UploadPage(props) {
     <div>
       <LoginNavigationBar />
       <div className={styles.root}>
-        <div className={styles.title}>
-          <Title level={2}>전시회 개최</Title>
+        <div >
+          <Title level={2} class={styles.title}>전시회 개최</Title>
         </div>
         <label>전시회 포스터</label>
         <ImageUpload setUrl={setPosterUrl} />
@@ -143,6 +143,7 @@ function UploadPage(props) {
           <Modal.Body>
             <FileUpload
               setUrl={(url) => {
+                alert(url);
                 setFileUrl(url);
                 setQrhide(true);
                 //            alert("주소 : "+addressW+", url : "+url);
@@ -159,7 +160,7 @@ function UploadPage(props) {
               }}
             />
 
-            <label>비디오 제목</label>
+            <label style>비디오 제목</label>
             <Input
               onChange={TitleHandler}
               value={vTitle}

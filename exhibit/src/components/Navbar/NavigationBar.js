@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
+
 import WalletModal from "../../routes/LoginModal/LoginModal";
 
 function NavigationBar() {
@@ -17,7 +18,7 @@ function NavigationBar() {
 
   return (
     <div id="navbar--wrap">
-    <Navbar className="topnavbar" bg="dark" variant="dark" expand="lg" fixed="top">
+    <Navbar className="topnavbar" bg="black" variant="black" expand="lg" fixed="top">
       <Container fluid>
         <Navbar.Brand href="/">
           <img src={logo} className={styles.Logo}></img>

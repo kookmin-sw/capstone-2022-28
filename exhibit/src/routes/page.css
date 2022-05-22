@@ -4,7 +4,7 @@
 }
 
 .title {
-    color: black;    
+    color: white;    
     margin-left: 350px;
     margin-top: 40px;
 }
@@ -16,7 +16,31 @@
     z-index: 0;
   }
 
+.row{
+  color:white;
+  margin-left: 20px;
+}
 
+.row__posters{
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding:20px;
+}
+
+.row__poster{
+  object-fit: contain;
+  width:100%;
+  max-height: 308px;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.row__posters::-webkit-scrollbar{
+  display: none;
+}
+/* .row_poster:hover{
+  transform: scale(1.08);
+} */
   .poster {
   width: 220px;
   height: 308px;
@@ -60,7 +84,7 @@
 .Text2 {
     margin-left: 20px;
     margin-top: 10px;
-  color:black;
+    color: white;    
   font-size: 20px;
   font-family: Poppins;
   font-weight: 700;
@@ -87,24 +111,7 @@
   width: 337px;
   height: 389px;
 }
-.InfoContainer{
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: flex-start;
-}
-.ArtistAndTitle{
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-start;
-}
-.CurrentBid1{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
+
 .PurpleHeartText{
   color: #ffffff;
   display: flex;
@@ -214,7 +221,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 20px;
+
   }
   
   .box2{
@@ -303,3 +310,4 @@
     background-color: black;
     outline:0;
 }
+

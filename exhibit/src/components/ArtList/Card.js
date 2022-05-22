@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import ModalPortal from "../Modal/Portal";
 import Modal from "../Modal/Modal";
+import "./page.css"
 
 const ArtContainer = () => {
 }
@@ -30,7 +31,7 @@ const Card = props => {
   };
 
   return (
-    <div>
+    <div class='row_poster'>
     <ImgBox 
       id={props.id}
       src={'https://bafybeifhkkktzerw2m3wioeuogbjuumq46q4spx7vzolulnmdf2xm3awxe.ipfs.infura-ipfs.io/'}
