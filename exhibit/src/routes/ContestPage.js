@@ -166,7 +166,9 @@ function ContestPage() {
   }, []);
 
   return (
-    <div>
+    <div class="page">
+      <div>
+      <LoginNavigationBar />
     <header
     class="banner"
     style={{backgroundSize:'cover',
@@ -185,11 +187,7 @@ function ContestPage() {
       </h1>
       <div className="banner--Bottom"/>
     </header>
-    <div>
-      <LoginNavigationBar />
-      <body>
-      </body>
-
+    <div style={{minHeight: '200px'}}>
       <h4 class='Text2'>김하연님의 전시회</h4>
       <div class="row__posters">
    
@@ -197,6 +195,7 @@ function ContestPage() {
         exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.id}/>))}
       
 </div>
+    </div>
     </div>
     <Footer/>
     </div>

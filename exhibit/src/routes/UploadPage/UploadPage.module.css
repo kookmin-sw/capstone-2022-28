@@ -1,9 +1,11 @@
 .root {
-  max-width: 700px;
+  max-width: 900px;
+  
   margin: 2rem auto;
-  color:white;
+  align-items: center;
+
   background-color: black;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
 
 }
 
@@ -15,7 +17,7 @@
 .title {
   color: white;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding-top: 90px;
 
 }
@@ -42,4 +44,17 @@
 .modal_body {
   display: flex;
   justify-content: center;
+}
+
+.box{
+  max-width: 800px;
+  height: 100%;
+
+  margin: 2rem auto;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255);
+  padding: 40px;
+  border-radius: 10px;
+  
 }

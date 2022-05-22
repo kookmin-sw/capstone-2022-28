@@ -8,6 +8,7 @@ import React from "react";
 import { addressW, balanceW } from "./WalletModal/WalletModal";
 import VideoPage from "./VideoPage";
 import axios from "axios";
+import Footer from "../components/Footer"
 
 function MyAssetPage() {
 
@@ -44,21 +45,15 @@ function MyAssetPage() {
   },[]);  
 
   return (
-    <div>
+    <div class="page">
       <LoginNavigationBar />
-      <div class = "page"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <h1 class="title" >내 작품</h1>
+      <div class = "Cbody">
+        <h1 class="Text2" >내 작품</h1>
         <div className="container" style={{ padding: 0, width: "100%" }} >
               
             </div>
       </div>
+      <Footer/>
     </div>
   );
 }

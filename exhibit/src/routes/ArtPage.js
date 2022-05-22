@@ -71,10 +71,11 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton class='modal_header'>
+
+        <Modal.Header closeButton className='modal_header'>
         상세정보
       </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='modal_body'>
           <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
           <br />
           <h1 class="title">{exhibition.title}</h1>
@@ -82,7 +83,7 @@ function Exhibition({ exhibition }) {
           
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
-        <Modal.Body>
+        <Modal.Body className='modal_body'>
           {video.map((video) => (
             <div class="FrameRoot">
               <div style={{ display: "flex", flexDirection: "row" }}>
@@ -99,7 +100,6 @@ function Exhibition({ exhibition }) {
                   })}
                 >
                   <VideoImageThumbnail
-            
                     videoUrl={video.url}
                     width={160}
                     height={120}
@@ -166,17 +166,17 @@ function ArtPage() {
   }, []);
 
   return (
-    <div>
+    <div class = "page">
       <LoginNavigationBar />
-      <body>
-
-      </body>
-          <h4 className="Text2" style={{marginTop:"80px", paddingTop:'40px'}}>개인전</h4>
+      <div class="Cbody">
+          <h4 className="Text2">개인전</h4>
  
       {exhibition.map((exhibition) => (
         <Exhibition exhibition={exhibition} key={exhibition.id} />
       ))}
 
+
+      </div>
       <Footer/>
     </div>
   );
