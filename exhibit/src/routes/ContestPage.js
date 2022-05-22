@@ -83,7 +83,13 @@ function Exhibition({ exhibition }) {
                 {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
                   class="video"
-                  onClick={() => window.open(video.url, "_blank")}
+                  onClick={() => navigate("/video", {
+                    state: {
+                      title: video.title,
+                      description: video.description,
+                      url: video.url,
+                      creator_nick: video.userNick,
+                    },})}
                 >
                   <VideoImageThumbnail
             
