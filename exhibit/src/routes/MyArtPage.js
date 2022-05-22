@@ -30,8 +30,8 @@ function MyArtPage() {
     }
     console.log(charToUni(nick));
 
-    // const result = await axios.get("http://localhost:8000/video/get_myart",{
-    const result = await axios.get("http://3.39.32.4:8000/video/get_myart",{
+    const result = await axios.get("http://localhost:8000/video/get_myart",{
+    // const result = await axios.get("http://3.39.32.4:8000/video/get_myart",{
     headers:{
         nick:charToUni(nick),
       }
