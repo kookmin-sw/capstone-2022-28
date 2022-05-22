@@ -87,8 +87,8 @@ function UploadPage(props) {
         posterUrl: posterUrl,
         nick: localStorage.getItem("nick"),
       };
-      axios.post('http://localhost:8000/video/insert',insertDate)
-      // axios.post("http://3.39.32.4:8000/video/insert", insertDate)
+      // axios.post('http://localhost:8000/video/insert',insertDate)
+      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           alert("디비 저장 ~");
@@ -146,9 +146,10 @@ function UploadPage(props) {
                 setFileUrl(url);
                 setQrhide(true);
                 //            alert("주소 : "+addressW+", url : "+url);
+                console.log(localStorage.getItem("addressW"));
                 mintCardWithURI(
                   localStorage.getItem("addressW"),
-                  {timestamps},
+                  Number(timestamps),
                   url,
                   setQrvalue,
                   (result) => {

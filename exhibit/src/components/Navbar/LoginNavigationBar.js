@@ -16,10 +16,10 @@ import { useNavigate } from "react-router-dom";
 import WalletModal from "../../routes/WalletModal/WalletModal";
 import { getBalance } from "../../api/UserCaver";
 
-function getBal(status){
-  if(status){
+function getBal(status) {
+  if (status) {
     return getBalance(localStorage.getItem("addressW"));
-  }else{
+  } else {
     return 0;
   }
 }
@@ -29,11 +29,12 @@ function LoginNavigationBar() {
   const [walletModal, setWalletModal] = useState(false);
   const navigate = useNavigate();
 
+  let bal = localStorage.getItem("balance");
   let klip_btn = "내 Klip 지갑";
   if (localStorage.getItem("addressW") !== "null") {
     klip_btn = "Klip 변경";
+    console.log("balance check", bal);
   }
-
   // useEffect(getBal(), []);
 
   return (
@@ -85,8 +86,8 @@ function LoginNavigationBar() {
               }
               console.log(header_token);
               axios
-                .get("http://localhost:8000/oauth/logout", {
-                // .get("http://3.39.32.4:8000/oauth/logout", {
+                // .get("http://localhost:8000/oauth/logout", {
+                .get("http://3.39.32.4:8000/oauth/logout", {
                   headers: {
                     Authorizations: `${header_token}`,
                     refresh: `${refresh_token}`,
@@ -119,9 +120,7 @@ function LoginNavigationBar() {
 
           <Nav className={styles.info}>{localStorage.getItem("nick")}님</Nav>
 
-          <Nav className={styles.info}>
-            {localStorage.getItem("balance")} KLAY
-          </Nav>
+          <Nav className={styles.info}>{bal} KLAY</Nav>
 
           <WalletModal
             show={walletModal}

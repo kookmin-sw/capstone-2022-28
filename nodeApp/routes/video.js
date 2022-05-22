@@ -130,7 +130,10 @@ router.get('/get_video',async(req,res)=>{
 router.get('/buy_art',async(req,res)=>{
     console.log("!!!!!!!!!!!!buy하셨군요~?~?~?~?~?~?~?!!!!!!!!!!!!!!!!")
     const token_id = req.headers("tokenId")
-    const nick = req.headers("nick")
+    
+    const nick = req.header("nick");
+    const split_nick = nick.split("\\");
+
     const select_art = await Video.findOne({
         where:{
             tokenId : token_id
@@ -138,7 +141,7 @@ router.get('/buy_art',async(req,res)=>{
     })
     const now_user = await User.findOne({
         where:{
-            nick : nick 
+            nick : uniToChar(split_nick) 
         }
     })
     const myart = await Token.create({

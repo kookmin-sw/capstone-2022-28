@@ -31,8 +31,8 @@ function MyAssetPage() {
     }
     console.log(charToUni(nick));
 
-    const result = await axios.get("http://localhost:8000/video/get_buying_art",{
-    // const result = await axios.get("http://3.39.32.4:8000/video/get_buying_art",{
+    // const result = await axios.get("http://localhost:8000/video/get_buying_art",{
+    const result = await axios.get("http://3.39.32.4:8000/video/get_buying_art",{
       headers:{
           nick : charToUni(nick),
         }
