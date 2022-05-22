@@ -67,7 +67,7 @@ function BuyPage(tokenId) {
             <div>
             <span class='creater'>creater</span>
             <span class='nick'>김하연</span>
-            <span>    (address : 00000000000000000000x00000)</span>
+            <span>  <br/>(address : 00000000000000000000x00000)</span>
             </div>
             <br/>
             

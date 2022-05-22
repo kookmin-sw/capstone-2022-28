@@ -1,6 +1,10 @@
 .root {
   max-width: 700px;
   margin: 2rem auto;
+  color:white;
+  background-color: black;
+  padding-bottom: 100px;
+
 }
 
 .contents {
@@ -12,7 +16,8 @@
   color: white;
   text-align: center;
   margin-bottom: 2rem;
-  margin-top: 8em;
+  padding-top: 90px;
+
 }
 
 .dropZone {
@@ -31,6 +36,7 @@
 
 .modal_header {
   font-weight: 500;
+  
 }
 
 .modal_body {
