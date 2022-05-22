@@ -152,7 +152,7 @@ function ArtPage() {
 
   useEffect(async () => {
     // const exhibition_result = await axios.get(
-    //  "http://localhost:8000/video/get_art",
+    //  "http://localhost:8000/video/get_art",{
     const exhibition_result = await axios.get(
       "http://3.39.32.4:8000/video/get_art",{
       

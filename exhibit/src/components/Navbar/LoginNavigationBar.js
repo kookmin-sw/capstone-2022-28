@@ -73,7 +73,6 @@ function LoginNavigationBar() {
 
           <Button
             className={styles.loginBtn}
-            // 혹시 axios 방법이 맘에 안드신다면 바꾸셔도 됩니다...
             onClick={() => {
               let header_token;
               let refresh_token;

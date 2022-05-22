@@ -22,7 +22,12 @@ class Exhibition extends Sequelize.Model {
             userNick:{
                 type: Sequelize.STRING(10),
                 allowNull: false
-            }
+            },
+            // createdAt: {
+            //     type: Sequelize.DataTypes.DATE,
+            //     allowNull: false,
+            //     defaultValue: Sequelize.DataTypes.NOW,
+            // },
 
         }, {
             sequelize,
