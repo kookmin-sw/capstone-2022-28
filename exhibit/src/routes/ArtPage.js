@@ -10,11 +10,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FullscreenExitOutlined, ToolTwoTone } from "@ant-design/icons";
-import { Modal, ModalTitle } from "react-bootstrap";
+import { Modal, ModalTitle, Row } from "react-bootstrap";
 import "./page.css";
+// import "../css/bgs.css"
 import VideoImageThumbnail from "react-video-thumbnail-image";
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
-
+import Footer from "../components/Footer"
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
   const [video, setVideo] = useState([]);
@@ -165,16 +166,18 @@ function ArtPage() {
   }, []);
 
   return (
-    <div class="page">
+    <div>
       <LoginNavigationBar />
       <body>
-        <Layout>
-          <h1 className="pageTitle">개인전</h1>
-        </Layout>
+
       </body>
+          <h4 className="Text2" style={{marginTop:"80px", paddingTop:'40px'}}>개인전</h4>
+ 
       {exhibition.map((exhibition) => (
         <Exhibition exhibition={exhibition} key={exhibition.id} />
       ))}
+
+      <Footer/>
     </div>
   );
 }

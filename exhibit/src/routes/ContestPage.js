@@ -6,9 +6,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+
+import "./banner.css"
+import Footer from "../components/Footer"
+
+
 import { Modal, ModalTitle } from "react-bootstrap";
 import "./page.css";
 import VideoImageThumbnail from "react-video-thumbnail-image";
+
 
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
@@ -160,17 +166,41 @@ function ContestPage() {
   }, []);
 
   return (
-    <div class="page">
+    <div>
+    <header
+    class="banner"
+    style={{backgroundSize:'cover',
+    backgroundImage: `url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg")`,
+    backgroundPosition:'center center',}}>
+      <div class='banner__contents'>
+        <h1 class='banner__title'>title</h1>
+        <button class="banner__btn">Play</button>
+        <button class="banner__btn">구매하기</button>
+
+      </div>
+
+      <h1 class="banner__description">
+        description description description description description description description description description description description description description description description description description
+        description description description description description description description description description description description 
+      </h1>
+      <div className="banner--Bottom"/>
+    </header>
+    <div>
       <LoginNavigationBar />
-      <body class="page">
-        <Layout>
-          <h1 className="pageTitle">Art Wall</h1>
-        </Layout>
+      <body>
       </body>
+
+      <h4 class='Text2'>김하연님의 전시회</h4>
+      <div class="row__posters">
+   
       {exhibition.map(
-        exhibition => (<Exhibition exhibition={exhibition} key={exhibition.id}/>
-      ))}
+        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.id}/>))}
+      
+</div>
     </div>
+    <Footer/>
+    </div>
+
   );
 }
 
