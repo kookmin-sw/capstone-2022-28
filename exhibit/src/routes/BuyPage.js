@@ -108,7 +108,7 @@ function BuyPage(tokenId) {
               /> 
         </div>
 
-//       <div class="Cbody">
+{/* //       <div class="Cbody">
 //         <div
 //           style={{
 //             minHeight: "80%",
@@ -134,7 +134,7 @@ function BuyPage(tokenId) {
 //               thumbnailHandler={(thumbnail) => console.log(thumbnail)}
 //               alt={video_title}
 //             />
-//           </div>
+//           </div> */}
 
           {/* <img src={poster_url} width="100" height="100" alt="image" /> */}
           {/* <label> 포스터 제목 : {poster_title}</label> */}
