@@ -99,7 +99,8 @@ function UploadPage(props) {
         nick: localStorage.getItem("nick"),
       };
       // axios.post('http://localhost:8000/video/insert',insertDate)
-      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
+      axios
+        .post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           navigate("/");
@@ -126,21 +127,19 @@ function UploadPage(props) {
     <div className="page">
       <LoginNavigationBar />
 
-      <div class='Cbody'>
-      {/* <div className={styles.root}> */}
-        <div >
-          <Title level={2} class={styles.title}>전시회 개최</Title>
-
+      <div class="Cbody">
+        {/* <div className={styles.root}> */}
+        <div>
+          <Title level={2} class={styles.title}>
+            전시회 개최
+          </Title>
         </div>
         <div className={styles.box}>
           <label>전시회 포스터</label>
           <ImageUpload setUrl={setPosterUrl} />
           <br />
 
-          <label>
-            작품 업로드({urlList.length}) / 남은 Klay:
-            {localStorage.getItem("balance")}
-          </label>
+          <label>작품 업로드({urlList.length})</label>
           <br />
           <Button size="lg" type="primary" onClick={handleShow}>
             업로드 하러가기
@@ -289,10 +288,8 @@ function UploadPage(props) {
         </div>
       </div>
 
-      
       {/* </div> */}
-      <Footer/>
-
+      <Footer />
     </div>
   );
 }
