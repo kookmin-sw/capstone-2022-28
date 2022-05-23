@@ -170,12 +170,12 @@ function ArtPage() {
       <LoginNavigationBar />
       <div class="Cbody">
           <h4 className="Text2">개인전</h4>
- 
+    <div>
       {exhibition.map((exhibition) => (
         <Exhibition exhibition={exhibition} key={exhibition.id} />
       ))}
 
-
+</div>
       </div>
       <Footer/>
     </div>

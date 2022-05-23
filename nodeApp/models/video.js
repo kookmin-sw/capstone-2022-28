@@ -30,7 +30,7 @@ class Video extends Sequelize.Model {
                 allowNull: false, 
             },
             isBuy:{
-                type: Sequelize.BOOLEAN,
+                type: Sequelize.STRING(1),
                 allowNull: false, 
             }
 

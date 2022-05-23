@@ -50,7 +50,7 @@ router.post('/insert',async(req,res)=>{
             description :  video_url[i].descriptionList,
             tokenId : video_url[i].tokenList,
             userNick : data_json.nick,
-            isBuy : true,
+            isBuy : "1",
         }) 
         console.log("new_video : ",new_video);
 
@@ -151,19 +151,25 @@ router.get('/buy_art',async(req,res)=>{
     const now_user = await User.findOne({
         where:{
             nick : uniToChar(split_nick) 
-        }
+        } 
     })
-    Video.update(
-        {isBuy:false},
-        {where:{
-            id:token_id
-        }}
-    );
+    const any_art = await Video.update(
+        {
+            isBuy:"0",
+           },
+           //where절 
+           {
+            where : { tokenId : token_id}
+           })
+    console.log(any_art)
     const myart = await Token.create({
         tokenId : token_id,
         video_id : select_art.id,
         user_id : now_user.id
     }) 
+
+    return res.status(200).json(myart);
+
 }) 
 
 router.get('/get_buying_art',async(req,res)=>{

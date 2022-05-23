@@ -49,10 +49,11 @@ function MyArtPage() {
       <LoginNavigationBar />
       <div class="Cbody">
           <h1 className="Text2">내 전시회</h1>
-        
+        <div>
       {myArt.map(
         myArt => (<MyArt myArt={myArt} key={myArt.id}/>
       ))}
+      </div>
       </div>
       <Footer/>
     </div>
