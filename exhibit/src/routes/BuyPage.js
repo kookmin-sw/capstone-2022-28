@@ -45,18 +45,22 @@ function BuyPage(tokenId) {
     }
     console.log("video_token : "+video_token);
     buyCard(video_token, setQrvalue, async() => {
-      
+     
     });
-    const result = await axios.get("http://localhost:8000/video/buy_art",{
-        // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
-        headers:{
-            token_id:video_token, 
-            nick : charToUni(localStorage.getItem("nick")),
-          }
-        })
-        console.log("result가 들어왔어요~~~~~~~~",result);
-      alert("작품이 성공적으로 구매되었습니다.")
+    
     setShow(true);
+    console.log("buycard안입니다.")
+    const result = await axios.get("http://localhost:8000/video/buy_art",{
+      // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+      headers:{
+          token_id:video_token, 
+          nick : charToUni(localStorage.getItem("nick")),
+        }
+      })
+      console.log("result가 들어왔어요~~~~~~~~",result);
+    alert("작품이 성공적으로 구매되었습니다.")
+    console.log("setShow뒤입니다...")
+
   };
   console.log(video_token);
   // console.log(tokenId);

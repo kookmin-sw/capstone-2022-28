@@ -16,20 +16,13 @@ import { useNavigate } from "react-router-dom";
 import WalletModal from "../../routes/WalletModal/WalletModal";
 import { getBalance } from "../../api/UserCaver";
 
-function getBal(status) {
-  if (status) {
-    return getBalance(localStorage.getItem("addressW"));
-  } else {
-    return 0;
-  }
-}
-
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
   const [walletModal, setWalletModal] = useState(false);
   const navigate = useNavigate();
 
   let bal = localStorage.getItem("balance");
+
   let klip_btn = "내 Klip 지갑";
   if (localStorage.getItem("addressW") !== "null") {
     klip_btn = "Klip 변경";

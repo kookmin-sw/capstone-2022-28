@@ -28,6 +28,10 @@ class Video extends Sequelize.Model {
             userNick:{
                 type: Sequelize.STRING(10),
                 allowNull: false, 
+            },
+            isBuy:{
+                type: Sequelize.BOOLEAN,
+                allowNull: false, 
             }
 
         }, {
