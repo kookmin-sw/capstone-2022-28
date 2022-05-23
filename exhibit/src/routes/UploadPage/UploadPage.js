@@ -99,8 +99,7 @@ function UploadPage(props) {
         nick: localStorage.getItem("nick"),
       };
       // axios.post('http://localhost:8000/video/insert',insertDate)
-      axios
-        .post("http://3.39.32.4:8000/video/insert", insertDate)
+      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           navigate("/");

@@ -88,7 +88,7 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
               clearInterval(timerId);
             }
           });
-      }, 10000);
+      }, 20000);
     });
 };
 

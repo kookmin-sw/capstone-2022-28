@@ -156,6 +156,8 @@
     display: grid;
     background-color: #000000;
     min-height: 80%;
+  background-color: black;
+
   }
   
   .card {
