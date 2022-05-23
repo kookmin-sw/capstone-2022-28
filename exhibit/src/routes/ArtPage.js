@@ -15,7 +15,7 @@ import "./page.css";
 // import "../css/bgs.css"
 import VideoImageThumbnail from "react-video-thumbnail-image";
 import { modalGlobalConfig } from "antd/lib/modal/confirm";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
   const [video, setVideo] = useState([]);
@@ -71,33 +71,34 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-
-        <Modal.Header closeButton className='modal_header'>
-        상세정보
-      </Modal.Header>
-        <Modal.Body className='modal_body'>
+        <Modal.Header closeButton className="modal_header">
+          상세정보
+        </Modal.Header>
+        <Modal.Body className="modal_body">
           <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
           <br />
           <h1 class="title">{exhibition.title}</h1>
           <br />
-          
+
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
-        <Modal.Body className='modal_body'>
+        <Modal.Body className="modal_body">
           {video.map((video) => (
             <div class="FrameRoot">
               <div style={{ display: "flex", flexDirection: "row" }}>
                 {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
                   class="video"
-                  onClick={() => navigate("/video", {
-                    state: {
-                      title: video.title,
-                      description: video.description,
-                      url: video.url,
-                      creator_nick: video.userNick,
-                    },
-                  })}
+                  onClick={() =>
+                    navigate("/video", {
+                      state: {
+                        title: video.title,
+                        description: video.description,
+                        url: video.url,
+                        creator_nick: video.userNick,
+                      },
+                    })
+                  }
                 >
                   <VideoImageThumbnail
                     videoUrl={video.url}
@@ -113,13 +114,25 @@ function Exhibition({ exhibition }) {
                   <h4 class="Text2"> {video.title} </h4>
                   <span class="Text1"> {video.description} </span>
                 </div>
-                <button
-                  style={{ float: "right" }}
-                  class="Cbtn"
-                  onClick={() => moveBuyPage(video)}
-                >
-                  buy
-                </button>
+                {video.isBuy === "1" ? (
+                  <button
+                    style={{ float: "right" }}
+                    class="Cbtn"
+                    onClick={() => moveBuyPage(video)}
+                  >
+                    buy
+                  </button>
+                ) : (
+                  <div
+                    style={{
+                      float: "right",
+                      position: "absolute",
+                      right: "40px",
+                    }}
+                  >
+                    매진되었습니다.
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -154,8 +167,8 @@ function ArtPage() {
     // const exhibition_result = await axios.get(
     //  "http://localhost:8000/video/get_art",{
     const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",{
-      
+      "http://3.39.32.4:8000/video/get_art",
+      {
         headers: {
           category: 1,
         },
@@ -166,18 +179,17 @@ function ArtPage() {
   }, []);
 
   return (
-    <div class = "page">
+    <div class="page">
       <LoginNavigationBar />
       <div class="Cbody">
-          <h4 className="Text2">개인전</h4>
-    <div>
-      {exhibition.map((exhibition) => (
-        <Exhibition exhibition={exhibition} key={exhibition.id} />
-      ))}
-
-</div>
+        <h4 className="Text2">개인전</h4>
+        <div>
+          {exhibition.map((exhibition) => (
+            <Exhibition exhibition={exhibition} key={exhibition.id} />
+          ))}
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
