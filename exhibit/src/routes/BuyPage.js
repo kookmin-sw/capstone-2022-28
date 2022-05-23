@@ -49,8 +49,8 @@ function BuyPage(tokenId) {
     buyCard(video_token, setQrvalue, async() => {
       
         handleClose();
-        const result = await axios.get("http://localhost:8000/video/buy_art",{
-        // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+        // const result = await axios.get("http://localhost:8000/video/buy_art",{
+        const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
         headers:{
             token_id:video_token, //토큰 id가져오는 부분으로 변경
             nick : charToUni(localStorage.getItem("nick")),
@@ -72,7 +72,14 @@ function BuyPage(tokenId) {
       <LoginNavigationBar />
       <div class ='Cbody'>
       <div style={{minHeight:'80%', minWidth: '80%',marginLeft: "7rem",marginRight: "7rem", justifyContent:'center' }}>
-          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" , overflow:'hidden',justifyContent:'center' }}>
+          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" , overflow:'hidden',justifyContent:'center' }} onClick={() => navigate("/video", {
+          state: {
+            title: video_title,
+            description: video_description,
+            url: video_url,
+            creator_nick: video_creator_nick,
+          },
+        })}>
           <VideoImageThumbnail 
                 videoUrl={video_url}
                 width={720}
