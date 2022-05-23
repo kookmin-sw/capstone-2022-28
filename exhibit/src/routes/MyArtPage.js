@@ -24,7 +24,7 @@ function MyArt({ myArt }) {
   const handleShow = async (id) => {
     setShow(true);
     // const video_result = await axios.get(
-      // "http://localhost:8000/video/get_video",
+    //   "http://localhost:8000/video/get_video",
     const video_result = await axios.get(
       "http://3.39.32.4:8000/video/get_video",
       {

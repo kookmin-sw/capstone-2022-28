@@ -144,9 +144,6 @@ router.get('/get_video',async(req,res)=>{
 
 router.get('/buy_art',async(req,res)=>{
     console.log("!!!!!!!!!!!!buy하셨군요~?~?~?~?~?~?~?!!!!!!!!!!!!!!!!")
-
-    const token_id = req.header("tokenId")
-
     
     const nick = req.header("nick");
     const token_id = req.header("token_id")
