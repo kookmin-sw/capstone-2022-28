@@ -6,12 +6,12 @@ import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { useNavigate } from "react-router-dom";
 import { FileUpload, ImageUpload } from "react-ipfs-uploader";
 import { listingCard, mintCardWithURI } from "../../api/UserKlip";
-import { addressW } from "../WalletModal/WalletModal";
+import { getBalance } from "../../api/UserCaver";
 import axios from "axios";
 import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
-import Footer from "../../components/Footer"
-import "../../routes/page.css"
+import Footer from "../../components/Footer";
+import "../../routes/page.css";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -34,10 +34,13 @@ function UploadPage(props) {
 
   const handleClose = () => {
     setShow(false);
+    setQrhide(false);
+    setvTitle("");
+    setvideoDescription("");
   };
 
-  const handleShow = async() => {
-    const time = await Number(new Date().getTime())
+  const handleShow = async () => {
+    const time = await Number(new Date().getTime());
     setFileUrl("");
     setShow(true);
     tokenId = time;
@@ -95,7 +98,8 @@ function UploadPage(props) {
         nick: localStorage.getItem("nick"),
       };
       // axios.post('http://localhost:8000/video/insert',insertDate)
-      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
+      axios
+        .post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           navigate("/");
@@ -106,12 +110,12 @@ function UploadPage(props) {
     }
   };
 
-  const AddHandler = (event) => {
+  const AddHandler = () => {
     const insertdata = {
       Url: fileUrl,
       titleList: vTitle,
       descriptionList: videoDescription,
-      tokenList : tokenId,
+      tokenList: tokenId,
     };
     urlList.push(insertdata);
 
@@ -119,152 +123,169 @@ function UploadPage(props) {
   };
 
   return (
-    <div className='page'>
+    <div className="page">
       <LoginNavigationBar />
       <div className={styles.root}>
-        <div >
-          <Title level={2} class={styles.title}>전시회 개최</Title>
+        <div>
+          <Title level={2} class={styles.title}>
+            전시회 개최
+          </Title>
         </div>
         <div className={styles.box}>
-        <label>전시회 포스터</label>
-        <ImageUpload setUrl={setPosterUrl} />
-        <br />
+          <label>전시회 포스터</label>
+          <ImageUpload setUrl={setPosterUrl} />
+          <br />
 
-        <label>작품 업로드({urlList.length})</label>
-        <br />
-        <Button size="lg" type="primary" onClick={handleShow}>
-          업로드 하러가기
-        </Button>
-        {/* 업로드 모달 */}
-        <Modal
-          show={show}
-          onHide={handleClose}
-          {...props}
-          size="1g"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>비디오 추가하기</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FileUpload
-              setUrl={async (url) => {
-                setFileUrl(url);
-                setQrhide(true);
-                setMintorlist("NFT Minting하기");
-                console.log(localStorage.getItem("addressW")+", "+tokenId);
-                await mintCardWithURI(
-                  localStorage.getItem("addressW"),
-                  tokenId,
-                  url,
-                  setQrvalue,
-                  () => {
-                    alert("NFT가 민팅되었습니다.");
-                  }
-                );
-              }}
-            />
+          <label>
+            작품 업로드({urlList.length}) / 남은 Klay:
+            {localStorage.getItem("balance")}
+          </label>
+          <br />
+          <Button size="lg" type="primary" onClick={handleShow}>
+            업로드 하러가기
+          </Button>
+          {/* 업로드 모달 */}
+          <Modal
+            show={show}
+            onHide={handleClose}
+            {...props}
+            size="1g"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>비디오 추가하기</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <FileUpload
+                setUrl={async (url) => {
+                  setFileUrl(url);
+                  setQrhide(true);
+                  setMintorlist("NFT Minting하기");
+                  console.log(
+                    localStorage.getItem("addressW") + ", " + tokenId
+                  );
+                  await mintCardWithURI(
+                    localStorage.getItem("addressW"),
+                    tokenId,
+                    url,
+                    setQrvalue,
+                    () => {
+                      alert("NFT가 민팅되었습니다.");
+                    }
+                  );
+                }}
+              />
 
-            <label>비디오 제목</label>
-            <Input
-              onChange={TitleHandler}
-              value={vTitle}
-              style={{ marginBottom: "2rem" }}
-            />
-            <br />
+              <label>비디오 제목</label>
+              <Input
+                onChange={TitleHandler}
+                value={vTitle}
+                style={{ marginBottom: "2rem" }}
+              />
+              <br />
 
-            <label>비디오 설명</label>
-            <TextArea
-              onChange={videodescriptionHandler}
-              value={videoDescription}
-              style={{ marginBottom: "2rem" }}
-            />
-            <br />
+              <label>비디오 설명</label>
+              <TextArea
+                onChange={videodescriptionHandler}
+                value={videoDescription}
+                style={{ marginBottom: "2rem" }}
+              />
+              <br />
 
-            {qrhide ? (
-              <div>
-                <p>{mintorlist}</p>
-                <hr></hr>
-                <br></br>
-                <div style={{ display: "flex" }}>
-                  <QRCode value={qrvalue} size={200} style={{ margin: "auto" }}>
-                    
-                  </QRCode>
+              {qrhide ? (
+                <div>
+                  <p>{mintorlist}</p>
+                  <hr></hr>
+                  <br></br>
+                  <div style={{ display: "flex" }}>
+                    <QRCode
+                      value={qrvalue}
+                      size={200}
+                      style={{ margin: "auto" }}
+                    ></QRCode>
+                  </div>
+                  <br></br>
                 </div>
-                <br></br>
-              </div>
-            ) : null}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              onClick={async() => {
-                
-                if (vTitle === "" || videoDescription === "")
-                  alert("비디오 정보를 입력해주세요.");
-                else if(fileUrl == ""){
-                  alert("NFT 민팅을 완료해주세요.");
-                }
-                else {
-                  setQrhide(true)
-                  setMintorlist("Market에 등록하기");
-                  listingCard(localStorage.getItem("addressW"),tokenId, setQrvalue, (result) => {
-                    alert("마켓에 NFT가 등록되었습니다.");
-                  });
-                  closeModal(true);
-                }
-              }}
-            >
-             ① 마켓 등록
-            </Button>
-            <Button
-            type="primary">
-            ② 비디오 추가
-            </Button>
-          </Modal.Footer>
-        </Modal>
+              ) : null}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                onClick={async () => {
+                  if (vTitle === "" || videoDescription === "")
+                    alert("비디오 정보를 입력해주세요.");
+                  else if (fileUrl === "") {
+                    alert("NFT 민팅을 완료해주세요.");
+                  } else {
+                    setQrhide(true);
+                    setMintorlist("Market에 등록하기");
+                    listingCard(
+                      localStorage.getItem("addressW"),
+                      tokenId,
+                      setQrvalue,
+                      (result) => {
+                        alert("마켓에 NFT가 등록되었습니다.");
+                      }
+                    );
+                    closeModal(true);
+                  }
+                }}
+              >
+                ① 마켓 등록
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  AddHandler();
+                  handleClose();
+                }}
+              >
+                ② 비디오 추가
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-        <Form onSubmit={onSubmitHandler}>
-          <div className={styles.contents}></div>
-          <br/>
-          <br/> <br></br>
-          <label>전시회 제목</label>
-          <Input
-            onChange={videoTitleHandler}
-            value={VideoTitle}
-            style={{ marginBottom: "2rem" }}
-          ></Input>
-          <br />
-          <label>전시회 설명</label>
-          <TextArea
-            onChange={descriptionHandler}
-            value={Description}
-            style={{ marginBottom: "2rem" }}
-          />
-          <br />
-          <select onChange={categoryHandler} style={{ marginBottom: "2rem" }}>
-            {CategoryOptions.map((item, index) => (
-              <option key={index} value={item.value}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-          <br />
-          <br />
-          <div className={styles.submitBtn}>
-            <Button
-              className="submitBtn"
-              size="lg"
-              type="primary"
-              onClick={onSubmitHandler}
-            >
-              전시회 개최
-            </Button>
+          <Form onSubmit={onSubmitHandler}>
+            <div className={styles.contents}></div>
+            <br />
+            <br /> <br></br>
+            <label>전시회 제목</label>
+            <Input
+              onChange={videoTitleHandler}
+              value={VideoTitle}
+              style={{ marginBottom: "2rem" }}
+            ></Input>
+            <br />
+            <label>전시회 설명</label>
+            <TextArea
+              onChange={descriptionHandler}
+              value={Description}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
+            <select onChange={categoryHandler} style={{ marginBottom: "2rem" }}>
+              {CategoryOptions.map((item, index) => (
+                <option key={index} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+            <br />
+            <br />
+            <div className={styles.submitBtn}>
+              <Button
+                className="submitBtn"
+                size="lg"
+                type="primary"
+                onClick={onSubmitHandler}
+              >
+                전시회 개최
+              </Button>
             </div>
-        </Form>
-          </div>
+          </Form>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
