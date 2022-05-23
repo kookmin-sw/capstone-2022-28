@@ -205,7 +205,6 @@ function ContestPage() {
     );
     setExhibition(exhibition_result.data);
     console.log(exhibition_result);
-
   }, []);
 
   // let random_index = Math.floor(Math.random() * video.length);

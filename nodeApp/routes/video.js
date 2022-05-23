@@ -50,8 +50,10 @@ router.post('/insert',async(req,res)=>{
             description :  video_url[i].descriptionList,
             tokenId : video_url[i].tokenList,
             userNick : data_json.nick,
+            isBuy : "1",
         }) 
         console.log("new_video : ",new_video);
+
 
     }
 
@@ -72,7 +74,6 @@ router.get('/get_art',async(req,res)=>{
         }
     })
     console.log("art_data :", art_data)
-    console.log("createAt :", art_data[0].createdAt)
 
 
     for(var i=0; i<art_data.length;i++){
@@ -143,9 +144,13 @@ router.get('/get_video',async(req,res)=>{
 
 router.get('/buy_art',async(req,res)=>{
     console.log("!!!!!!!!!!!!buy하셨군요~?~?~?~?~?~?~?!!!!!!!!!!!!!!!!")
+
     const token_id = req.header("tokenId")
+
     
     const nick = req.header("nick");
+    const token_id = req.header("token_id")
+
     const split_nick = nick.split("\\");
 
     const select_art = await Video.findOne({
@@ -156,13 +161,25 @@ router.get('/buy_art',async(req,res)=>{
     const now_user = await User.findOne({
         where:{
             nick : uniToChar(split_nick) 
-        }
+        } 
     })
+    const any_art = await Video.update(
+        {
+            isBuy:"0",
+           },
+           //where절 
+           {
+            where : { tokenId : token_id}
+           })
+    console.log(any_art)
     const myart = await Token.create({
         tokenId : token_id,
         video_id : select_art.id,
         user_id : now_user.id
-    })
+    }) 
+
+    return res.status(200).json(myart);
+
 }) 
 
 router.get('/get_buying_art',async(req,res)=>{
