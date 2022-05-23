@@ -4,7 +4,7 @@ import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import { Typography, Button, Form, message, Input } from "antd";
 import img from "../components/Image/001.png";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import VideoImageThumbnail from 'react-video-thumbnail-image';
 import { Modal } from "react-bootstrap";
 import { buyCard } from "../api/UserKlip";
@@ -27,6 +27,7 @@ function BuyPage(tokenId) {
   const video_creator_nick = video_datas.state.creator_nick;
   const poster_url = video_datas.state.poster_url;
   const poster_title = video_datas.state.poster_title;
+  const navigate = useNavigate();
 
 
   console.log("비디오정보", video_datas.state);
@@ -53,7 +54,9 @@ function BuyPage(tokenId) {
           }
         })
         console.log("result가 들어왔어요~~~~~~~~",result);
-      alert("작품이 성공적으로 구매되었습니다.")
+        alert("작품이 성공적으로 구매되었습니다.")
+        handleClose();
+        navigate("/",{});
     });
     setShow(true);
   };
