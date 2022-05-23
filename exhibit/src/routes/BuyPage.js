@@ -4,12 +4,11 @@ import Auth from "../hoc/auth";
 import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
 import { Typography, Button, Form, message, Input } from "antd";
 import img from "../components/Image/001.png";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import VideoImageThumbnail from 'react-video-thumbnail-image';
 import { Modal } from "react-bootstrap";
 import { buyCard } from "../api/UserKlip";
 import QRCode from "qrcode.react";
-import Footer from '../components/Footer'
 
 
 const { Title } = Typography;
@@ -28,7 +27,6 @@ function BuyPage(tokenId) {
   const video_creator_nick = video_datas.state.creator_nick;
   const poster_url = video_datas.state.poster_url;
   const poster_title = video_datas.state.poster_title;
-  const navigate = useNavigate();
 
 
   console.log("비디오정보", video_datas.state);
@@ -37,7 +35,7 @@ function BuyPage(tokenId) {
     setShow(false);
   };
 
-  const handleShow = async() => {
+  const handleShow = () => {
     const charToUni = (char)=>{
       var uni_code = ""
       for(var i=0; i<char.length;i++){
@@ -57,36 +55,37 @@ function BuyPage(tokenId) {
           }
         })
         console.log("result가 들어왔어요~~~~~~~~",result);
-        alert("작품이 성공적으로 구매되었습니다.")
-        navigate("/",{});
-
+      alert("작품이 성공적으로 구매되었습니다.")
     });
-    
     setShow(true);
   };
   console.log(video_token);
   // console.log(tokenId);
   
   return (
-    <div class='page'>
+    <div>
       <LoginNavigationBar />
-      <div class ='Cbody'>
-      <div style={{minHeight:'80%', minWidth: '80%',marginLeft: "7rem",marginRight: "7rem", justifyContent:'center' }}>
-          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" , overflow:'hidden',justifyContent:'center' }}>
+      <div style={{ maxWidth: "900px", margin: "7rem auto" }}>
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        </div>
+        <div >
+          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" }}>
           <VideoImageThumbnail 
                 videoUrl={video_url}
                 width={720}
                 height={528}
                 thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                 alt={video_title}
-              /> 
+              />  
+          </div>
+          
         </div>
           {/* <img src={poster_url} width="100" height="100" alt="image" /> */}
           {/* <label> 포스터 제목 : {poster_title}</label> */}
           
           <div class="box1">
             <div class='box2'>
-            <h3 style={{color:'white'}}>{video_title}</h3>
+            <h1>{video_title}</h1>
             <div>
             <span class='creater'>creater</span>
 
@@ -144,8 +143,6 @@ function BuyPage(tokenId) {
         </Modal.Footer>
         </Modal>
       </div>
-      </div>
-      <Footer/>
     </div>
   );
 }

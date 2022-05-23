@@ -77,7 +77,6 @@ function UploadPage(props) {
   const [qrhide, setQrhide] = useState(false);
   const [mintorlist, setMintorlist] = useState("NFT Minting하기");
   const [closeModal, setCloseModal] = useState(false);
-  const [mintrue, setMintrue] = useState(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -125,12 +124,11 @@ function UploadPage(props) {
   return (
     <div className="page">
       <LoginNavigationBar />
-
-      <div class='Cbody'>
-      {/* <div className={styles.root}> */}
-        <div >
-          <Title level={2} class={styles.title}>전시회 개최</Title>
-
+      <div className={styles.root}>
+        <div>
+          <Title level={2} class={styles.title}>
+            전시회 개최
+          </Title>
         </div>
         <div className={styles.box}>
           <label>전시회 포스터</label>
@@ -172,8 +170,7 @@ function UploadPage(props) {
                     url,
                     setQrvalue,
                     () => {
-                      setQrhide(false);
-                      setMintrue(true);
+                      alert("NFT가 민팅되었습니다.");
                     }
                   );
                 }}
@@ -216,7 +213,7 @@ function UploadPage(props) {
                 onClick={async () => {
                   if (vTitle === "" || videoDescription === "")
                     alert("비디오 정보를 입력해주세요.");
-                  else if (!mintrue) {
+                  else if (fileUrl === "") {
                     alert("NFT 민팅을 완료해주세요.");
                   } else {
                     setQrhide(true);
@@ -227,7 +224,6 @@ function UploadPage(props) {
                       setQrvalue,
                       (result) => {
                         alert("마켓에 NFT가 등록되었습니다.");
-                        setQrhide(false);
                       }
                     );
                     closeModal(true);
@@ -288,11 +284,7 @@ function UploadPage(props) {
           </Form>
         </div>
       </div>
-
-      
-      {/* </div> */}
-      <Footer/>
-
+      <Footer />
     </div>
   );
 }
