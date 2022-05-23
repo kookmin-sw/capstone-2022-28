@@ -77,7 +77,6 @@ function UploadPage(props) {
   const [qrhide, setQrhide] = useState(false);
   const [mintorlist, setMintorlist] = useState("NFT Minting하기");
   const [closeModal, setCloseModal] = useState(false);
-  const [mintrue, setMintrue] = useState(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -99,8 +98,7 @@ function UploadPage(props) {
         nick: localStorage.getItem("nick"),
       };
       // axios.post('http://localhost:8000/video/insert',insertDate)
-      axios
-        .post("http://3.39.32.4:8000/video/insert", insertDate)
+      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
           console.log(response);
           navigate("/");
@@ -126,9 +124,7 @@ function UploadPage(props) {
   return (
     <div className="page">
       <LoginNavigationBar />
-
-      <div class="Cbody">
-        {/* <div className={styles.root}> */}
+      <div className={styles.root}>
         <div>
           <Title level={2} class={styles.title}>
             전시회 개최
@@ -139,7 +135,10 @@ function UploadPage(props) {
           <ImageUpload setUrl={setPosterUrl} />
           <br />
 
-          <label>작품 업로드({urlList.length})</label>
+          <label>
+            작품 업로드({urlList.length}) / 남은 Klay:
+            {localStorage.getItem("balance")}
+          </label>
           <br />
           <Button size="lg" type="primary" onClick={handleShow}>
             업로드 하러가기
@@ -171,8 +170,7 @@ function UploadPage(props) {
                     url,
                     setQrvalue,
                     () => {
-                      setQrhide(false);
-                      setMintrue(true);
+                      alert("NFT가 민팅되었습니다.");
                     }
                   );
                 }}
@@ -215,7 +213,7 @@ function UploadPage(props) {
                 onClick={async () => {
                   if (vTitle === "" || videoDescription === "")
                     alert("비디오 정보를 입력해주세요.");
-                  else if (!mintrue) {
+                  else if (fileUrl === "") {
                     alert("NFT 민팅을 완료해주세요.");
                   } else {
                     setQrhide(true);
@@ -226,7 +224,6 @@ function UploadPage(props) {
                       setQrvalue,
                       (result) => {
                         alert("마켓에 NFT가 등록되었습니다.");
-                        setQrhide(false);
                       }
                     );
                     closeModal(true);
@@ -287,8 +284,6 @@ function UploadPage(props) {
           </Form>
         </div>
       </div>
-
-      {/* </div> */}
       <Footer />
     </div>
   );
