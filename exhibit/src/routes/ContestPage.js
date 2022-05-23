@@ -167,8 +167,8 @@ function ContestPage() {
 
   return (
     <div class="page">
-      <div>
       <LoginNavigationBar />
+      <div class="Cbody">
     <header
     class="banner"
     style={{backgroundSize:'cover',

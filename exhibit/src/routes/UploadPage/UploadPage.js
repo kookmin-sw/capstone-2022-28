@@ -125,11 +125,12 @@ function UploadPage(props) {
   return (
     <div className="page">
       <LoginNavigationBar />
-      <div className={styles.root}>
-        <div>
-          <Title level={2} class={styles.title}>
-            전시회 개최
-          </Title>
+
+      <div class='Cbody'>
+      {/* <div className={styles.root}> */}
+        <div >
+          <Title level={2} class={styles.title}>전시회 개최</Title>
+
         </div>
         <div className={styles.box}>
           <label>전시회 포스터</label>
@@ -285,7 +286,11 @@ function UploadPage(props) {
           </Form>
         </div>
       </div>
-      <Footer />
+
+      
+      {/* </div> */}
+      <Footer/>
+
     </div>
   );
 }
