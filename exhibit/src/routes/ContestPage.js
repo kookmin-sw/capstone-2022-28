@@ -71,10 +71,10 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton class='modal_header'>
+        <Modal.Header closeButton className='modal_header'>
         상세정보
       </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal_body">
           <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
           <br />
           <h1 class="title">{exhibition.title}</h1>
@@ -82,7 +82,7 @@ function Exhibition({ exhibition }) {
           
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
-        <Modal.Body>
+        <Modal.Body className="modal_body">
           {video.map((video) => (
             <div class="FrameRoot">
               <div style={{ display: "flex", flexDirection: "row" }}>
