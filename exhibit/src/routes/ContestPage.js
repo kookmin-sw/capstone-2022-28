@@ -5,24 +5,31 @@ import "./page.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import Layout from "../components/Layout";
-
 import "./banner.css"
 import Footer from "../components/Footer"
-
-
-import { Modal, ModalTitle } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "./page.css";
 import VideoImageThumbnail from "react-video-thumbnail-image";
+import ReactPlayer from 'react-player'
 
 
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
   const [video, setVideo] = useState([]);
+  const [allVideo, setAllVideo] = useState([]);
   const [show, setShow] = useState(false);
+
   const handleClose = () => {
     setShow(false);
   };
+
+  useEffect(async () => {
+    const all_video_result = await axios.get(
+      "http://localhost:8000/video/get_all_video"
+    );
+    setAllVideo(all_video_result.data);
+    
+  }, []);
 
   const moveBuyPage = (video) => {
     navigate("/buy", {
@@ -37,7 +44,6 @@ function Exhibition({ exhibition }) {
       },
     });
   };
-
   const handleShow = async (id) => {
     setShow(true);
     // const video_result = await axios.get(
@@ -54,8 +60,38 @@ function Exhibition({ exhibition }) {
     setVideo(video_result.data);
     console.log("video!!!!!!!", video);
   };
+  let random_index = Math.floor(Math.random() * allVideo.length);
 
   return (
+    <>
+      <div class="page">
+      <LoginNavigationBar />
+      <div class="Cbody">
+    <header
+    class="banner"
+    style={{backgroundSize:'cover',
+    backgroundImage: `url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg")`,
+    backgroundPosition:'center center',}}>
+      <div class='banner__contents'>
+        <h1 class='banner__title'>{allVideo[random_index]?.title}</h1>
+        <button class="banner__btn" onClick={() => navigate("/video", {
+                    state: {
+                      title: allVideo[random_index]?.title,
+                      description: allVideo[random_index]?.description,
+                      url: allVideo[random_index]?.url,
+                      creator_nick: allVideo[random_index]?.userNick,
+                    },
+                  })}>Play</button>
+        <button class="banner__btn" onClick={() => moveBuyPage(allVideo[random_index])}>구매하기</button>
+      </div>
+      <h1 class="banner__description">
+        {allVideo[random_index]?.description}
+      </h1>
+      <div className="banner--Bottom"/>
+    </header>
+    <div style={{minHeight: '200px'}}>
+      <h4 class='Text2'>{exhibition.userNick}님의 전시회</h4>
+      <div class="row__posters"></div>
     <span>
       <ImgBox
         id={exhibition.id}
@@ -125,6 +161,11 @@ function Exhibition({ exhibition }) {
         </Modal.Body>
       </Modal>
     </span>
+    </div>
+    </div>
+    <Footer/>
+    </div>
+    </>
 
     // <Modal
     //     show={show}
@@ -149,6 +190,7 @@ function Exhibition({ exhibition }) {
 function ContestPage() {
 
   const [exhibition, setExhibition] = useState([]);
+  // const [video, setVideo] = useState([]);
 
   useEffect(async () => {
     // const exhibition_result = await axios.get(
@@ -165,41 +207,11 @@ function ContestPage() {
     console.log(exhibition_result);
   }, []);
 
-  return (
-    <div class="page">
-      <LoginNavigationBar />
-      <div class="Cbody">
-    <header
-    class="banner"
-    style={{backgroundSize:'cover',
-    backgroundImage: `url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg")`,
-    backgroundPosition:'center center',}}>
-      <div class='banner__contents'>
-        <h1 class='banner__title'>title</h1>
-        <button class="banner__btn">Play</button>
-        <button class="banner__btn">구매하기</button>
+  // let random_index = Math.floor(Math.random() * video.length);
 
-      </div>
-
-      <h1 class="banner__description">
-        description description description description description description description description description description description description description description description description description
-        description description description description description description description description description description description 
-      </h1>
-      <div className="banner--Bottom"/>
-    </header>
-    <div style={{minHeight: '200px'}}>
-      <h4 class='Text2'>김하연님의 전시회</h4>
-      <div class="row__posters">
-   
-      {exhibition.map(
-        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.id}/>))}
-      
-</div>
-    </div>
-    </div>
-    <Footer/>
-    </div>
-
+  return ( 
+      exhibition.map(
+        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.userNick}/>))
   );
 }
 

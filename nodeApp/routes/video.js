@@ -120,6 +120,13 @@ router.get("/get_myart",async(req,res)=>{
      
 }) 
 
+router.get('/get_all_video',async(req,res)=>{ 
+    console.log("~~~~~~~~~~~~~~get video~~~~~~~~~~~~~~~~~~~~~")
+    const videos = await Video.findAll();
+    console.log("모든 비디오", videos);
+    return res.status(200).json(videos);
+})
+
 router.get('/get_video',async(req,res)=>{ 
     console.log("~~~~~~~~~~~~~~get video~~~~~~~~~~~~~~~~~~~~~")
 
@@ -137,6 +144,9 @@ router.get('/get_video',async(req,res)=>{
 
 router.get('/buy_art',async(req,res)=>{
     console.log("!!!!!!!!!!!!buy하셨군요~?~?~?~?~?~?~?!!!!!!!!!!!!!!!!")
+
+    const token_id = req.header("tokenId")
+
     
     const nick = req.header("nick");
     const token_id = req.header("token_id")
