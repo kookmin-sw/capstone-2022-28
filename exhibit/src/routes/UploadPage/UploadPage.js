@@ -1,234 +1,299 @@
-import React, { useEffect, useState } from "react";
-import Auth from "../hoc/auth";
-import LoginNavigationBar from "../components/Navbar/LoginNavigationBar";
-import "./page.css";
+import React, { useState } from "react";
+import { Typography, Form, Input, Button } from "antd";
+import styles from "./UploadPage.module.css";
+import Auth from "../../hoc/auth";
+import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { useNavigate } from "react-router-dom";
+import { FileUpload, ImageUpload } from "react-ipfs-uploader";
+import { listingCard, mintCardWithURI } from "../../api/UserKlip";
+import { getBalance } from "../../api/UserCaver";
 import axios from "axios";
-import styled from "styled-components";
-import "./banner.css"
-import Footer from "../components/Footer"
+import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
-import "./page.css";
-import VideoImageThumbnail from "react-video-thumbnail-image";
+import Footer from "../../components/Footer";
+import "../../routes/page.css";
 
+const { Title } = Typography;
+const { TextArea } = Input;
+var urlList = [];
+var titleList = [];
+var descriptionList = [];
+let tokenList = [];
+let tokenId = 0;
 
-function Exhibition({ exhibition }) {
+const CategoryOptions = [
+  { value: 0, label: "Competition" },
+  { value: 1, label: "Challenge" },
+];
+
+function UploadPage(props) {
   const navigate = useNavigate();
-  const [video, setVideo] = useState([]);
-  const [allVideo, setAllVideo] = useState([]);
+  const [fileUrl, setFileUrl] = useState("");
   const [show, setShow] = useState(false);
+  const [id, setId] = useState(0);
 
   const handleClose = () => {
     setShow(false);
+    setQrhide(false);
+    setvTitle("");
+    setvideoDescription("");
   };
 
-  useEffect(async () => {
-    // const all_video_result = await axios.get(
-    //   "http://localhost:8000/video/get_all_video"
-    // );
-    const all_video_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_all_video"
-    );
-    setAllVideo(all_video_result.data);
-    
-  }, []);
-
-  const moveBuyPage = (video) => {
-    navigate("/buy", {
-      state: {
-        title: video.title,
-        description: video.description,
-        url: video.url,
-        poster_url: exhibition.poster_url,
-        poster_title: exhibition.title,
-        token: video.tokenId,
-        creator_nick: video.userNick,
-      },
-    });
-  };
-  const handleShow = async (id) => {
+  const handleShow = async () => {
+    const time = await Number(new Date().getTime());
+    setFileUrl("");
     setShow(true);
-    // const video_result = await axios.get(
-    //  "http://localhost:8000/video/get_video",
-    const video_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_video",
-      {
-        headers: {
-          exhibition: id,
-        },
-      }
-    );
-    console.log("video_result가 들어왔어요~~~~~~~~", video_result);
-    setVideo(video_result.data);
-    console.log("video!!!!!!!", video);
+    tokenId = time;
   };
-  let random_index = Math.floor(Math.random() * allVideo.length);
+
+  const [posterUrl, setPosterUrl] = useState("");
+  const [qrvalue, setQrvalue] = useState("DEFAULT");
+
+  const [VideoTitle, setVideoTitle] = useState("");
+  const videoTitleHandler = (event) => {
+    setVideoTitle(event.target.value);
+  };
+
+  const [vTitle, setvTitle] = useState("");
+  const TitleHandler = (event) => {
+    setvTitle(event.target.value);
+  };
+
+  const [Description, setDescription] = useState("");
+  const descriptionHandler = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const [videoDescription, setvideoDescription] = useState("");
+  const videodescriptionHandler = (event) => {
+    setvideoDescription(event.target.value);
+  };
+
+  const [Category, setCategory] = useState(0);
+  const categoryHandler = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const [qrhide, setQrhide] = useState(false);
+  const [mintorlist, setMintorlist] = useState("NFT Minting하기");
+  const [closeModal, setCloseModal] = useState(false);
+  const [mintrue, setMintrue] = useState(false);
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(Category);
+    if (
+      posterUrl === "" ||
+      urlList.length === 0 ||
+      Description === "" ||
+      VideoTitle === ""
+    ) {
+      alert("모든 정보를 입력해야합니다.");
+    } else {
+      const insertDate = {
+        title: VideoTitle,
+        description: Description,
+        category: Category,
+        videosUrl: urlList,
+        posterUrl: posterUrl,
+        nick: localStorage.getItem("nick"),
+      };
+      // axios.post('http://localhost:8000/video/insert',insertDate)
+      axios.post("http://3.39.32.4:8000/video/insert", insertDate)
+        .then((response) => {
+          console.log(response);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log("error : ", error.response);
+        });
+    }
+  };
+
+  const AddHandler = () => {
+    const insertdata = {
+      Url: fileUrl,
+      titleList: vTitle,
+      descriptionList: videoDescription,
+      tokenList: tokenId,
+    };
+    urlList.push(insertdata);
+
+    console.log(urlList);
+  };
 
   return (
-    <>
-      <div class="page">
+    <div className="page">
       <LoginNavigationBar />
-      <div class="Cbody">
-    <header
-    class="banner"
-    style={{backgroundSize:'cover',
-    backgroundImage: `url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg")`,
-    backgroundPosition:'center center',}}>
-      <div class='banner__contents'>
-        <h1 class='banner__title'>{allVideo[random_index]?.title}</h1>
-        <button class="banner__btn" onClick={() => navigate("/video", {
-                    state: {
-                      title: allVideo[random_index]?.title,
-                      description: allVideo[random_index]?.description,
-                      url: allVideo[random_index]?.url,
-                      creator_nick: allVideo[random_index]?.userNick,
-                    },
-                  })}>Play</button>
-        <button class="banner__btn" onClick={() => moveBuyPage(allVideo[random_index])}>구매하기</button>
-      </div>
-      <h1 class="banner__description">
-        {allVideo[random_index]?.description}
-      </h1>
-      <div className="banner--Bottom"/>
-    </header>
-    <div style={{minHeight: '200px'}}>
-      <h4 class='Text2'>{exhibition.userNick}님의 전시회</h4>
-      <div class="row__posters"></div>
-    <span>
-      <ImgBox
-        id={exhibition.id}
-        src={exhibition.poster_url}
-        alt={exhibition.title}
-        onClick={() => handleShow(exhibition.id)}
-      />
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton className='modal_header'>
-        상세정보
-      </Modal.Header>
-        <Modal.Body className="modal_body">
-          <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
+      <div class='Cbody'>
+      {/* <div className={styles.root}> */}
+        <div >
+          <Title level={2} class={styles.title}>전시회 개최</Title>
+
+        </div>
+        <div className={styles.box}>
+          <label>전시회 포스터</label>
+          <ImageUpload setUrl={setPosterUrl} />
           <br />
-          <h1 class="title">{exhibition.title}</h1>
+
+          <label>
+            작품 업로드({urlList.length})
+          </label>
           <br />
-          
-          <div class="title"> {exhibition.description}</div>
-        </Modal.Body>
-        <Modal.Body className="modal_body">
-          {video.map((video) => (
-            <div class="FrameRoot">
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                {/* <img class="video" src={video.url} alt={video.title}/> */}
-                <div
-                  class="video"
-                  onClick={() => navigate("/video", {
-                    state: {
-                      title: video.title,
-                      description: video.description,
-                      url: video.url,
-                      creator_nick: video.userNick,
-                    },})}
-                >
-                  <VideoImageThumbnail
-            
-                    videoUrl={video.url}
-                    width={160}
-                    height={120}
-                    borderRadius={7}
-                    thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                    alt={video.title}
-                  />
-                </div>
-                {/* <img class="image" src={video.url} alt={video.title}/> */}
+          <Button size="lg" type="primary" onClick={handleShow}>
+            업로드 하러가기
+          </Button>
+          {/* 업로드 모달 */}
+          <Modal
+            show={show}
+            onHide={handleClose}
+            {...props}
+            size="1g"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>비디오 추가하기</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <FileUpload
+                setUrl={async (url) => {
+                  setFileUrl(url);
+                  setQrhide(true);
+                  setMintorlist("NFT Minting하기");
+                  console.log(
+                    localStorage.getItem("addressW") + ", " + tokenId
+                  );
+                  await mintCardWithURI(
+                    localStorage.getItem("addressW"),
+                    tokenId,
+                    url,
+                    setQrvalue,
+                    () => {
+                      setQrhide(false);
+                      setMintrue(true);
+                    }
+                  );
+                }}
+              />
+
+              <label>비디오 제목</label>
+              <Input
+                onChange={TitleHandler}
+                value={vTitle}
+                style={{ marginBottom: "2rem" }}
+              />
+              <br />
+
+              <label>비디오 설명</label>
+              <TextArea
+                onChange={videodescriptionHandler}
+                value={videoDescription}
+                style={{ marginBottom: "2rem" }}
+              />
+              <br />
+
+              {qrhide ? (
                 <div>
-                  <h4 class="Text2"> {video.title} </h4>
-                  <span class="Text1"> {video.description} </span>
+                  <p>{mintorlist}</p>
+                  <hr></hr>
+                  <br></br>
+                  <div style={{ display: "flex" }}>
+                    <QRCode
+                      value={qrvalue}
+                      size={200}
+                      style={{ margin: "auto" }}
+                    ></QRCode>
+                  </div>
+                  <br></br>
                 </div>
-                <button
-                  style={{ float: "right" }}
-                  class="Cbtn"
-                  onClick={() => moveBuyPage(video)}
-                >
-                  buy
-                </button>
-              </div>
+              ) : null}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                onClick={async () => {
+                  if (vTitle === "" || videoDescription === "")
+                    alert("비디오 정보를 입력해주세요.");
+                  else if (!mintrue) {
+                    alert("NFT 민팅을 완료해주세요.");
+                  } else {
+                    setQrhide(true);
+                    setMintorlist("Market에 등록하기");
+                    listingCard(
+                      localStorage.getItem("addressW"),
+                      tokenId,
+                      setQrvalue,
+                      (result) => {
+                        alert("마켓에 NFT가 등록되었습니다.");
+                        setQrhide(false);
+                      }
+                    );
+                    closeModal(true);
+                  }
+                }}
+              >
+                ① 마켓 등록
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  AddHandler();
+                  handleClose();
+                }}
+              >
+                ② 비디오 추가
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <Form onSubmit={onSubmitHandler}>
+            <div className={styles.contents}></div>
+            <br />
+            <br /> <br></br>
+            <label>전시회 제목</label>
+            <Input
+              onChange={videoTitleHandler}
+              value={VideoTitle}
+              style={{ marginBottom: "2rem" }}
+            ></Input>
+            <br />
+            <label>전시회 설명</label>
+            <TextArea
+              onChange={descriptionHandler}
+              value={Description}
+              style={{ marginBottom: "2rem" }}
+            />
+            <br />
+            <select onChange={categoryHandler} style={{ marginBottom: "2rem" }}>
+              {CategoryOptions.map((item, index) => (
+                <option key={index} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+            <br />
+            <br />
+            <div className={styles.submitBtn}>
+              <Button
+                className="submitBtn"
+                size="lg"
+                type="primary"
+                onClick={onSubmitHandler}
+              >
+                전시회 개최
+              </Button>
             </div>
-          ))}
-        </Modal.Body>
-      </Modal>
-    </span>
-    </div>
-    </div>
-    <Footer/>
-    </div>
-    </>
+          </Form>
+        </div>
+      </div>
 
-    // <Modal
-    //     show={show}
-    //     onHide={handleClose}
-    //     size="lg"
-    //     aria-labelledby="contained-modal-title-vcenter"
-    //     centered
-    // >
-    //     <Modal.Header closeButton>
-    //       {exhibition.title}
-    //       <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
-    //     </Modal.Header>
-    //     <Modal.Body>
-    //       {exhibition.description}
-    //     </Modal.Body>
-    //     <Modal.Footer>
-    //     </Modal.Footer>
-    // </Modal>
-  );
-}
-
-function ContestPage() {
-
-  const [exhibition, setExhibition] = useState([]);
-  // const [video, setVideo] = useState([]);
-
-  useEffect(async () => {
-    // const exhibition_result = await axios.get(
-    //  "http://localhost:8000/video/get_art",{
-    const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",{
       
-        headers: {
-          category: 0,
-        },
-      }
-    );
-    setExhibition(exhibition_result.data);
-    console.log(exhibition_result);
-  }, []);
+      {/* </div> */}
+      <Footer/>
 
-  // let random_index = Math.floor(Math.random() * video.length);
-
-  return ( 
-      exhibition.map(
-        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.userNick}/>))
+    </div>
   );
 }
 
-const ImgBox = styled.img`
-  width: 220px;
-  height: 308px;
-  border-radius: 7px;
-  margin: 10px;
-  
-  cursor: pointer;
-
-  &:hover {
-    transform: scale(1.1);
-    transition: transform 0.35s;
-  }
-`;
-
-export default Auth(ContestPage, true);
+export default Auth(UploadPage, true);
