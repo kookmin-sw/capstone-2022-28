@@ -40,10 +40,10 @@ function Exhibition({ exhibition }) {
 
   const handleShow = async (id) => {
     setShow(true);
-    // const video_result = await axios.get(
-    //  "http://localhost:8000/video/get_video",
     const video_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_video",
+     "http://localhost:8000/video/get_video",
+    // const video_result = await axios.get(
+    //   "http://3.39.32.4:8000/video/get_video",
       {
         headers: {
           exhibition: id,
@@ -151,10 +151,10 @@ function ArtPage() {
   const [exhibition, setExhibition] = useState([]);
 
   useEffect(async () => {
-    // const exhibition_result = await axios.get(
-    //  "http://localhost:8000/video/get_art",{
     const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",{
+     "http://localhost:8000/video/get_art",{
+    // const exhibition_result = await axios.get(
+    //   "http://3.39.32.4:8000/video/get_art",{
       
         headers: {
           category: 1,

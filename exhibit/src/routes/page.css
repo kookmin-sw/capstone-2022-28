@@ -155,6 +155,8 @@
    padding-top: 90px;
     display: grid;
     min-height: 80%;
+  background-color: black;
+
   }
   
   .card {

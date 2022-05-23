@@ -72,7 +72,6 @@ router.get('/get_art',async(req,res)=>{
         }
     })
     console.log("art_data :", art_data)
-    console.log("createAt :", art_data[0].createdAt)
 
 
     for(var i=0; i<art_data.length;i++){

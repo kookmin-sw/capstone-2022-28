@@ -35,7 +35,7 @@ function BuyPage(tokenId) {
     setShow(false);
   };
 
-  const handleShow = () => {
+  const handleShow = async() => {
     const charToUni = (char)=>{
       var uni_code = ""
       for(var i=0; i<char.length;i++){
@@ -45,16 +45,17 @@ function BuyPage(tokenId) {
     }
     console.log("video_token : "+video_token);
     buyCard(video_token, setQrvalue, async() => {
-      // const result = await axios.get("http://localhost:8000/video/buy_art",{
-        const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+      
+    });
+    const result = await axios.get("http://localhost:8000/video/buy_art",{
+        // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
         headers:{
-            token_id:video_token, //토큰 id가져오는 부분으로 변경
+            token_id:video_token, 
             nick : charToUni(localStorage.getItem("nick")),
           }
         })
         console.log("result가 들어왔어요~~~~~~~~",result);
       alert("작품이 성공적으로 구매되었습니다.")
-    });
     setShow(true);
   };
   console.log(video_token);
