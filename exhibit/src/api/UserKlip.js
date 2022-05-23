@@ -10,8 +10,8 @@ export const buyCard = async (
     setQrvalue,
     callback
 ) => {
-    const functionJSON = '{"constant": false,"inputs": [{"name": "tokenId","type": "uint256"},{"name":"NFT","type": "address"}],"name": "buyNFT","outputs": [{"name": "","type": "bool"}],"payable": true,"stateMutability": "payable","type": "function"}';
-    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "10000000000000000", `[\"${tokenId}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\"]`,setQrvalue,callback);
+    const functionJSON = '{"constant": false,"inputs": [{"name": "tokenId","type": "uint256"},{"name": "NFT","type": "address"}],"name": "buyNFT","outputs": [{"name": "","type": "bool"}],"payable": true,"stateMutability": "payable","type": "function"}';
+    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "10000000000000000", `[\"${tokenId}\",\"${NFT_CONTRACT_ADDRESS_MAIN}\"]`,setQrvalue,callback);
 };
 
 const getKlipAccessUrl = (method, request_key) => {
@@ -33,8 +33,8 @@ export const listingCard = async (
     setQrvalue,
     callback
 ) => {
-    const functionJSON = '{ "constant": false, "inputs": [ { "name": "from", "type": "address" }, { "name": "to", "type": "address" }, { "name": "tokenId", "type": "uint256" } ], "name": "safeTransferFrom", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
-    executeContract(MARKET_CONTRACT_ADDRESS_MAIN, functionJSON, "0", `[\"${fromAddress}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\",\"${tokenId}\"]`,setQrvalue,callback);
+    const functionJSON = '{"constant": false,"inputs": [{"name": "from","type": "address"},{"name": "to","type": "address"},{"name": "tokenId","type": "uint256"}],"name": "safeTransferFrom","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"}';
+    executeContract(NFT_CONTRACT_ADDRESS_MAIN, functionJSON, "0", `[\"${fromAddress}\",\"${MARKET_CONTRACT_ADDRESS_MAIN}\",\"${tokenId}\"]`,setQrvalue,callback);
 };
 
 export const mintCardWithURI = async (
@@ -46,7 +46,6 @@ export const mintCardWithURI = async (
   ) => {
     const functionJson =
       '{ "constant": false, "inputs": [ { "name": "to", "type": "address" }, { "name": "tokenId", "type": "uint256" }, { "name": "tokenURI", "type": "string" } ], "name": "mintWithTokenURI", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function" }';
-    console.log("Start Minting");
     executeContract(
       NFT_CONTRACT_ADDRESS_MAIN,
       functionJson,
@@ -163,4 +162,3 @@ export const getAddress = (setQrvalue, callback) => {
         cnt = 0;
     })
 };
-
