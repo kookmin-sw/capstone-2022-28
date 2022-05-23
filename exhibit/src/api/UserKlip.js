@@ -82,14 +82,13 @@ export const executeContract = (txTo, functionJSON, value, params, setQrvalue, c
             `/result?request_key=${request_key}`
           )
           .then((res) => {
-            console.log(`minting... ${txTo}, ${res.data.result}, ${request_key}`);
             if (res.data.result) {
               console.log(`[Result] ${JSON.stringify(res.data.result)}`);
               callback(res.data.result);
               clearInterval(timerId);
             }
           });
-      }, 10000000);
+      }, 10000);
     });
 };
 

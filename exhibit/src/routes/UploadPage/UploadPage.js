@@ -77,6 +77,7 @@ function UploadPage(props) {
   const [qrhide, setQrhide] = useState(false);
   const [mintorlist, setMintorlist] = useState("NFT Minting하기");
   const [closeModal, setCloseModal] = useState(false);
+  const [mintrue, setMintrue] = useState(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -172,7 +173,8 @@ function UploadPage(props) {
                     url,
                     setQrvalue,
                     () => {
-                      alert("NFT가 민팅되었습니다.");
+                      setQrhide(false);
+                      setMintrue(true);
                     }
                   );
                 }}
@@ -215,7 +217,7 @@ function UploadPage(props) {
                 onClick={async () => {
                   if (vTitle === "" || videoDescription === "")
                     alert("비디오 정보를 입력해주세요.");
-                  else if (fileUrl === "") {
+                  else if (!mintrue) {
                     alert("NFT 민팅을 완료해주세요.");
                   } else {
                     setQrhide(true);
@@ -226,6 +228,7 @@ function UploadPage(props) {
                       setQrvalue,
                       (result) => {
                         alert("마켓에 NFT가 등록되었습니다.");
+                        setQrhide(false);
                       }
                     );
                     closeModal(true);
