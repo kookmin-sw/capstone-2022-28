@@ -49,8 +49,8 @@ function BuyPage(tokenId) {
     buyCard(video_token, setQrvalue, async() => {
       
         handleClose();
-        const result = await axios.get("http://localhost:8000/video/buy_art",{
-        // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+        // const result = await axios.get("http://localhost:8000/video/buy_art",{
+        const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
         headers:{
             token_id:video_token, //토큰 id가져오는 부분으로 변경
             nick : charToUni(localStorage.getItem("nick")),
