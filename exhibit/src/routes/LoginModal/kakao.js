@@ -42,8 +42,8 @@ const Kakao = (props) => {
 
     //서버로 요청
     await axios.get(`http://3.39.32.4:8000/oauth/kakao/callback?code=${code}`, {
-      // .get(`http://localhost:8000/oauth/kakao/callback?code=${code}`, {
-
+    // await axios.get(`http://localhost:8000/oauth/kakao/callback?code=${code}`, {
+        
         headers: {
           Authorizations: `${header_token}`,
         },

@@ -10,7 +10,6 @@ import Footer from "../components/Footer"
 import { Modal } from "react-bootstrap";
 import "./page.css";
 import VideoImageThumbnail from "react-video-thumbnail-image";
-import ReactPlayer from 'react-player'
 
 
 function Exhibition({ exhibition }) {
@@ -24,8 +23,11 @@ function Exhibition({ exhibition }) {
   };
 
   useEffect(async () => {
+    // const all_video_result = await axios.get(
+    //   "http://localhost:8000/video/get_all_video"
+    // );
     const all_video_result = await axios.get(
-      "http://localhost:8000/video/get_all_video"
+      "http://3.39.32.4:8000/video/get_all_video"
     );
     setAllVideo(all_video_result.data);
     

@@ -210,5 +210,11 @@ router.get('/get_buying_art',async(req,res)=>{
     return res.status(200).json(token_cnt);
 
 }) 
+router.get('/get_all_video',async(req,res)=>{ 
+    console.log("~~~~~~~~~~~~~~get video~~~~~~~~~~~~~~~~~~~~~")
+    const videos = await Video.findAll();
+    console.log("모든 비디오", videos);
+    return res.status(200).json(videos);
+})
  
 module.exports = router;
