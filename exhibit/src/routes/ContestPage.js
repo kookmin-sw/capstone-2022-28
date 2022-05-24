@@ -10,12 +10,12 @@ import Footer from "../components/Footer"
 import { Modal } from "react-bootstrap";
 import "./page.css";
 import VideoImageThumbnail from "react-video-thumbnail-image";
+import styles from "./ContestPage.module.css";
 
 
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
   const [video, setVideo] = useState([]);
-  const [allVideo, setAllVideo] = useState([]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -51,12 +51,13 @@ function Exhibition({ exhibition }) {
     setVideo(video_result.data);
     console.log("video!!!!!!!", video);
   };
-  let random_index = Math.floor(Math.random() * allVideo.length);
+  // let random_index = Math.floor(Math.random() * allVideo.length);
 
   return (
     <span>
+      <h4 class='Text2'>{exhibition.userNick}님의 전시회</h4>
       <ImgBox
-        id={exhibition.id}
+        id={exhibition.userNick}
         src={exhibition.poster_url}
         alt={exhibition.title}
         onClick={() => handleShow(exhibition.id)}
@@ -95,8 +96,7 @@ function Exhibition({ exhibition }) {
                       creator_nick: video.userNick,
                     },})}
                 >
-                  <VideoImageThumbnail
-            
+                  <VideoImageThumbnail           
                     videoUrl={video.url}
                     width={160}
                     height={120}
@@ -144,10 +144,24 @@ function Exhibition({ exhibition }) {
 }
 
 function ContestPage() {
-
+  const navigate = useNavigate();
   const [exhibition, setExhibition] = useState([]);
   const [allVideo, setAllVideo] = useState([]);
   // const [video, setVideo] = useState([]);
+
+  const moveBuyPage = (video) => {
+    navigate("/buy", {
+      state: {
+        title: video.title,
+        description: video.description,
+        url: video.url,
+        poster_url: exhibition.poster_url,
+        poster_title: exhibition.title,
+        token: video.tokenId,
+        creator_nick: video.userNick,
+      },
+    });
+  };
 
   useEffect(async () => {
     // const exhibition_result = await axios.get(
@@ -162,6 +176,7 @@ function ContestPage() {
     );
     const all_video_result = await axios.get(
       "http://3.39.32.4:8000/video/get_all_video"
+     // "http://localhost:8000/video/get_all_video"
     );
 
     setExhibition(exhibition_result.data);
@@ -169,39 +184,43 @@ function ContestPage() {
     console.log(exhibition_result);
   }, []);
 
-  // let random_index = Math.floor(Math.random() * video.length);
+  let random_index = Math.floor(Math.random() * allVideo.length);
 
   return (
     <div class="page">
       <LoginNavigationBar />
       <div class="Cbody">
-    <header
-    class="banner"
-    style={{backgroundSize:'cover',
-    backgroundImage: `url("https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg")`,
-    backgroundPosition:'center center',}}>
-      <div class='banner__contents'>
-        <h1 class='banner__title'>title</h1>
-        <button class="banner__btn">Play</button>
-        <button class="banner__btn">구매하기</button>
-
+    <header class="banner">
+    <body>
+      <div class={styles.bg}>
+      <video src={allVideo[random_index]?.url} autoplay="autoplay" loop="loop" muted></video>
+        <div class={styles.text}>
+        <p>{allVideo[random_index]?.title}</p>
+          <button class="banner__btn" onClick={() => navigate("/video", {
+                    state: {
+                      title: allVideo[random_index]?.title,
+                      description: allVideo[random_index]?.description,
+                      url: allVideo[random_index]?.url,
+                      creator_nick: allVideo[random_index]?.userNick,
+                    },
+                  })}>Play</button>
+        <button class="banner__btn" onClick={() => moveBuyPage(allVideo[random_index])}>Buy</button>
+        </div>
+        <div class={styles.description}>
+          <p>{allVideo[random_index]?.description}</p>
+        </div>
       </div>
-
-      <h1 class="banner__description">
-        description description description description description description description description description description description description description description description description description
-        description description description description description description description description description description description 
-      </h1>
       <div className="banner--Bottom"/>
+      </body>
     </header>
     <div style={{minHeight: '200px'}}>
-      <h4 class='Text2'>김하연님의 전시회</h4>
       
       <div class="row__posters">
    
       {exhibition.map(
-        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.id}/>))}
+        exhibition => (<Exhibition  class='row__poster' exhibition={exhibition} key={exhibition.userNick}/>))}
       
-</div>
+    </div>
     </div>
     </div>
     <Footer/>
@@ -217,7 +236,6 @@ const ImgBox = styled.img`
   margin: 10px;
   
   cursor: pointer;
-
   &:hover {
     transform: scale(1.1);
     transition: transform 0.35s;

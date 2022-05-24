@@ -1,0 +1,54 @@
+body {
+    padding: 0px;
+    margin: 0px;
+  }
+  .bg {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+  }
+  video {
+    width: 100%;
+  }
+  .text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%,-50%);
+  }
+  .text p {
+    text-align: left;
+    font-size: 48px;
+    color: #ffffff;
+  }
+  .description {
+    position: absolute;
+    width: 100%;
+    top: 80%;
+    left: 51%;
+    transform: translate(-50%,-50%);
+  }
+  .description p {
+    text-align: left;
+    font-size: 24px;
+    color: #ffffff;
+  }
+  
+  
+  /*------------------*/
+  /* Layout (No Edit) */
+  /*------------------*/
+  @media(max-width:664px) {
+    .bg {
+      height: auto;
+    }
+    video {
+      height: 400px;
+    }
+    .text p {
+      font-size: 24px;
+    }
+  }
