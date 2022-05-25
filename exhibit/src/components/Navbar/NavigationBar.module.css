@@ -1,45 +1,60 @@
+.top-navbar {
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.3em;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
 
-  .top-navbar {
-    background-color: #000000;
-  }
+}
 
-  .Logo {
-    width: 8em;
-  }
-  .menu {
-    font-size: large;
-    margin-left: 2em;
-    margin-right: 2em;
-    position: relative;
-  }
+.Logo {
+  width: 8em;
+}
+.menu {
+  font-size: large;
+  margin-left: 1em;
+  margin-right: 1em;
+  position: relative;
+  color: white;
+}
 
-  .loginBtn {
-    margin-right: 1em;
-    margin-left: 2em;
-  }
-  
-  .walletBtn {
-    margin-right: 1em;
-  }
+.info {
+  font-size: large;
+  margin-left: 1em;
+  margin-right: 1em;
+  position: relative;
+  color: #f9f9f9;
+}
 
-  .navbar__button {
-    position: relative;
-  }
-  .menu .MuiButton-label::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 30px;
-    right: 100%;
-    bottom: 0;
-    background: #f9f9f9;
-    height: 2px;
-    width: 0;
-    opacity: 0;
-    transition: all 0.25s ease-in-out;
-  }
-  .menu:hover .MuiButton-label::before {
-    transition: all 0.25s ease-in-out;
-    opacity: 1;
-    width: calc(100% - 37px);
-  }
+.loginBtn {
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.walletBtn {
+  margin-right: 1em;
+}
+
+.navbar__button {
+  position: relative;
+}
+.menu .MuiButton-label::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 30px;
+  right: 100%;
+  bottom: 0;
+  background: #ffffff;
+  height: 2px;
+  width: 0;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+.menu:hover .MuiButton-label::before {
+  transition: all 0.25s ease-in-out;
+  opacity: 1;
+  width: calc(100% - 37px);
+}

@@ -1,0 +1,213 @@
+.root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    user-select: none;
+  }
+  
+  .body {
+    background-color: #141414;
+  }
+  
+  .a {
+    text-decoration: none;
+  }
+  
+  .button {
+    border: none;
+    padding: 0.9em 2em;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  
+  .main {
+    position: relative;
+  }
+  .main .video video {
+    width: 100%;
+    height: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+  }
+  .main .description {
+    position: absolute;
+    bottom: 30%;
+    left: 40px;
+    max-width: 500px;
+  }
+  .main .description h1 {
+    margin: 0.5em 0;
+  }
+  main .description h3 {
+    margin: 0.5em 0;
+  }
+  main .description p {
+    margin: 0.8em 0 2em 0;
+  }
+  main .description .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  main .description .buttons .play {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5em;
+  }
+  main .description .buttons .play:hover {
+    background-color: #cccccc;
+  }
+  main .description .buttons .play * {
+    color: black;
+  }
+  main .description .buttons .play i {
+    color: black;
+    font-size: 1.3rem;
+  }
+  main .description .buttons .play span {
+    font-size: 1rem;
+  }
+  main .description .buttons .detail {
+    background-color: rgba(109, 109, 110, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+  }
+  main .description .buttons .detail i {
+    font-size: 1.3rem;
+  }
+  main .description .buttons .detail:hover {
+    background-color: rgba(58, 58, 59, 0.7);
+  }
+  main .age-info {
+    position: absolute;
+    bottom: 30%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+  main .age-info i {
+    width: 35px;
+    height: 35px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  main .age-info .age {
+    width: 80px;
+    background-color: rgba(51, 51, 51, 0.6);
+    padding: 0.5em 1em;
+    position: relative;
+  }
+  main .age-info .age:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+  }
+  
+  section .content-list {
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  section .content-list h1 {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  section .content-list .slider {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+  section .content-list .slider::-webkit-scrollbar {
+    display: none;
+  }
+  section .content-list .slider .item {
+    min-width: 250px;
+    height: 150px;
+    background: #262626;
+    background: linear-gradient(312deg, #262626 0%, #333333 54%, #2a2a2a 100%);
+    border-radius: 5px;
+  }
+  section .content-list .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  section .content-list .prev-arrow {
+    transform: rotateY(180deg);
+  }
+  section .content-list .prev {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
+  section .content-list .next {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
+  
+  footer {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  footer .wrap {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+  }
+  footer .wrap .social-icons i {
+    font-size: 1.5rem;
+    margin: 0 0.3em;
+  }
+  footer .wrap .options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+  }
+  footer .wrap .options .option {
+    color: #6f6f6f;
+  }
+  
+  @media screen and (max-width: 1437px) {
+    main .description {
+      bottom: 10%;
+    }
+  }
+ 
+  @media screen and (max-width: 768px) {
+    main .description h1 {
+      display: none;
+    }
+    main .description h3 {
+      display: none;
+    }
+    main .description p {
+      display: none;
+    }
+  
+    button {
+      font-size: 0.5rem;
+    }
+  }
+  
+  /*# sourceMappingURL=index.css.map */

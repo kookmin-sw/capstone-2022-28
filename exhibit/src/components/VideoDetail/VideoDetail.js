@@ -1,21 +1,23 @@
 import React, { useState, useCallback } from "react";
 import './VideoDetail.css';
 import { Button} from "react-bootstrap";
-import VideoArt from "../../routes/VideoPage";
+import VideoArt, { vidurl } from "../../routes/VideoPage";
 import { Components } from "antd/lib/date-picker/generatePicker";
 import { useCast } from 'react-chromecast';
 import { useMedia } from 'react-chromecast';
 import VideoImageThumbnail from 'react-video-thumbnail-image';
+import { title } from "../../routes/VideoPage";
+import { descript } from "../../routes/VideoPage";
+import { creater } from "../../routes/VideoPage";
 
 
 const mediaSrc = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
 
 function VideoDetailBox() {
-
-    let nft_src = `https://raw.githubusercontent.com/juanpablocs/react-vplayer/master/demo/video/1080p.mp4`;
+    let nft_src = vidurl;
     const nftId = "1";
-    let overView = "바쁘다 바빠 현대사회!! 속 바쁘디 바쁜 자신을 찾아 몸부림 치는 현대인들의 애환을 담아낸 전시회. 바쁘다 바빠 현대사회!! 속 바쁘디 바쁜 자신을 찾아 몸부림 치는 현대인들의 애환을 담아낸 전시회.바쁘다 바빠 현대사회!! 속 바쁘디 바쁜 자신을 찾아 몸부림 치는 현대인들의 애환을 담아낸 전시회."
-    const nftTitle = "도심 속에서 나를 찾다.";
+    let overView = descript
+    const nftTitle = title;
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -43,7 +45,7 @@ function VideoDetailBox() {
                  
              </div>
              <div className="detailPage__description">
-              <p>민대인     17분</p>
+              <p>{creater}</p>
               <p>{overView}</p>
             </div>
             {/* <div className="detaiPage__buttons">

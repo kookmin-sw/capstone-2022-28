@@ -49,5 +49,10 @@ module.exports = class User extends Sequelize.Model{
 
         db.User.hasMany(db.Exhibition, { foreignKey: "user_id", sourceKey: "id" });
 
+        db.User.hasMany(db.Video,{foreignKey:"writer",sourceKey:"id"});
+
+        db.User.hasMany(db.Token, { foreignKey: "user_id", sourceKey: "id" });
+
+
     }
 }

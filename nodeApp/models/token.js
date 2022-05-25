@@ -3,10 +3,11 @@ const Sequelize = require('sequelize');
 class Token extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            hash: {
+            tokenId: {
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
+            
         }, {
             sequelize,
             timestamps: false,
@@ -20,6 +21,7 @@ class Token extends Sequelize.Model {
     
     static associate(db) {
         db.Token.belongsTo(db.Video, { foreignKey: "video_id", targetKey: "id" });
+        db.Token.belongsTo(db.User, { foreignKey: "user_id", targetKey: "id" });
 
         // belongsTo 모델에 컬럼이 생김 -> 생성되는 컬럼은 hasOne에 있는 sourceKey
 

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getBalance } from "../api/UserCaver";
+import WalletModal from "../routes/WalletModal/WalletModal";
+
+let addressW = localStorage.getItem("addressW");
 
 export default function (SpecificComponent, option) {
   function AuthenticationCheck() {
@@ -19,9 +23,7 @@ export default function (SpecificComponent, option) {
       console.log(header_token);
       // const res = await axios.get("http://localhost:8000/oauth/checkAuth", {
       const res = await axios.get("http://3.39.32.4:8000/oauth/checkAuth", {
-        
-      headers: {
-
+        headers: {
           Authorizations: `${header_token}`,
           refresh: `${refresh_token}`,
         },
@@ -30,6 +32,8 @@ export default function (SpecificComponent, option) {
       // 로그인된 상태인지 매 페이지마다 로컬에 업데이트
       localStorage.setItem("isMember", res.data.isAuth);
       localStorage.setItem("nick", res.data.nick);
+      localStorage.setItem("addressW", addressW);
+      console.log("addressW : ", addressW);
 
       // 로그인 되지 않은 상태
       if (!res.data.isAuth) {
@@ -46,6 +50,15 @@ export default function (SpecificComponent, option) {
       else {
         // 로그인되지 않은 상태서만 가능할 때
         if (!option) navigate("/");
+      }
+
+      if (localStorage.getItem("addressW") === "null" && option) {
+        alert("지갑을 연동해주세요");
+        navigate("/");
+      } else {
+        const _balance = await getBalance(addressW);
+        console.log("_balance : ", _balance);
+        WalletModal.setBal(_balance);
       }
     }, []);
     return <SpecificComponent />;

@@ -18,11 +18,20 @@ class Exhibition extends Sequelize.Model {
             poster_url: {
                 type: Sequelize.STRING(1000),
                 allowNull: false
-            }
+            },
+            userNick:{
+                type: Sequelize.STRING(10),
+                allowNull: false
+            },
+            // createdAt: {
+            //     type: Sequelize.DataTypes.DATE,
+            //     allowNull: false,
+            //     defaultValue: Sequelize.DataTypes.NOW,
+            // },
 
         }, {
             sequelize,
-            timestamps: false, 
+            timestamps: true, 
             modelName: 'Exhibition',
             tableName: 'exhibitions',
             paranoid: false,
