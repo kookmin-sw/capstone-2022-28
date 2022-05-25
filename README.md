@@ -1,8 +1,6 @@
 # 방구석 전시회 - 양방향 영상작품 NFT 아트페어 플랫폼
 
-
-
-![그림1](https://user-images.githubusercontent.com/28584299/170169588-da9197b3-fd72-4a39-a497-3527028f8a46.png)
+![그림1](https://user-images.githubusercontent.com/28584299/170197610-05227b08-f6fe-4af9-aae1-44222c3417c1.png)
 
 ```
 장소와 시간에 구애받지 않고 영상 전시를 개최, 관람,거래가 가능한 양방향 영상작품 NFT 아트페어 플랫폼
