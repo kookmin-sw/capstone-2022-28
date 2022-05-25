@@ -6,7 +6,6 @@ import LoginNavigationBar from "../../components/Navbar/LoginNavigationBar";
 import { useNavigate } from "react-router-dom";
 import { FileUpload, ImageUpload } from "react-ipfs-uploader";
 import { listingCard, mintCardWithURI } from "../../api/UserKlip";
-import { getBalance } from "../../api/UserCaver";
 import axios from "axios";
 import QRCode from "qrcode.react";
 import { Modal } from "react-bootstrap";
@@ -16,9 +15,6 @@ import "../../routes/page.css";
 const { Title } = Typography;
 const { TextArea } = Input;
 var urlList = [];
-var titleList = [];
-var descriptionList = [];
-let tokenList = [];
 let tokenId = 0;
 
 const CategoryOptions = [
@@ -30,7 +26,6 @@ function UploadPage(props) {
   const navigate = useNavigate();
   const [fileUrl, setFileUrl] = useState("");
   const [show, setShow] = useState(false);
-  const [id, setId] = useState(0);
 
   const handleClose = () => {
     setShow(false);
@@ -80,7 +75,6 @@ function UploadPage(props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(Category);
     if (
       posterUrl === "" ||
       urlList.length === 0 ||
@@ -101,7 +95,6 @@ function UploadPage(props) {
       axios
         .post("http://3.39.32.4:8000/video/insert", insertDate)
         .then((response) => {
-          console.log(response);
           navigate("/");
         })
         .catch((error) => {
@@ -118,8 +111,6 @@ function UploadPage(props) {
       tokenList: tokenId,
     };
     urlList.push(insertdata);
-
-    console.log(urlList);
   };
 
   return (
@@ -127,7 +118,6 @@ function UploadPage(props) {
       <LoginNavigationBar />
 
       <div class="Cbody">
-        {/* <div className={styles.root}> */}
         <div>
           <Title level={2} class={styles.title}>
             전시회 개최
@@ -143,7 +133,6 @@ function UploadPage(props) {
           <Button size="lg" type="primary" onClick={handleShow}>
             업로드 하러가기
           </Button>
-          {/* 업로드 모달 */}
           <Modal
             show={show}
             onHide={handleClose}
@@ -161,9 +150,6 @@ function UploadPage(props) {
                   setFileUrl(url);
                   setQrhide(true);
                   setMintorlist("NFT Minting하기");
-                  console.log(
-                    localStorage.getItem("addressW") + ", " + tokenId
-                  );
                   await mintCardWithURI(
                     localStorage.getItem("addressW"),
                     tokenId,
@@ -285,7 +271,6 @@ function UploadPage(props) {
         </div>
       </div>
 
-      {/* </div> */}
       <Footer />
     </div>
   );

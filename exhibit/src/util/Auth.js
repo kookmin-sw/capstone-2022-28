@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import qs from "qs";
@@ -12,7 +11,6 @@ const Auth = () => {
   // calllback으로 받은 인가코드
   const code = new URL(window.location.href).searchParams.get("code");
 
-  
   const history = useHistory();
 
   const getToken = async () => {
@@ -30,7 +28,7 @@ const Auth = () => {
         "https://kauth.kakao.com/oauth/token",
         payload
       );
-      
+
       // Kakao Javascript SDK 초기화
       window.Kakao.init(REST_API_KEY);
       // access token 설정

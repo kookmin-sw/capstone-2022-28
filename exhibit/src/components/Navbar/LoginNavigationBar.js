@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
-import {
-  Navbar,
-  Container,
-  Nav,
-  Button,
-  NavDropdown,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
 import LoginModal from "../../routes/LoginModal/LoginModal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import WalletModal from "../../routes/WalletModal/WalletModal";
-import { getBalance } from "../../api/UserCaver";
 
 function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -28,7 +19,6 @@ function LoginNavigationBar() {
     klip_btn = "Klip 변경";
     console.log("balance check", bal);
   }
-  // useEffect(getBal(), []);
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top">

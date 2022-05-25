@@ -6,13 +6,11 @@ import MyAccount from "./routes/MyAccount";
 import ContestPage from "./routes/ContestPage";
 import MyArtPage from "./routes/MyArtPage";
 import UploadPage from "./routes/UploadPage/UploadPage";
-import Caver from "caver-js";
 import Data from "./data.js";
 import Kakao from "./routes/LoginModal/kakao";
 import VideoPage from "./routes/VideoPage";
 import BuyPage from "./routes/BuyPage";
-import "./App.css"
-
+import "./App.css";
 
 const COUNT_CONTRACT_ADDRESS = "0x3aEDa4A4e7EA89fC72C0CAf6e95C11f19493f8d7";
 const ACCESS_KEY_ID = "KASKO3SVMXYIKU61S1AN326W";
@@ -22,25 +20,12 @@ const Authorization =
 
 const CHAIN_ID = "1001"; // MAINNET 8217 TESTNNET 1001
 
-/*const option = {
-  headers:[ 
-    {
-      name: "Authorizati~on",
-      value: "Basic "+ Buffer.from(ACCESS_KEY_ID + SECRET_ACCESS_KEY).toString("base64")
-    },
-    { name: "x-chain-id", value: CHAIN_ID }
-  ]
-}*/
-
 // null: 아무나 출입이 가능
 // true: 로그인한 유저만 출입 가능
 // false: 로그인하지 않은 유저만 출입 가능
 function App() {
   return (
     <div className="app">
-      {/* <div>
-      <Data />
-    </div> */}
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -56,7 +41,6 @@ function App() {
           <Route path="/buy" element={<BuyPage />} />
         </Routes>
       </Router>
-      
     </div>
   );
 }

@@ -45,11 +45,8 @@ function Exhibition({ exhibition }) {
         },
       }
     );
-    console.log("video_result가 들어왔어요~~~~~~~~", video_result);
     setVideo(video_result.data);
-    console.log("video!!!!!!!", video);
   };
-  // let random_index = Math.floor(Math.random() * allVideo.length);
 
   return (
     <span>
@@ -87,7 +84,6 @@ function Exhibition({ exhibition }) {
           {video.map((video) => (
             <div class="FrameRoot">
               <div style={{ display: "flex", flexDirection: "row" }}>
-                {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
                   class="video"
                   onClick={() =>
@@ -106,11 +102,9 @@ function Exhibition({ exhibition }) {
                     width={160}
                     height={120}
                     borderRadius={7}
-                    thumbnailHandler={(thumbnail) => console.log(thumbnail)}
                     alt={video.title}
                   />
                 </div>
-                {/* <img class="image" src={video.url} alt={video.title}/> */}
                 <div>
                   <h4 class="Text2"> {video.title} </h4>
                   <span class="Text1"> {video.description} </span>
@@ -140,23 +134,6 @@ function Exhibition({ exhibition }) {
         </Modal.Body>
       </Modal>
     </span>
-    // <Modal
-    //     show={show}
-    //     onHide={handleClose}
-    //     size="lg"
-    //     aria-labelledby="contained-modal-title-vcenter"
-    //     centered
-    // >
-    //     <Modal.Header closeButton>
-    //       {exhibition.title}
-    //       <ImgBox class="img-responsive center-block" id={exhibition.id} src={exhibition.poster_url}/>
-    //     </Modal.Header>
-    //     <Modal.Body>
-    //       {exhibition.description}
-    //     </Modal.Body>
-    //     <Modal.Footer>
-    //     </Modal.Footer>
-    // </Modal>
   );
 }
 
@@ -164,7 +141,6 @@ function ContestPage() {
   const navigate = useNavigate();
   const [exhibition, setExhibition] = useState([]);
   const [allVideo, setAllVideo] = useState([]);
-  // const [video, setVideo] = useState([]);
 
   const moveBuyPage = (video) => {
     navigate("/buy", {
@@ -198,7 +174,6 @@ function ContestPage() {
 
     setExhibition(exhibition_result.data);
     setAllVideo(all_video_result.data);
-    console.log(exhibition_result);
   }, []);
 
   let random_index = Math.floor(Math.random() * allVideo.length);
