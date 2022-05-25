@@ -5,12 +5,11 @@ import "./page.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import "./banner.css"
-import Footer from "../components/Footer"
+import "./banner.css";
+import Footer from "../components/Footer";
 import { Modal } from "react-bootstrap";
 import VideoImageThumbnail from "react-video-thumbnail-image";
 import styles from "./ContestPage.module.css";
-
 
 function Exhibition({ exhibition }) {
   const navigate = useNavigate();
@@ -55,13 +54,15 @@ function Exhibition({ exhibition }) {
   return (
     <span>
       <span className="box">
-      <span style={{marginLeft:'15px', fontSize:'15px'}}>{exhibition.userNick}님의 전시회</span>
-      <ImgBox
-        id={exhibition.userNick}
-        src={exhibition.poster_url}
-        alt={exhibition.title}
-        onClick={() => handleShow(exhibition.id)}
-      />
+        <span style={{ marginLeft: "15px", fontSize: "15px" }}>
+          {exhibition.userNick}님의 전시회
+        </span>
+        <ImgBox
+          id={exhibition.userNick}
+          src={exhibition.poster_url}
+          alt={exhibition.title}
+          onClick={() => handleShow(exhibition.id)}
+        />
       </span>
 
       <Modal
@@ -71,15 +72,15 @@ function Exhibition({ exhibition }) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton className='modal_header'>
-        상세정보
-      </Modal.Header>
+        <Modal.Header closeButton className="modal_header">
+          상세정보
+        </Modal.Header>
         <Modal.Body className="modal_body">
           <img class="poster" id={exhibition.id} src={exhibition.poster_url} />
           <br />
           <h1 class="title">{exhibition.title}</h1>
           <br />
-          
+
           <div class="title"> {exhibition.description}</div>
         </Modal.Body>
         <Modal.Body className="modal_body">
@@ -89,15 +90,18 @@ function Exhibition({ exhibition }) {
                 {/* <img class="video" src={video.url} alt={video.title}/> */}
                 <div
                   class="video"
-                  onClick={() => navigate("/video", {
-                    state: {
-                      title: video.title,
-                      description: video.description,
-                      url: video.url,
-                      creator_nick: video.userNick,
-                    },})}
+                  onClick={() =>
+                    navigate("/video", {
+                      state: {
+                        title: video.title,
+                        description: video.description,
+                        url: video.url,
+                        creator_nick: video.userNick,
+                      },
+                    })
+                  }
                 >
-                  <VideoImageThumbnail           
+                  <VideoImageThumbnail
                     videoUrl={video.url}
                     width={160}
                     height={120}
@@ -111,13 +115,25 @@ function Exhibition({ exhibition }) {
                   <h4 class="Text2"> {video.title} </h4>
                   <span class="Text1"> {video.description} </span>
                 </div>
-                <button
-                  style={{ float: "right" }}
-                  class="Cbtn"
-                  onClick={() => moveBuyPage(video)}
-                >
-                  buy
-                </button>
+                {video.isBuy === "1" ? (
+                  <button
+                    style={{ float: "right" }}
+                    class="Cbtn"
+                    onClick={() => moveBuyPage(video)}
+                  >
+                    buy
+                  </button>
+                ) : (
+                  <div
+                    style={{
+                      float: "right",
+                      position: "absolute",
+                      right: "40px",
+                    }}
+                  >
+                    매진되었습니다.
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -168,8 +184,8 @@ function ContestPage() {
     // const exhibition_result = await axios.get(
     //  "http://localhost:8000/video/get_art",{
     const exhibition_result = await axios.get(
-      "http://3.39.32.4:8000/video/get_art",{
-      
+      "http://3.39.32.4:8000/video/get_art",
+      {
         headers: {
           category: 0,
         },
@@ -177,7 +193,7 @@ function ContestPage() {
     );
     const all_video_result = await axios.get(
       "http://3.39.32.4:8000/video/get_all_video"
-     // "http://localhost:8000/video/get_all_video"
+      // "http://localhost:8000/video/get_all_video"
     );
 
     setExhibition(exhibition_result.data);
@@ -191,40 +207,58 @@ function ContestPage() {
     <div class="page">
       <LoginNavigationBar />
       <div class="Cbody">
-    <header class="banner">
-    <body>
-      <div class={styles.bg}>
-      <video src={allVideo[random_index]?.url} autoplay="autoplay" loop="loop" muted></video>
-        <div class={styles.text}>
-        <p>{allVideo[random_index]?.title}</p>
-          <button class="banner__btn" onClick={() => navigate("/video", {
-                    state: {
-                      title: allVideo[random_index]?.title,
-                      description: allVideo[random_index]?.description,
-                      url: allVideo[random_index]?.url,
-                      creator_nick: allVideo[random_index]?.userNick,
-                    },
-                  })}>Play</button>
-        <button class="banner__btn" onClick={() => moveBuyPage(allVideo[random_index])}>Buy</button>
-        </div>
-        <div class={styles.description}>
-          <p>{allVideo[random_index]?.description}</p>
+        <header class="banner">
+          <body>
+            <div class={styles.bg}>
+              <video
+                src={allVideo[random_index]?.url}
+                autoplay="autoplay"
+                loop="loop"
+                muted
+              ></video>
+              <div class={styles.text}>
+                <p>{allVideo[random_index]?.title}</p>
+                <button
+                  class="banner__btn"
+                  onClick={() =>
+                    navigate("/video", {
+                      state: {
+                        title: allVideo[random_index]?.title,
+                        description: allVideo[random_index]?.description,
+                        url: allVideo[random_index]?.url,
+                        creator_nick: allVideo[random_index]?.userNick,
+                      },
+                    })
+                  }
+                >
+                  Play
+                </button>
+                <button
+                  class="banner__btn"
+                  onClick={() => moveBuyPage(allVideo[random_index])}
+                >
+                  Buy
+                </button>
+              </div>
+              <div class={styles.description}>
+                <p>{allVideo[random_index]?.description}</p>
+              </div>
+            </div>
+            <div className="banner--Bottom" />
+          </body>
+        </header>
+        <div>
+          {exhibition.map((exhibition) => (
+            <Exhibition
+              className="row__poster"
+              exhibition={exhibition}
+              key={exhibition.userNick}
+            />
+          ))}
         </div>
       </div>
-      <div className="banner--Bottom"/>
-      </body>
-    </header>
-    <div>
-      
-      {exhibition.map(
-        exhibition => (<Exhibition className='row__poster' exhibition={exhibition} key={exhibition.userNick}/>))}
-      
-
+      <Footer />
     </div>
-    </div>
-    <Footer/>
-    </div>
-
   );
 }
 
@@ -233,7 +267,7 @@ const ImgBox = styled.img`
   height: 308px;
   border-radius: 7px;
   margin: 10px;
-  
+
   cursor: pointer;
   &:hover {
     transform: scale(1.1);

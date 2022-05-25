@@ -34,51 +34,49 @@ function BuyPage(tokenId) {
     setShow(false);
   };
 
-  const handleShow = async() => {
-    const charToUni = (char)=>{
-      var uni_code = ""
-      for(var i=0; i<char.length;i++){
-        uni_code += '\\'+char[i].charCodeAt(0).toString(16);
-      };
-      return uni_code
-    }
-    console.log("video_token : "+video_token);
-    buyCard(video_token, setQrvalue, async() => {
-      
-        handleClose();
-        // const result = await axios.get("http://localhost:8000/video/buy_art",{
-        const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
-        headers:{
-            token_id:video_token, //토큰 id가져오는 부분으로 변경
-            nick : charToUni(localStorage.getItem("nick")),
-          }
-        })
-        console.log("result가 들어왔어요~~~~~~~~",result);
-        alert("작품이 성공적으로 구매되었습니다.")
-        navigate("/",{});
+  const handleShow = async () => {
+    const charToUni = (char) => {
+      var uni_code = "";
+      for (var i = 0; i < char.length; i++) {
+        uni_code += "\\" + char[i].charCodeAt(0).toString(16);
+      }
+      return uni_code;
+    };
+    console.log("video_token : " + video_token);
+    buyCard(video_token, setQrvalue, async () => {
+      handleClose();
+      // const result = await axios.get("http://localhost:8000/video/buy_art",{
+      const result = await axios.get("http://3.39.32.4:8000/video/buy_art", {
+        headers: {
+          token_id: video_token, //토큰 id가져오는 부분으로 변경
+          nick: charToUni(localStorage.getItem("nick")),
+        },
+      });
+      console.log("result가 들어왔어요~~~~~~~~", result);
+      alert("작품이 성공적으로 구매되었습니다.");
+      navigate("/", {});
 
-//   const handleShow = async () => {
-//     const charToUni = (char) => {
-//       var uni_code = "";
-//       for (var i = 0; i < char.length; i++) {
-//         uni_code += "\\" + char[i].charCodeAt(0).toString(16);
-//       }
-//       return uni_code;
-//     };
-//     console.log("video_token : " + video_token);
-//     buyCard(video_token, setQrvalue, async () => {
-//       handleClose();
-//       const result = await axios.get("http://localhost:8000/video/buy_art", {
-//         // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
-//         headers: {
-//           token_id: video_token, //토큰 id가져오는 부분으로 변경
-//           nick: charToUni(localStorage.getItem("nick")),
-//         },
-//       });
-//       console.log("result가 들어왔어요~~~~~~~~", result);
-//       alert("작품이 성공적으로 구매되었습니다.");
-//       navigate("/", {});
-
+      //   const handleShow = async () => {
+      //     const charToUni = (char) => {
+      //       var uni_code = "";
+      //       for (var i = 0; i < char.length; i++) {
+      //         uni_code += "\\" + char[i].charCodeAt(0).toString(16);
+      //       }
+      //       return uni_code;
+      //     };
+      //     console.log("video_token : " + video_token);
+      //     buyCard(video_token, setQrvalue, async () => {
+      //       handleClose();
+      //       const result = await axios.get("http://localhost:8000/video/buy_art", {
+      //         // const result = await axios.get("http://3.39.32.4:8000/video/buy_art",{
+      //         headers: {
+      //           token_id: video_token, //토큰 id가져오는 부분으로 변경
+      //           nick: charToUni(localStorage.getItem("nick")),
+      //         },
+      //       });
+      //       console.log("result가 들어왔어요~~~~~~~~", result);
+      //       alert("작품이 성공적으로 구매되었습니다.");
+      //       navigate("/", {});
     });
 
     setShow(true);
@@ -89,26 +87,45 @@ function BuyPage(tokenId) {
   return (
     <div class="page">
       <LoginNavigationBar />
-      <div class ='Cbody'>
-      <div style={{minHeight:'80%', minWidth: '80%',marginLeft: "7rem",marginRight: "7rem", justifyContent:'center' }}>
-          <div style={{ maxWidth: "720px",maxHeight:'528px', margin: "7rem auto" , overflow:'hidden',justifyContent:'center' }} onClick={() => navigate("/video", {
-          state: {
-            title: video_title,
-            description: video_description,
-            url: video_url,
-            creator_nick: video_creator_nick,
-          },
-        })}>
-          <VideoImageThumbnail 
-                videoUrl={video_url}
-                width={720}
-                height={528}
-                thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                alt={video_title}
-              /> 
-        </div>
+      <div class="Cbody">
+        <div
+          style={{
+            minHeight: "80%",
+            minWidth: "80%",
+            marginLeft: "7rem",
+            marginRight: "7rem",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "720px",
+              maxHeight: "528px",
+              margin: "7rem auto",
+              overflow: "hidden",
+              justifyContent: "center",
+            }}
+            onClick={() =>
+              navigate("/video", {
+                state: {
+                  title: video_title,
+                  description: video_description,
+                  url: video_url,
+                  creator_nick: video_creator_nick,
+                },
+              })
+            }
+          >
+            <VideoImageThumbnail
+              videoUrl={video_url}
+              width={720}
+              height={528}
+              thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+              alt={video_title}
+            />
+          </div>
 
-{/* //       <div class="Cbody">
+          {/* //       <div class="Cbody">
 //         <div
 //           style={{
 //             minHeight: "80%",
@@ -153,7 +170,7 @@ function BuyPage(tokenId) {
             </div>
             <div class="box3">
               <span class="sell">판매가</span>
-              <span class="klay">0.1Klay</span>
+              <span class="klay">0.01Klay</span>
 
               <div class="buyBtn" onClick={handleShow}>
                 구매하기
@@ -184,11 +201,6 @@ function BuyPage(tokenId) {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <h7>
-                가 격
-                ·························································································
-                0.01 KLAY
-              </h7>
               <hr></hr>
             </Modal.Footer>
           </Modal>
