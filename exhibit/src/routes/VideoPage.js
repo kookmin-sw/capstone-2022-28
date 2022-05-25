@@ -65,9 +65,7 @@ function Detail(id){
   return (
   <Components />
   ,
-    alert === true
-    ? VideoDetail(vi)
-    : VideoArt(vi)
+  VideoArt(vi)
   );
 }
 

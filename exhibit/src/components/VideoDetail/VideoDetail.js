@@ -36,6 +36,8 @@ function VideoDetailBox() {
          <VideoImageThumbnail
           videoUrl={nft_src}
           thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+          width='1500px'
+          height='1200px'
 
          />
          </div>
