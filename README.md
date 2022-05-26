@@ -32,7 +32,7 @@
 
 <br>
 
-####주요 기능
+### 주요기능
 
 ### 🪙 내 작품의 NFT화
 <img width="671" alt="스크린샷 2022-05-26 오후 4 38 05" src="https://user-images.githubusercontent.com/28584299/170441348-89ce6013-5848-4909-93ba-4864e5cdb56a.png">
@@ -51,27 +51,32 @@
 ```
 - 크롬캐스트 활용해, 다양한 영상 출력 기기로 작품 관람 
 <br>
+<br>
 
-#### 주요 페이지
+### 주요 페이지
+
 - 개인전 : 내가 기획한 전시회는 즉시 개최가능.  
-            -> 누구든지 작품을 올릴 수 있습니다.
+           -> 누구든지 작품을 올릴 수 있습니다.
+            
 - Art -wall : 공인된 전시회를 관람 가능 
-            -> 방구석전시회 운영자측에서 충분한 검토후에, 퀄리티 높은 작품 / 개인전에서 많은 인기를 끈 작품을 중심으로 전시회를 보여줍니다.
+                        <br>-> 방구석전시회 운영자측에서 충분한 검토후에, 퀄리티 높은 작품 / 개인전에서 많은 인기를 끈 작품을 중심으로 전시회를 보여줍니다.
+             
 - 내가 구매한 작품 : 개인전과 Art-wall의 전시회는 전시 기한이 정해져 있어, 전시회가 종료되면 관람이 불가능! 
-            -> 하지만 이전에 개인전과 Art-wall을 자유롭게 관람하며 내가 구매한 작품이 있다면 해당 페이지에서 자유롭게 관람이 가능합니다.
+                        <br>->이전에 개인전과 Art-wall을 자유롭게 관람하며 내가 구매한 작품이 있다면 해당 페이지에서 자유롭게 관람이 가능합니다.
 
-
+<br>
+<br>
 
 ##    Abstract
 > This is a two-way NFT art fair platform that allows users to hold and appreciate their own exhibitions through their creations without restrictions on time and space. By making the work NFT based on Klaytn NFT, KIP-17, the work can be put on the market and other users can purchase and own it. Through this, users can NFT their works as artists, guarantee profits with transparent transaction details, which are the advantages of smart contracts, and provide reliable works to buyers. Users who are creators and viewers at the same time can freely enjoy their leisure time while enjoying the displayed works. Chromecast, which is compatible with various devices, allows more realistic and vivid appreciation through the device that is most suitable for your current situation.
 
 <br>
+<br>
 
+### 지향점
 방구석의 **지향점**은 다음과 같습니다.
 
 <br>
-
-```
 
 1. 새로운 전시 패러다임을 제시한다.
 2. NFT토큰을 사용하여 사용자는 원하는 작품을 손쉽게 구입하고 작가들에겐 새로운 수입의 창구가 된다.
@@ -79,9 +84,8 @@
 4. 잠재력이 뛰어난 신인 작가들의 등용문이 될 수 있다.
 5. 성별과 나이의 제약없이 모든 사용자가 아티스트가 될 수 있다. 
 
-```
 <br>
-
+<br>
 ## 소개 영상
 > [![방구석 전시회 소개 영상](http://img.youtube.com/vi/altemD0MEvk/0.jpg)](https://www.youtube.com/watch?v=altemD0MEvk) 
 
@@ -147,9 +151,11 @@ e-mail : hayoun28@kookmin.ac.kr
 <br>
 
 ## 5. 기대효과
-1. 전시패러다임의 큰 변화가 된다. 
-    -> 관람자들에게 전시를 관람하는 새로운 수단이며, 아트시트들에게는 전시를 진행할 새로운 공간이 될 수 있습니다.
+1. 전시패러다임의 큰 변화가 된다.
+            <br>-> 관람자들에게 전시를 관람하는 새로운 수단이며, 아트시트들에게는 전시를 진행할 새로운 공간이 될 수 있습니다.
+    
 2. 예술시장의 규모가 확장된다.
-    -> 우리 모두가 작품거래의 주체가 되고, 이처럼 거래의 참가자가 증가할수록 접근성은 용이해지고 예술시장의 규모는 더욱 커지게 될 것입니다.
+            <br>-> 우리 모두가 작품거래의 주체가 되고, 이처럼 거래의 참가자가 증가할수록 접근성은 용이해지 예술시장의 규모는 더욱 커지게 될 것입니다.
+
 3. 새로운 아티스트들의 등용문이 된다. 
-    -> 능력이 충분하지만 보여줄 공간이 없는 많은 아티스트들이 그 잠재력을 발휘할 수 있.
+           <br> -> 능력이 충분하지만 보여줄 공간이 없는 많은 아티스트들이 그 잠재력을 발휘할 수 있.
