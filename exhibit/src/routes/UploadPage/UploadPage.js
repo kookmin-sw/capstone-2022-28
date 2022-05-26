@@ -157,6 +157,7 @@ function UploadPage(props) {
                     setQrvalue,
                     () => {
                       alert("NFT가 민팅되었습니다.");
+                      setQrhide(false);
                     }
                   );
                 }}
@@ -210,6 +211,7 @@ function UploadPage(props) {
                       setQrvalue,
                       (result) => {
                         alert("마켓에 NFT가 등록되었습니다.");
+                        setQrhide(false);
                       }
                     );
                     closeModal(true);
