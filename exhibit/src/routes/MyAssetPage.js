@@ -17,20 +17,20 @@ function MyBuyVideo(buyVideo) {
         onClick={() =>
           navigate("/video", {
             state: {
-              title: buyVideo.title,
-              description: buyVideo.description,
-              url: buyVideo.url,
-              creator_nick: buyVideo.userNick,
+              title: buyVideo.buyVideo.title,
+              description: buyVideo.buyVideo.description,
+              url: buyVideo.buyVideo.url,
+              creator_nick: buyVideo.buyVideo.userNick,
             },
           })
         }
       >
         <VideoImageThumbnail
-          videoUrl={buyVideo.url}
+          videoUrl={buyVideo.buyVideo.url}
           width={220}
           height={308}
           borderRadius={7}
-          alt={buyVideo.title}
+          alt={buyVideo.buyVideo.title}
         />
       </div>
     </span>
@@ -60,6 +60,7 @@ function MyAssetPage() {
       }
     );
     setBuyVideo(buyVideoResult.data);
+    console.log(buyVideoResult);
   }, []);
 
   return (

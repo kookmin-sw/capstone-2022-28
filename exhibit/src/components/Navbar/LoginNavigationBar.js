@@ -46,7 +46,9 @@ function LoginNavigationBar() {
             </Nav.Link>
 
             <NavDropdown title="내 컬렉션" className={styles.menu}>
-              <NavDropdown.Item href="/my-collection">내 작품</NavDropdown.Item>
+              <NavDropdown.Item href="/my-collection">
+                내가 구매한 작품
+              </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/my-art">내가 올린 작품</NavDropdown.Item>
             </NavDropdown>
