@@ -13,7 +13,7 @@ function MyBuyVideo(buyVideo) {
   return (
     <span>
       <div
-        class="video"
+        
         onClick={() =>
           navigate("/video", {
             state: {
@@ -71,7 +71,8 @@ function MyAssetPage() {
         {buyVideo.map((buyVideo) => (
           <MyBuyVideo buyVideo={buyVideo} key={buyVideo.id} />
         ))}
-      </div>
+        </div>
+      
       <Footer />
     </div>
   );
