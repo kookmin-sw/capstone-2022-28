@@ -1,4 +1,4 @@
-# 방구석 전시회 - 양방향 영상작품 NFT 아트페어 플랫폼
+# 방구석 전시회 - 양방향 영상작품 NFT 아트페어
 
 ![그림1](https://user-images.githubusercontent.com/28584299/170197610-05227b08-f6fe-4af9-aae1-44222c3417c1.png)
 
@@ -28,6 +28,8 @@
 <br>
 
 ### 🪙 내 작품의 NFT화
+<img width="671" alt="스크린샷 2022-05-26 오후 4 38 05" src="https://user-images.githubusercontent.com/28584299/170441348-89ce6013-5848-4909-93ba-4864e5cdb56a.png">
+
 ```
 영상작품을 Klaytn NFT인 KIP-17 기반으로 NFT화 
 ```
@@ -72,12 +74,14 @@
 
 ## 💁 팀원 소개
 
+<img width="949" alt="스크린샷 2022-05-26 오후 4 32 39" src="https://user-images.githubusercontent.com/28584299/170440493-66f1ccf8-a6f0-415e-b8a2-b5a2096997a4.png">
+
+
 **🥅 민대인**
 
 ```
 student ID : xxxx1621
 e-mail : bamin0422@kookmin.ac.kr
-Role : token, projector
 ```
 
 <br>
@@ -87,7 +91,6 @@ Role : token, projector
 ```
 student ID : xxxx1615
 e-mail : nsh1998@kookmin.ac.kr
-Role : front-end, back-end
 ```
 
 <br>
@@ -97,7 +100,6 @@ Role : front-end, back-end
 ```
 student ID : xxxx1701
 e-mail : judyi19997@kookmin.ac.kr
-Role : token, back-end
 ```
 
 <br>
@@ -107,7 +109,6 @@ Role : token, back-end
 ```
 student ID : xxxx1636
 e-mail : dowon3036@kookmin.ac.kr
-Role : front-end, back-end
 ```
 
 <br>
@@ -117,7 +118,6 @@ Role : front-end, back-end
 ```
 student ID : xxxx1580
 e-mail : hayoun28@kookmin.ac.kr
-Role : front-end, projector
 ```
 <br>
 
