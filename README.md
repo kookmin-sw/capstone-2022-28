@@ -68,7 +68,10 @@
 ## 소개 영상
 > [![방구석 전시회 소개 영상](http://img.youtube.com/vi/altemD0MEvk/0.jpg)](https://www.youtube.com/watch?v=altemD0MEvk) 
 
+<br>
 
+## 시연 영상
+> [![방구석 전시회 시연 영상](http://img.youtube.com/vi/-PSzisHSG6g/0.jpg)](https://www.youtube.com/watch?v=-PSzisHSG6g)
 
 <br>
 
