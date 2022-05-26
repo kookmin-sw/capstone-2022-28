@@ -1,13 +1,14 @@
-import React,{ useState } from 'react';
- 
+import React, { useState } from "react";
+
 function Data() {
-  const [data,setData] = useState({});
-  fetch('/oauth/justData/12')
-  .then(res => res.json())
-  .then(data => setData(data),()=>{
-  console.log('data read : ' , data);
-  })
- 
+  const [data, setData] = useState({});
+  fetch("/oauth/justData/12")
+    .then((res) => res.json())
+    .then(
+      (data) => setData(data),
+      () => {}
+    );
+
   return (
     <div>
       {data.nick} {data.snsId}
@@ -15,11 +16,4 @@ function Data() {
   );
 }
 
-// callApi = async() =>{
-// 	console.log('callApi');
-// 	const response = await fetch('/api/customers');
-// 	const body = await response.json();
-// 	return body;
-// }
- 
 export default Data;

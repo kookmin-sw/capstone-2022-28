@@ -1,8 +1,8 @@
 // 안쓰는 코드
 
-const passport = require('passport');
-const kakao = require('./kakaoStrategy');
-const User = require('../models/user');
+const passport = require("passport");
+const kakao = require("./kakaoStrategy");
+const User = require("../models/user");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -15,10 +15,9 @@ module.exports = () => {
     // 세션에서 고윳값을 가지고 DB에서 유저의 정보를 찾아냅니다.
     // 찾아낸 정보는 req.user에 담아줍니다
 
-    User.findOne({ where: {id} })
-    .then(user => done(null, user))
-    .catch(err => done(err));
-    
+    User.findOne({ where: { id } })
+      .then((user) => done(null, user))
+      .catch((err) => done(err));
   });
   kakao();
 };

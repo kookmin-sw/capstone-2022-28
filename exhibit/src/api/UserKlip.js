@@ -6,6 +6,7 @@ import {
 } from "../constants";
 
 const A2P_API_PREPARE_URL = "https://a2a-api.klipwallet.com/v2/a2a/prepare";
+
 const APP_NAME = "방구석 전시회";
 let cnt = 0;
 

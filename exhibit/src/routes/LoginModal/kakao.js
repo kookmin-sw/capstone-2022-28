@@ -5,7 +5,6 @@ import img from "../../components/Image/img.png";
 import styles from "./LoginModal.module.css";
 import queryString from "query-string";
 import axios from "axios";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
@@ -20,16 +19,12 @@ const Kakao = (props) => {
   //   getKakaoTokenHandler실행
   React.useEffect(async () => {
     if (query.code) {
-      // console.log(query.code)
       const token = await getKakaoTokenHandler(query.code.toString());
-      // console.log("token====", token);
-
       navigate("/");
     } else {
       console.log("시리패");
     }
   }, []);
-
 
   //code를 바탕으로 backend로 보내서 back에서 토큰받아오기
   const getKakaoTokenHandler = async (code) => {
@@ -41,9 +36,9 @@ const Kakao = (props) => {
     }
 
     //서버로 요청
-    await axios 
-        //.get(`http://localhost:8000/oauth/kakao/callback?code=${code}`, {
-        .get(`http://3.39.32.4:8000/oauth/kakao/callback?code=${code}`, {
+    await axios
+      .get(`http://3.39.32.4:8000/oauth/kakao/callback?code=${code}`, {
+        // .get(`http://localhost:8000/oauth/kakao/callback?code=${code}`, {
 
         headers: {
           Authorizations: `${header_token}`,
@@ -86,7 +81,7 @@ const Kakao = (props) => {
       </Modal.Body>
       <Modal.Footer className={styles.loginBtn}>
         <a href={KAKAO_AUTH_URL}>
-          <img src={login_btn} /*onClick={loginHandler}*/ />
+          <img src={login_btn} />
         </a>
       </Modal.Footer>
     </Modal>

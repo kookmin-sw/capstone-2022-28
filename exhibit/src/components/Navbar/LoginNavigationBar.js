@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Navbar,
-  Container,
-  Nav,
-  Button,
-  NavDropdown,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Button, NavDropdown } from "react-bootstrap";
 import logo from "../Image/logo.png";
 import styles from "./NavigationBar.module.css";
 import LoginModal from "../../routes/LoginModal/LoginModal";
@@ -19,6 +11,14 @@ function LoginNavigationBar() {
   const [loginModal, setLoginModal] = useState(false);
   const [walletModal, setWalletModal] = useState(false);
   const navigate = useNavigate();
+
+  let bal = localStorage.getItem("balance");
+
+  let klip_btn = "내 Klip 지갑";
+  if (localStorage.getItem("addressW") !== "null") {
+    klip_btn = "Klip 변경";
+    console.log("balance check", bal);
+  }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
@@ -52,15 +52,10 @@ function LoginNavigationBar() {
             </NavDropdown>
           </Nav>
 
-          <Nav.Link className={styles.menu} href="/">
-            {localStorage.getItem("nick")}님
-          </Nav.Link>
-
           <LoginModal show={loginModal} onHide={() => setLoginModal(false)} />
 
           <Button
             className={styles.loginBtn}
-            // 혹시 axios 방법이 맘에 안드신다면 바꾸셔도 됩니다...
             onClick={() => {
               let header_token;
               let refresh_token;
@@ -73,9 +68,8 @@ function LoginNavigationBar() {
               }
               console.log(header_token);
               axios
-                  //.get("http://localhost:8000/oauth/logout", {
-                  .get("http://3.39.32.4:8000/oauth/logout", {
-
+                // .get("http://localhost:8000/oauth/logout", {
+                .get("http://3.39.32.4:8000/oauth/logout", {
                   headers: {
                     Authorizations: `${header_token}`,
                     refresh: `${refresh_token}`,
@@ -84,7 +78,6 @@ function LoginNavigationBar() {
                 .then((response) => {
                   // 백엔드에서 DB에 저장된거 잘 지웠는지에 대한 응답...
                   if (response.data) {
-                    
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
                     localStorage.removeItem("isMember");
@@ -97,14 +90,24 @@ function LoginNavigationBar() {
           >
             Log Out
           </Button>
-          <Button className={styles.walletBtn} onClick={() => {
-            console.log("wallet Btn Clicked")
-            setWalletModal(true)
-          }}>
-            내 Klip 지갑
+          <Button
+            className={styles.walletBtn}
+            onClick={() => {
+              console.log("wallet Btn Clicked");
+              setWalletModal(true);
+            }}
+          >
+            {klip_btn}
           </Button>
 
-          <WalletModal show={walletModal} onHide={() => setWalletModal(false)} />
+          <Nav className={styles.info}>{localStorage.getItem("nick")}님</Nav>
+
+          <Nav className={styles.info}>{bal} KLAY</Nav>
+
+          <WalletModal
+            show={walletModal}
+            onHide={() => setWalletModal(false)}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>
