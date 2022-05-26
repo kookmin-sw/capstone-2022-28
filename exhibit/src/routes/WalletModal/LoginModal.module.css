@@ -4,7 +4,7 @@
 
 .adba {
   justify-content: center !important;
-  border-radius: 80px  40px !important;
+  border-radius: 80px 40px !important;
 }
 
 .modal_header {
@@ -15,4 +15,3 @@
   display: flex;
   justify-content: center;
 }
-

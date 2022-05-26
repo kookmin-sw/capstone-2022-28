@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Auth from "./Auth";
 import Profile from "./Profile";

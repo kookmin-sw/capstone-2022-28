@@ -1,43 +1,55 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
 class Exhibition extends Sequelize.Model {
-    static init(sequelize) {
-        return super.init({
-            title: {
-                type: Sequelize.STRING(30),
-                allowNull: false,
-            },
-            description: {
-                type: Sequelize.STRING(100),
-                allowNull: false,
-            },
-            category: {
-                type: Sequelize.STRING(10),
-                allowNull: false,
-            },
-            poster_url: {
-                type: Sequelize.STRING(1000),
-                allowNull: false
-            }
+  static init(sequelize) {
+    return super.init(
+      {
+        title: {
+          type: Sequelize.STRING(30),
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.STRING(100),
+          allowNull: false,
+        },
+        category: {
+          type: Sequelize.STRING(10),
+          allowNull: false,
+        },
+        poster_url: {
+          type: Sequelize.STRING(1000),
+          allowNull: false,
+        },
+        userNick: {
+          type: Sequelize.STRING(10),
+          allowNull: false,
+        },
+      },
+      {
+        sequelize,
+        timestamps: true,
+        modelName: "Exhibition",
+        tableName: "exhibitions",
+        paranoid: false,
+        charset: "utf8mb4",
+        collate: "utf8mb4_general_ci",
+      }
+    );
+  }
 
-        }, {
-            sequelize,
-            timestamps: false, 
-            modelName: 'Exhibition',
-            tableName: 'exhibitions',
-            paranoid: false,
-            charset: 'utf8mb4',
-            collate: 'utf8mb4_general_ci'
-        });
-    }
+  static associate(db) {
+    db.Exhibition.hasMany(db.Video, {
+      foreignKey: "exhibition_id",
+      sourceKey: "id",
+    });
 
-    static associate(db) {
-        db.Exhibition.hasMany(db.Video, { foreignKey: "exhibition_id", sourceKey: "id" });
+    db.Exhibition.belongsTo(db.User, {
+      foreignKey: "user_id",
+      targetKey: "id",
+    });
 
-        db.Exhibition.belongsTo(db.User,{foreignKey : "user_id", targetKey: "id"})
-
-        //하나의 source모델을 여러개의 target모델 -> 참조 당하는 hasMany가 sourcekey
-    };
-};
+    //하나의 source모델을 여러개의 target모델 -> 참조 당하는 hasMany가 sourcekey
+  }
+}
 
 module.exports = Exhibition;
