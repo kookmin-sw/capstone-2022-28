@@ -19,7 +19,10 @@ var app = express();
 passportConfig();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "http://capstone28.s3-website.ap-northeast-2.amazonaws.com",
+    ],
     credentials: true,
   })
 );
