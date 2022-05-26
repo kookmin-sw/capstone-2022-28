@@ -5,7 +5,8 @@ import {
   NFT_CONTRACT_ADDRESS_MAIN,
 } from "../constants";
 
-const A2P_API_PREPARE_URL = "/prepare";
+const A2P_API_PREPARE_URL = "https://a2a-api.klipwallet.com/v2/a2a/prepare";
+
 const APP_NAME = "방구석 전시회";
 let cnt = 0;
 
@@ -97,7 +98,7 @@ export const executeContract = (
       const { request_key } = response.data;
       setQrvalue(getKlipAccessUrl("QR", request_key));
       let timerId = setInterval(() => {
-        axios.get(`/result?request_key=${request_key}`).then((res) => {
+        axios.get(`https://a2a-api.klipwallet.com/v2/a2a/result?request_key==${request_key}`).then((res) => {
           if (res.data.result) {
             callback(res.data.result);
             clearInterval(timerId);
@@ -152,7 +153,7 @@ export const getAddress = (setQrvalue, callback) => {
       setQrvalue(qrcode);
 
       let timerId = setInterval(() => {
-        axios.get(`/result?request_key=${request_key}`).then((res) => {
+        axios.get(`https://a2a-api.klipwallet.com/v2/a2a/result?request_key=${request_key}`).then((res) => {
           cnt++;
           if (res.data.result) {
             callback(res.data.result.klaytn_address);
