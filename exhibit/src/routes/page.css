@@ -89,6 +89,13 @@
   font-family: Poppins;
   font-weight: 700;
 }
+
+.container {
+  border: 5px solid #ffcc5c;
+  display:flex; 
+  height: 400px;
+  align-items: flex-start;
+}
 .FrameRoot {
   border: black;
   display: grid;
@@ -126,10 +133,10 @@
 }
 
 .thumbnail {
-  width: 149px;
-  height: 100px;
-  border-radius: 7px;
-  margin: 10px;
+  max-width: 149px;
+  max-height: 100px;
+  overflow: hidden;
+
 }
 
 .Cbody {
@@ -197,6 +204,15 @@ card:hover {
 
 .box {
   width: 220px;
+  height: 340px;
+  margin: 10px;
+  color: white;
+  display: grid;
+  float: left;
+}
+
+.box5 {
+  width: 300px;
   height: 340px;
   margin: 10px;
   color: white;
