@@ -13,7 +13,6 @@ function MyBuyVideo(buyVideo) {
   return (
     <span>
       <div
-        
         onClick={() =>
           navigate("/video", {
             state: {
@@ -67,12 +66,12 @@ function MyAssetPage() {
     <div class="page">
       <LoginNavigationBar />
       <div class="Cbody">
-        <h1 class="Text2">내 작품</h1>
+        <h1 class="Text2">내가 구매한 작품</h1>
         {buyVideo.map((buyVideo) => (
           <MyBuyVideo buyVideo={buyVideo} key={buyVideo.id} />
         ))}
-        </div>
-      
+      </div>
+
       <Footer />
     </div>
   );

@@ -26,22 +26,22 @@ function Footer() {
             </small>
 
             <div className="social-icons">
-              <Link
+              <a
+                href="https://www.youtube.com/watch?v=-PSzisHSG6g"
                 class="social-icon-link youtube"
-                to="/"
                 target="_blank"
                 aria-label="Youtube"
               >
                 <i class="fab fa-youtube" />
-              </Link>
-              <Link
+              </a>
+              <a
+                href="https://github.com/kookmin-sw/capstone-2022-28"
                 class="social-icon-link github"
-                to="/"
                 target="_blank"
                 aria-label="Github"
               >
                 <i class="fab fa-github" />
-              </Link>
+              </a>
             </div>
           </div>
         </section>
