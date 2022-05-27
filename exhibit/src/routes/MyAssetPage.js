@@ -12,7 +12,9 @@ function MyBuyVideo(buyVideo) {
   const navigate = useNavigate();
   return (
     <span>
-      <div
+      <span
+        className="box5"
+        style={{ padding: "10px" }}
         onClick={() =>
           navigate("/video", {
             state: {
@@ -24,14 +26,15 @@ function MyBuyVideo(buyVideo) {
           })
         }
       >
-        <VideoImageThumbnail
-          videoUrl={buyVideo.buyVideo.url}
-          width={220}
-          height={308}
-          borderRadius={7}
-          alt={buyVideo.buyVideo.title}
-        />
-      </div>
+        <div>
+          <VideoImageThumbnail
+            videoUrl={buyVideo.buyVideo.url}
+            width={300}
+            height={200}
+            alt={buyVideo.buyVideo.title}
+          />
+        </div>
+      </span>
     </span>
   );
 }
@@ -67,9 +70,11 @@ function MyAssetPage() {
       <LoginNavigationBar />
       <div class="Cbody">
         <h1 class="Text2">내가 구매한 작품</h1>
-        {buyVideo.map((buyVideo) => (
-          <MyBuyVideo buyVideo={buyVideo} key={buyVideo.id} />
-        ))}
+        <div calss="container">
+          {buyVideo.map((buyVideo) => (
+            <MyBuyVideo buyVideo={buyVideo} key={buyVideo.id} />
+          ))}
+        </div>
       </div>
 
       <Footer />
